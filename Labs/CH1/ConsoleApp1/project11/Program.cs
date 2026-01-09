@@ -22,6 +22,9 @@ Console.WriteLine("Calucating Grade Curve....");
 Console.WriteLine("Origional GPA: " + student2.GPA + ", curved GPA: " + curved);
 Console.WriteLine("\n");
 Console.WriteLine("Testing null-conditional assignment....");
+Console.WriteLine("Attempting to change student 2 name");
+Console.WriteLine(student2.Name ??= "Jonny");
+Console.WriteLine("Failed! name property is not null");
 
 Console.WriteLine("\n");
 bool student1and2 = student1 == student2;

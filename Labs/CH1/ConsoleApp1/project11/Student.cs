@@ -6,7 +6,7 @@ namespace project11
 {
     public record Student
     {
-        public string Name { get; init; }
+        public string Name { get; set; }
         private double _gpa;
         public double GPA
         {
