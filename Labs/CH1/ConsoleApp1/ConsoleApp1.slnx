@@ -1,5 +1,7 @@
 <Solution>
   <Project Path="ConsoleApp1/Project1.csproj" />
+  <Project Path="project10/project10.csproj" Id="ef3de23a-e54a-45cf-be11-42f9a4981232" />
+  <Project Path="project11/project11.csproj" Id="0307e851-9fd8-451a-b6c4-b8d87ff38cc4" />
   <Project Path="Project2/Project2.csproj" />
   <Project Path="project3/project3.csproj" />
   <Project Path="project4/project4.csproj" />
@@ -7,4 +9,5 @@
   <Project Path="project6/project6.csproj" />
   <Project Path="project7/project7.csproj" />
   <Project Path="project8/project8.csproj" />
+  <Project Path="project9/project9.csproj" Id="2521cfbf-837b-4187-bb27-b3a24f324d42" />
 </Solution>

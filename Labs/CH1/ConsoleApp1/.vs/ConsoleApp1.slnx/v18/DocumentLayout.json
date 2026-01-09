@@ -3,40 +3,104 @@
   "WorkspaceRootPath": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B1F85959-8EE1-4439-944E-0C2329AC1186}|project8\\project8.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project8\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1F85959-8EE1-4439-944E-0C2329AC1186}|project8\\project8.csproj|solutionrelative:project8\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0307E851-9FD8-451A-B6C4-B8D87FF38CC4}|project11\\project11.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project11\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0307E851-9FD8-451A-B6C4-B8D87FF38CC4}|project11\\project11.csproj|solutionrelative:project11\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A8D70BDC-9911-4FA3-B65B-D5F716BC4A52}|project7\\project7.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project7\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A8D70BDC-9911-4FA3-B65B-D5F716BC4A52}|project7\\project7.csproj|solutionrelative:project7\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0307E851-9FD8-451A-B6C4-B8D87FF38CC4}|project11\\project11.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project11\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0307E851-9FD8-451A-B6C4-B8D87FF38CC4}|project11\\project11.csproj|solutionrelative:project11\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B1F85959-8EE1-4439-944E-0C2329AC1186}|project8\\project8.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project8\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1F85959-8EE1-4439-944E-0C2329AC1186}|project8\\project8.csproj|solutionrelative:project8\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0307E851-9FD8-451A-B6C4-B8D87FF38CC4}|project11\\project11.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project11\\tempgradecalc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0307E851-9FD8-451A-B6C4-B8D87FF38CC4}|project11\\project11.csproj|solutionrelative:project11\\tempgradecalc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4AD86292-5B46-467C-A996-68D976410849}|project6\\project6.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project6\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4AD86292-5B46-467C-A996-68D976410849}|project6\\project6.csproj|solutionrelative:project6\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0307E851-9FD8-451A-B6C4-B8D87FF38CC4}|project11\\project11.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project11\\igradecalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0307E851-9FD8-451A-B6C4-B8D87FF38CC4}|project11\\project11.csproj|solutionrelative:project11\\igradecalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C3A67313-732D-4229-AB0E-EE73123D8B78}|project5\\project5.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project5\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3A67313-732D-4229-AB0E-EE73123D8B78}|project5\\project5.csproj|solutionrelative:project5\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0307E851-9FD8-451A-B6C4-B8D87FF38CC4}|project11\\project11.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project11\\studentextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0307E851-9FD8-451A-B6C4-B8D87FF38CC4}|project11\\project11.csproj|solutionrelative:project11\\studentextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{327D5294-04CE-4B7C-8CE0-0A179D0EBB60}|project4\\project4.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project4\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{327D5294-04CE-4B7C-8CE0-0A179D0EBB60}|project4\\project4.csproj|solutionrelative:project4\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2521CFBF-837B-4187-BB27-B3A24F324D42}|project9\\project9.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project9\\iturnable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2521CFBF-837B-4187-BB27-B3A24F324D42}|project9\\project9.csproj|solutionrelative:project9\\iturnable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA8CD3A9-5451-444A-A49C-0CF4F84BD35E}|project3\\project3.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project3\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA8CD3A9-5451-444A-A49C-0CF4F84BD35E}|project3\\project3.csproj|solutionrelative:project3\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF3DE23A-E54A-45CF-BE11-42F9A4981232}|project10\\project10.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project10\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF3DE23A-E54A-45CF-BE11-42F9A4981232}|project10\\project10.csproj|solutionrelative:project10\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{454B79D5-19CE-4C4B-98C3-1790F0AD2873}|Project2\\Project2.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{454B79D5-19CE-4C4B-98C3-1790F0AD2873}|Project2\\Project2.csproj|solutionrelative:project2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF3DE23A-E54A-45CF-BE11-42F9A4981232}|project10\\project10.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project10\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF3DE23A-E54A-45CF-BE11-42F9A4981232}|project10\\project10.csproj|solutionrelative:project10\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{484F2EE4-795E-406F-8D1F-D0E991AF6B69}|ConsoleApp1\\ConsoleApp1.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\consoleapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{484F2EE4-795E-406F-8D1F-D0E991AF6B69}|ConsoleApp1\\ConsoleApp1.csproj|solutionrelative:consoleapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF3DE23A-E54A-45CF-BE11-42F9A4981232}|project10\\project10.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project10\\shippingdimensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF3DE23A-E54A-45CF-BE11-42F9A4981232}|project10\\project10.csproj|solutionrelative:project10\\shippingdimensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0307E851-9FD8-451A-B6C4-B8D87FF38CC4}|project11\\project11.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project11\\project11.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{0307E851-9FD8-451A-B6C4-B8D87FF38CC4}|project11\\project11.csproj|solutionrelative:project11\\project11.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{335F9A88-A3B3-6B35-6DDE-D684E8DCFF57}|ConsoleApp1\\Project1.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\consoleapp1\\project1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{335F9A88-A3B3-6B35-6DDE-D684E8DCFF57}|ConsoleApp1\\Project1.csproj|solutionrelative:consoleapp1\\project1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2521CFBF-837B-4187-BB27-B3A24F324D42}|project9\\project9.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project9\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2521CFBF-837B-4187-BB27-B3A24F324D42}|project9\\project9.csproj|solutionrelative:project9\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2521CFBF-837B-4187-BB27-B3A24F324D42}|project9\\project9.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project9\\page.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2521CFBF-837B-4187-BB27-B3A24F324D42}|project9\\project9.csproj|solutionrelative:project9\\page.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2521CFBF-837B-4187-BB27-B3A24F324D42}|project9\\project9.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project9\\leaf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2521CFBF-837B-4187-BB27-B3A24F324D42}|project9\\project9.csproj|solutionrelative:project9\\leaf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2521CFBF-837B-4187-BB27-B3A24F324D42}|project9\\project9.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project9\\corner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2521CFBF-837B-4187-BB27-B3A24F324D42}|project9\\project9.csproj|solutionrelative:project9\\corner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2521CFBF-837B-4187-BB27-B3A24F324D42}|project9\\project9.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project9\\pancake.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2521CFBF-837B-4187-BB27-B3A24F324D42}|project9\\project9.csproj|solutionrelative:project9\\pancake.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B2A6103-2F79-058B-CA03-EF96EFA8B002}|project8\\project8.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project8\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B2A6103-2F79-058B-CA03-EF96EFA8B002}|project8\\project8.csproj|solutionrelative:project8\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B2A6103-2F79-058B-CA03-EF96EFA8B002}|project8\\project8.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project8\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B2A6103-2F79-058B-CA03-EF96EFA8B002}|project8\\project8.csproj|solutionrelative:project8\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D283094D-77A4-6FB9-5255-0D07EDD5E8B8}|project7\\project7.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project7\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D283094D-77A4-6FB9-5255-0D07EDD5E8B8}|project7\\project7.csproj|solutionrelative:project7\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25239F15-3431-C364-571F-79670E0C11F0}|project6\\project6.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project6\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25239F15-3431-C364-571F-79670E0C11F0}|project6\\project6.csproj|solutionrelative:project6\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83CBA63B-1F40-4557-2F89-626993652DA4}|project5\\project5.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project5\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83CBA63B-1F40-4557-2F89-626993652DA4}|project5\\project5.csproj|solutionrelative:project5\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D1EFB5D-4834-FFF3-8A20-91C0DA9DEFE4}|project4\\project4.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project4\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D1EFB5D-4834-FFF3-8A20-91C0DA9DEFE4}|project4\\project4.csproj|solutionrelative:project4\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{757AA040-9D1B-5404-79F9-DB033894BB33}|project3\\project3.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project3\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757AA040-9D1B-5404-79F9-DB033894BB33}|project3\\project3.csproj|solutionrelative:project3\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B39B5BA4-713F-9FC5-C00B-1A08D2D00A59}|Project2\\Project2.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\project2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B39B5BA4-713F-9FC5-C00B-1A08D2D00A59}|Project2\\Project2.csproj|solutionrelative:project2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{335F9A88-A3B3-6B35-6DDE-D684E8DCFF57}|ConsoleApp1\\Project1.csproj|c:\\users\\bjb62\\onedrive\\documents\\github\\spring2026\\awd1115boydcoursework\\labs\\ch1\\consoleapp1\\consoleapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{335F9A88-A3B3-6B35-6DDE-D684E8DCFF57}|ConsoleApp1\\Project1.csproj|solutionrelative:consoleapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,11 +110,219 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TempGradeCalc.cs",
+              "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project11\\TempGradeCalc.cs",
+              "RelativeDocumentMoniker": "project11\\TempGradeCalc.cs",
+              "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project11\\TempGradeCalc.cs",
+              "RelativeToolTip": "project11\\TempGradeCalc.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T21:20:53.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "StudentExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project11\\StudentExtensions.cs",
+              "RelativeDocumentMoniker": "project11\\StudentExtensions.cs",
+              "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project11\\StudentExtensions.cs",
+              "RelativeToolTip": "project11\\StudentExtensions.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAAC4AAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T20:55:41.479Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Student.cs",
+              "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project11\\Student.cs",
+              "RelativeDocumentMoniker": "project11\\Student.cs",
+              "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project11\\Student.cs",
+              "RelativeToolTip": "project11\\Student.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T20:41:05.132Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project10\\Program.cs",
+              "RelativeDocumentMoniker": "project10\\Program.cs",
+              "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project10\\Program.cs",
+              "RelativeToolTip": "project10\\Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABoAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T20:02:55.46Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project10\\Product.cs",
+              "RelativeDocumentMoniker": "project10\\Product.cs",
+              "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project10\\Product.cs",
+              "RelativeToolTip": "project10\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T20:03:44.59Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project11\\Program.cs",
+              "RelativeDocumentMoniker": "project11\\Program.cs",
+              "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project11\\Program.cs",
+              "RelativeToolTip": "project11\\Program.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABwAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T20:40:22.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IGradeCalculator.cs",
+              "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project11\\IGradeCalculator.cs",
+              "RelativeDocumentMoniker": "project11\\IGradeCalculator.cs",
+              "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project11\\IGradeCalculator.cs",
+              "RelativeToolTip": "project11\\IGradeCalculator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T21:33:15.123Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ITurnable.cs",
+              "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project9\\ITurnable.cs",
+              "RelativeDocumentMoniker": "project9\\ITurnable.cs",
+              "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project9\\ITurnable.cs",
+              "RelativeToolTip": "project9\\ITurnable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T19:51:37.722Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ShippingDimensions.cs",
+              "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project10\\ShippingDimensions.cs",
+              "RelativeDocumentMoniker": "project10\\ShippingDimensions.cs",
+              "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project10\\ShippingDimensions.cs",
+              "RelativeToolTip": "project10\\ShippingDimensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T20:06:25.296Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "project11",
+              "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project11\\project11.csproj",
+              "RelativeDocumentMoniker": "project11\\project11.csproj",
+              "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project11\\project11.csproj",
+              "RelativeToolTip": "project11\\project11.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-01-09T20:40:33.047Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Project1",
+              "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\ConsoleApp1\\Project1.csproj",
+              "RelativeDocumentMoniker": "ConsoleApp1\\Project1.csproj",
+              "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\ConsoleApp1\\Project1.csproj",
+              "RelativeToolTip": "ConsoleApp1\\Project1.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-01-09T20:40:06.221Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Leaf.cs",
+              "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project9\\Leaf.cs",
+              "RelativeDocumentMoniker": "project9\\Leaf.cs",
+              "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project9\\Leaf.cs",
+              "RelativeToolTip": "project9\\Leaf.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T19:50:54.593Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Pancake.cs",
+              "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project9\\Pancake.cs",
+              "RelativeDocumentMoniker": "project9\\Pancake.cs",
+              "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project9\\Pancake.cs",
+              "RelativeToolTip": "project9\\Pancake.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T19:50:41.298Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Corner.cs",
+              "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project9\\Corner.cs",
+              "RelativeDocumentMoniker": "project9\\Corner.cs",
+              "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project9\\Corner.cs",
+              "RelativeToolTip": "project9\\Corner.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T19:50:29.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Page.cs",
+              "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project9\\Page.cs",
+              "RelativeDocumentMoniker": "project9\\Page.cs",
+              "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project9\\Page.cs",
+              "RelativeToolTip": "project9\\Page.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T19:50:16.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project9\\Program.cs",
+              "RelativeDocumentMoniker": "project9\\Program.cs",
+              "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project9\\Program.cs",
+              "RelativeToolTip": "project9\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T19:42:05.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "Cart.cs",
               "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project8\\Cart.cs",
               "RelativeDocumentMoniker": "project8\\Cart.cs",
@@ -63,7 +335,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 16,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project8\\Program.cs",
               "RelativeDocumentMoniker": "project8\\Program.cs",
@@ -75,12 +347,8 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 18,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project7\\Program.cs",
               "RelativeDocumentMoniker": "project7\\Program.cs",
@@ -88,12 +356,11 @@
               "RelativeToolTip": "project7\\Program.cs",
               "ViewState": "AgIAACkAAAAAAAAAAADwvzYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-08T20:09:13.601Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-08T20:09:13.601Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 19,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project6\\Program.cs",
               "RelativeDocumentMoniker": "project6\\Program.cs",
@@ -101,12 +368,11 @@
               "RelativeToolTip": "project6\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-08T19:51:00.867Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-08T19:51:00.867Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 20,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project5\\Program.cs",
               "RelativeDocumentMoniker": "project5\\Program.cs",
@@ -114,12 +380,11 @@
               "RelativeToolTip": "project5\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-08T19:41:57.323Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-08T19:41:57.323Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 21,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project4\\Program.cs",
               "RelativeDocumentMoniker": "project4\\Program.cs",
@@ -127,12 +392,11 @@
               "RelativeToolTip": "project4\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-08T19:32:52.125Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-08T19:32:52.125Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 22,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project3\\Program.cs",
               "RelativeDocumentMoniker": "project3\\Program.cs",
@@ -140,12 +404,11 @@
               "RelativeToolTip": "project3\\Program.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAB8AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-08T19:14:20.965Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-08T19:14:20.965Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 23,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\Project2\\Program.cs",
               "RelativeDocumentMoniker": "Project2\\Program.cs",
@@ -153,12 +416,11 @@
               "RelativeToolTip": "Project2\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-08T18:53:57.519Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-08T18:53:57.519Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 24,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\ConsoleApp1\\Program.cs",
               "RelativeDocumentMoniker": "ConsoleApp1\\Program.cs",
@@ -166,8 +428,7 @@
               "RelativeToolTip": "ConsoleApp1\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-08T18:45:09.008Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-08T18:45:09.008Z"
             }
           ]
         }
