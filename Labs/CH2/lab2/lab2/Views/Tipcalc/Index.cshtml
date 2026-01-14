@@ -1,0 +1,28 @@
+﻿@model TipCalculator
+
+<h1>Tip Calculator</h1>
+<div asp-validation-summary="All"></div>
+<form asp-action="Index" method="post">
+    <div class="form-group">
+        <label asp-for="Cost">Cost:</label>
+        <input asp-for="Cost" />
+        @* <br /> *@
+    </div>
+    <div class="form-group">
+        <label>15% tip:</label>
+        <input readonly placeholder="$0.00" value="@ViewBag.FifteenTip?.ToString("c2")" class="TipOutput"/>
+        @* <br /> *@
+    </div>
+    <div class="form-group">
+        <label>20% tip:</label>
+        <input readonly placeholder="$0.00" value="@ViewBag.TwentyTip?.ToString("c2")" class="TipOutput" />
+        @* <br /> *@
+    </div>
+    <div class="form-group">
+        <label>25% tip:</label>
+        <input readonly placeholder="$0.00" value="@ViewBag.TwentyFiveTip?.ToString("c2")" class="TipOutput" />
+        @* <br /> *@
+    </div>
+    <button type="submit">Calculate</button>
+    <a asp-action="Index">Clear</a>
+</form>

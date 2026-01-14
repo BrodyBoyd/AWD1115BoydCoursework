@@ -1,0 +1,22 @@
+﻿@import "tailwindcss";
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group {
+/*    display: flex;*/
+/*    align-items: center;
+    justify-content: space-between;*/
+}
+header {
+    align-content: center;
+    justify-content: center;
+}
+.TipOutput {
+    border: none;
+}
+

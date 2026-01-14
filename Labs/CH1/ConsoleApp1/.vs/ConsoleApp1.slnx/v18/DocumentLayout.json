@@ -122,8 +122,7 @@
               "RelativeToolTip": "project11\\TempGradeCalc.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T21:20:53.925Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-09T21:20:53.925Z"
             },
             {
               "$type": "Document",
@@ -135,8 +134,7 @@
               "RelativeToolTip": "project11\\StudentExtensions.cs",
               "ViewState": "AgIAACAAAAAAAAAAAAAAAC4AAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T20:55:41.479Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-09T20:55:41.479Z"
             },
             {
               "$type": "Document",
@@ -148,8 +146,7 @@
               "RelativeToolTip": "project11\\Student.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T20:41:05.132Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-09T20:41:05.132Z"
             },
             {
               "$type": "Document",
@@ -161,8 +158,7 @@
               "RelativeToolTip": "project10\\Program.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABoAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T20:02:55.46Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-09T20:02:55.46Z"
             },
             {
               "$type": "Document",
@@ -174,8 +170,7 @@
               "RelativeToolTip": "project10\\Product.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T20:03:44.59Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-09T20:03:44.59Z"
             },
             {
               "$type": "Document",
@@ -185,7 +180,7 @@
               "RelativeDocumentMoniker": "project11\\Program.cs",
               "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project11\\Program.cs",
               "RelativeToolTip": "project11\\Program.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAABoAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABgAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-09T20:40:22.928Z",
               "EditorCaption": ""
@@ -200,8 +195,7 @@
               "RelativeToolTip": "project11\\IGradeCalculator.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T21:33:15.123Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-09T21:33:15.123Z"
             },
             {
               "$type": "Document",
@@ -213,8 +207,7 @@
               "RelativeToolTip": "project9\\ITurnable.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T19:51:37.722Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-09T19:51:37.722Z"
             },
             {
               "$type": "Document",
@@ -226,34 +219,31 @@
               "RelativeToolTip": "project10\\ShippingDimensions.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T20:06:25.296Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-09T20:06:25.296Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "project11",
+              "Title": "project11.csproj",
               "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project11\\project11.csproj",
               "RelativeDocumentMoniker": "project11\\project11.csproj",
               "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\project11\\project11.csproj",
               "RelativeToolTip": "project11\\project11.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-01-09T20:40:33.047Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-09T20:40:33.047Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "Project1",
+              "Title": "Project1.csproj",
               "DocumentMoniker": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\ConsoleApp1\\Project1.csproj",
               "RelativeDocumentMoniker": "ConsoleApp1\\Project1.csproj",
               "ToolTip": "C:\\Users\\bjb62\\OneDrive\\Documents\\GitHub\\Spring2026\\AWD1115BoydCoursework\\Labs\\CH1\\ConsoleApp1\\ConsoleApp1\\Project1.csproj",
               "RelativeToolTip": "ConsoleApp1\\Project1.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-01-09T20:40:06.221Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-09T20:40:06.221Z"
             },
             {
               "$type": "Document",
@@ -265,8 +255,7 @@
               "RelativeToolTip": "project9\\Leaf.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T19:50:54.593Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-09T19:50:54.593Z"
             },
             {
               "$type": "Document",
@@ -278,8 +267,7 @@
               "RelativeToolTip": "project9\\Pancake.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T19:50:41.298Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-09T19:50:41.298Z"
             },
             {
               "$type": "Document",
@@ -291,8 +279,7 @@
               "RelativeToolTip": "project9\\Corner.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T19:50:29.315Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-09T19:50:29.315Z"
             },
             {
               "$type": "Document",
@@ -304,8 +291,7 @@
               "RelativeToolTip": "project9\\Page.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T19:50:16.814Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-09T19:50:16.814Z"
             },
             {
               "$type": "Document",
@@ -317,8 +303,7 @@
               "RelativeToolTip": "project9\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T19:42:05.308Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-09T19:42:05.308Z"
             },
             {
               "$type": "Document",
@@ -330,8 +315,7 @@
               "RelativeToolTip": "project8\\Cart.cs",
               "ViewState": "AgIAABwAAAAAAAAAAAAkwDQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-08T21:41:40.773Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-08T21:41:40.773Z"
             },
             {
               "$type": "Document",
@@ -343,8 +327,7 @@
               "RelativeToolTip": "project8\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-08T21:41:26.256Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-08T21:41:26.256Z"
             },
             {
               "$type": "Document",
