@@ -1,0 +1,17 @@
+﻿@import "tailwindcss";
+
+.card {
+    @apply bg-white rounded-lg shadow-md border border-gray-300 flex items-center justify-center text-xl font-semibold;
+    width: 3.5rem;
+    height: 5rem;
+}
+
+.card-back {
+    @apply bg-blue-700 text-white;
+}
+
+.chip {
+    @apply rounded-full flex items-center justify-center font-bold text-white;
+    width: 3rem;
+    height: 3rem;
+}

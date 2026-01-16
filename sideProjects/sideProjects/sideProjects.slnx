@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="Blackhack/Blackjack.csproj" />
+  <Project Path="CasinoMVC/CasinoMVC.csproj" Id="d5bd11e3-3a89-4912-afe3-fac4209211d0" />
 </Solution>
