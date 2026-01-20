@@ -1,5 +1,6 @@
 ﻿using CasinoMVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 using System.Text.Json;
 
 namespace CasinoMVC.Controllers
@@ -55,6 +56,8 @@ namespace CasinoMVC.Controllers
 
             // Deal cards
             model.GetInitialCards();
+            model.ShowDealerCards = false;
+            model.Bust = false;
 
             // Save updated state
             HttpContext.Session.SetString("GameState", JsonSerializer.Serialize(model));
@@ -69,7 +72,12 @@ namespace CasinoMVC.Controllers
         {
 
             var json = HttpContext.Session.GetString("GameState");
+
+            if (string.IsNullOrEmpty(json))
+                return RedirectToAction("Index");
+
             var blackjack = JsonSerializer.Deserialize<BlackjackPlayer>(json);
+
 
             blackjack.Hit();
 

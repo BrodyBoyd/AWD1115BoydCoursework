@@ -10,6 +10,54 @@
 </head>
 <body>
     <div>
+        <nav class="bg-casino-felt border-b border-yellow-500/40 shadow-[0_0_20px_rgba(255,215,0,0.3)]">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+                <!-- Logo / Title -->
+                <div class="flex items-center space-x-3">
+                    <span class="text-yellow-400 text-3xl font-extrabold tracking-widest drop-shadow-[0_0_8px_gold]">
+                        ♠ VEGAS TABLES ♣
+                    </span>
+                </div>
+
+                <!-- Navigation Links -->
+                <ul class="flex space-x-10 text-lg font-semibold">
+                    <li>
+                        <a asp-controller="Home" asp-action="Index"
+                           class="text-yellow-300 hover:text-yellow-400 transition drop-shadow-[0_0_6px_gold]">
+                            Blackjack
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"
+                           class="text-yellow-300 hover:text-yellow-400 transition drop-shadow-[0_0_6px_gold]">
+                            Poker
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Roulette" asp-action="Index"
+                           class="text-yellow-300 hover:text-yellow-400 transition drop-shadow-[0_0_6px_gold]">
+                            Roulette
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"
+                           class="text-yellow-300 hover:text-yellow-400 transition drop-shadow-[0_0_6px_gold]">
+                            Craps
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"
+                           class="text-yellow-300 hover:text-yellow-400 transition drop-shadow-[0_0_6px_gold]">
+                            Baccarat
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Optional: Player Profile / Balance -->
+                
+            </div>
+        </nav>
         @RenderBody()
     </div>
 </body>

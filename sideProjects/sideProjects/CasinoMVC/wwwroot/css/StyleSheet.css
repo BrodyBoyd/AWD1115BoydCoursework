@@ -15,3 +15,42 @@
     width: 3rem;
     height: 3rem;
 }
+.bg-casino-felt {
+    background: radial-gradient(circle at center, #0b5d2a, #053b18 80%);
+}
+
+.roulette-table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    border: 2px solid #fff;
+}
+
+    .roulette-table td {
+        border: 1px solid #fff;
+        text-align: center;
+        padding: 6px;
+        min-width: 45px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+.zero {
+    background: #0a7f3f;
+}
+
+.red {
+    background: #b30000;
+}
+
+.black {
+    background: #111;
+}
+
+.outside {
+    background: #064422;
+}
+
+.label {
+    background: #033016;
+    cursor: default;
+}
