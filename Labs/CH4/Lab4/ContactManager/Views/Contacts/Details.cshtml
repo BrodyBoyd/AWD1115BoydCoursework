@@ -1,0 +1,18 @@
+﻿@model Contact
+
+<h1 class="bg-gray-700 text-blue-100 p-4 text-6xl font-bold text-center">Contact Details</h1>
+<div>
+    <div class="max-w-96 mx-auto bg-white shadow-lg rounded-lg p-6 mt-6 border border-gray-800/20">
+        <h2 class="text-3xl font-bold mb-4">@Model.FirstName @Model.LastName</h2>
+        <p class="text-lg mb-2 border-b border-blue-900/20"><strong>Phone:</strong> @Model.PhoneNumber</p>
+        <p class="text-lg mb-2 border-b border-blue-900/20"><strong>Email:</strong> @Model.Email</p>
+        <p class="text-lg mb-2 border-b border-blue-900/20"><strong>Category:</strong> @Model.Category.CategoryName</p>
+        <p class="text-lg mb-2 border-b border-blue-900/20"><strong>Date Added:</strong> @Model.DateAdded</p>
+        <div class="flex">
+            <a asp-action="AddEdit" asp-route-id="@Model.ContactId" asp-route-slug="@Model.Slug" class="text-blue-300 px-2">Edit</a>
+            <a asp-action="Delete" asp-route-id="@Model.ContactId" asp-route-slug="@Model.Slug" method="Get" class="text-red-400 px-2">Delete</a>
+            <a asp-action="Index" class="text-green-300 px-2">Home</a>
+
+        </div>
+    </div>
+</div>

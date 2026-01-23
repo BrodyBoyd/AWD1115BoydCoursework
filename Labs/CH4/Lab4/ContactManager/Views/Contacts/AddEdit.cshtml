@@ -1,0 +1,66 @@
+﻿@model Contact
+@if (Model.ContactId == 0)
+{
+    <h1 class="bg-gray-700 text-blue-100 p-4 text-6xl font-bold text-center">Add New Contact</h1>
+}
+else
+{
+    <h1 class="bg-gray-700 text-blue-100 p-4 text-6xl font-bold text-center">Edit Contact</h1>
+}
+<div>
+    <div class="max-w-96 mx-auto bg-white shadow-lg rounded-lg p-6 mt-6 border border-gray-800/20">
+        <form asp-action="AddEdit" method="post">
+            <input type="hidden" asp-for="ContactId" />
+            <div>
+                <label asp-for="FirstName" for="FirstName">First Name:</label>
+                <input asp-for="FirstName" id="FirstName" class="border border-gray-300 rounded-lg p-2 w-full" />
+                <span asp-validation-for="FirstName" class="text-red-500"></span>
+            </div>
+            <div>
+                <label asp-for="LastName" for="LastName">Last Name:</label>
+                <input asp-for="LastName" id="LastName" class="border border-gray-300 rounded-lg p-2 w-full" />
+                <span asp-validation-for="LastName" class="text-red-500"></span>
+            </div>
+            <div>
+                <label asp-for="PhoneNumber" for="PhoneNumber">Phone Number:</label>
+                <input asp-for="PhoneNumber" id="PhoneNumber" class="border border-gray-300 rounded-lg p-2 w-full" />
+                <span asp-validation-for="PhoneNumber" class="text-red-500"></span>
+            </div>
+            <div>
+                <label asp-for="Email" for="Email">Email:</label>
+                <input asp-for="Email" id="Email" class="border border-gray-300 rounded-lg p-2 w-full" />
+                <span asp-validation-for="Email" class="text-red-500"></span>
+            </div>
+            <div class="mb-2">
+                <label asp-for="Category" for="Category">Category:</label>
+                <select asp-for="Category" id="Category" class="border border-gray-300 rounded-lg p-2 w-full">
+                    <option value="Family">Family</option>
+                    <option value="Friend">Friend</option>
+                    <option value="Work">Work</option>
+                    <option value="Other">Other</option>
+                </select>
+                <span asp-validation-for="Category" class="text-red-500"></span>
+            </div>
+            @if(Model.ContactId == 0)
+            {
+                <div class="flex">
+                    <button type="submit" class="mt-4 p-2 bg-green-400 font-semibold rounded-xl shadow-xl border items-center block mx-auto max-w-50 hover:bg-green-600 hover:cursor-pointer">
+                        Add Contact
+                    </button>
+                    <a asp-action="Index" class="mt-2 p-2 bg-blue-200 font-semibold rounded-xl shadow-xl border items-center block mx-auto max-w-50 hover:bg-blue-400">Cancel</a>
+                </div>
+                
+            }
+            else
+            {
+                <div class="flex">
+                    <button type="submit" class="mt-4 p-2 bg-yellow-400 font-semibold rounded-xl shadow-xl border items-center block mx-auto max-w-50 hover:bg-yellow-600 hover:cursor-pointer">
+                       Update Contact
+                    </button>
+                    <a asp-action="Details" asp-route-id="@Model.ContactId" class="mt-2 p-2 bg-blue-200 font-semibold rounded-xl shadow-xl border items-center block mx-auto max-w-50 hover:bg-blue-400">Cancel</a>
+                </div>
+            }
+        </form>
+    </div>
+    
+</div>

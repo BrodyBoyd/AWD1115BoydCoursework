@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Contact>
+
+<h1 class="bg-gray-700 text-blue-100 p-4 text-6xl font-bold text-center">Contact Manager</h1>
+<a asp-action="AddEdit" class="max-w-32 mt-2 p-2 bg-blue-200 font-semibold rounded-xl shadow-xl text-center border items-center block mx-auto">Add Contact</a>
+<br/>
+<table class="min-w-50 mx-auto bg-white border-b border-gray-200 rounded-lg shadow-md">
+    <thead class="bg-gray-100 border-b">
+        <tr class="">
+            <th class="px-6 py-3 text-left text-md font-demibold text-gray-900">First Name</th>
+            <th class="px-6 py-3 text-left text-md font-demibold text-gray-900">Last Name</th>
+            <th class="px-6 py-3 text-left text-md font-demibold text-gray-900">Phone</th>
+            <th class="px-6 py-3 text-left text-md font-demibold text-gray-900">Email</th>
+            <th class="px-6 py-3 text-left text-md font-demibold text-gray-900">Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var contact in Model)
+        {
+            <tr class="border-b hover:bg-gray-100">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <a asp-action="Details" asp-route-id="@contact.ContactId" asp-route-slug="@contact.Slug" class="text-blue-300 px-2">@contact.FirstName</a>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <a asp-action="Details" asp-route-id="@contact.ContactId" asp-route-slug="@contact.Slug" class="text-blue-300 px-2">@contact.LastName</a>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">@contact.PhoneNumber</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">@contact.Email</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">@contact.Category?.CategoryName</td>                
+            </tr>
+        }
+    </tbody>
+</table>
