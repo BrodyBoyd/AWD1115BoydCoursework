@@ -1,0 +1,109 @@
+﻿@* <h1>When you need to go, you need to know.</h1> *@
+<div class="">
+
+    <!-- Full-width Hero -->
+    <section class="dark:bg-gray-100 dark:text-gray-800 pt-16">
+        <div class="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl">
+            <h1 class="text-4xl font-bold leading-none sm:text-5xl">
+                PeePal - When You Gotta
+                <span class="dark:text-violet-600">Go</span> You gotta <span class="dark:text-violet-600">Know</span>
+            </h1>
+            <p class="px-8 mt-8 mb-12 text-lg">PeePal is a user based restroom rating application</p>
+            <div class="flex flex-wrap justify-center">
+                <button class="px-8 py-3 m-2 text-lg font-semibold rounded dark:bg-violet-600 dark:text-gray-50 hover:bg-violet-800 hover:cursor-pointer">Bathrooms Near me</button>
+                <a asp-action="RateRestroom" class="px-8 py-3 m-2 text-lg border rounded dark:text-gray-900 dark:border-gray-300 hover:bg-gray-300 hover:cursor-pointer">Rate Bathroom</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full-width Feature Strip -->
+    <section class="w-full bg-white py-16 px-8">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+            <div>
+                <h3 class="text-2xl font-bold mb-2">Fast</h3>
+                <p class="text-gray-600">Instant geolocation with no setup required.</p>
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold mb-2">Accurate</h3>
+                <p class="text-gray-600">Find the closest restrooms with precision.</p>
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold mb-2">Reliable</h3>
+                <p class="text-gray-600">Works anywhere with Google Maps integration.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="p-6 dark:bg-gray-100 dark:text-gray-800">
+        <div class="container grid gap-6 mx-auto text-center lg:grid-cols-2 xl:grid-cols-5">
+            <div class="w-full px-6 py-16 rounded-md sm:px-12 md:px-16 xl:col-span-2 dark:bg-gray-50">
+                <h1 class="text-5xl font-extrabold dark:text-gray-900">Search Your Location</h1>
+                <p class="my-8">
+                    <span class="font-medium dark:text-gray-900">You want the best!</span> We want that for you as well, no more guessing and getting a gross public restroom, use PeePal to find the cleanest bathroom near you
+                </p>
+                <form novalidate="" action="" class="self-stretch space-y-3">
+                    <div>
+                        <label for="Search" class="text-sm sr-only">Zip Code:</label>
+                        <input id="Search" type="text" placeholder="Your Zipcode" class="w-full rounded-md focus:ring focus:dark:ring-violet-600 dark:border-gray-300">
+                    </div>
+                    <button type="button" class="w-full py-2 font-semibold rounded dark:bg-violet-600 dark:text-gray-50">Search Nearby</button>
+                </form>
+            </div>
+            @* <div id="map" class="w-full rounded-md xl:col-span-3 dark:bg-gray-500"></div>  *@
+        </div>
+    </section>
+
+</div>
+
+@* 
+<script>
+    let map, infoWindow;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 0, lng: 0 }, // temporary center
+            zoom: 6
+        });
+
+        infoWindow = new google.maps.InfoWindow();
+
+        // Automatically try to get current location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    map.setCenter(pos);
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent("You are here");
+                    infoWindow.open(map);
+                },
+                () => {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                }
+            );
+        } else {
+            handleLocationError(false, infoWindow, map.getCenter());
+        }
+    }
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(
+            browserHasGeolocation
+                ? "Error: The Geolocation service failed."
+                : "Error: Your browser doesn't support geolocation."
+        );
+        infoWindow.open(map);
+    }
+
+    window.initMap = initMap;
+</script>
+
+<script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjZrhvMBT9CR0niRdl8GLD7KtBA1uUYUE&callback=initMap">
+</script> *@
+@* TAKE OUT API KEY AT SOME POINT  AIzaSyDjZrhvMBT9CR0niRdl8GLD7KtBA1uUYUE *@
