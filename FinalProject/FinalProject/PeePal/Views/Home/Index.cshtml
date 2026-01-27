@@ -1,10 +1,20 @@
 ﻿@* <h1>When you need to go, you need to know.</h1> *@
 <div class="">
 
-    <!-- Full-width Hero -->
-    <section class="dark:bg-gray-100 dark:text-gray-800 pt-16">
-        <div class="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl">
-            <h1 class="text-4xl font-bold leading-none sm:text-5xl">
+    <!-- Hero -->
+    <div class="relative w-full h-[60vh] flex items-center justify-center overflow-hidden bg-gray-50 pt-32">
+
+        <div class="absolute -top-20 -left-20 w-72 h-72 bg-purple-500/40 rounded-full blur-3xl"></div>
+
+        <!-- Blurred gray blob -->
+        <div class="absolute bottom-0 right-0 w-80 h-80 bg-gray-400/30 rounded-full blur-3xl"></div>
+
+        <!-- Soft white glow -->
+        <div class="absolute top-1/2 left-1/2 w-96 h-96 bg-white/40 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2"></div>
+
+        <!-- Hero content -->
+        <div class="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl z-10">
+            <h1 class="text-4xl font-bold leading-none sm:text-5xl hover-button">
                 PeePal - When You Gotta
                 <span class="dark:text-violet-600">Go</span> You gotta <span class="dark:text-violet-600">Know</span>
             </h1>
@@ -12,11 +22,16 @@
             <div class="flex flex-wrap justify-center">
                 <button class="px-8 py-3 m-2 text-lg font-semibold rounded dark:bg-violet-600 dark:text-gray-50 hover:bg-violet-800 hover:cursor-pointer">Bathrooms Near me</button>
                 <a asp-action="RateRestroom" class="px-8 py-3 m-2 text-lg border rounded dark:text-gray-900 dark:border-gray-300 hover:bg-gray-300 hover:cursor-pointer">Rate Bathroom</a>
+                
+
             </div>
         </div>
-    </section>
+        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
 
-    <!-- Full-width Feature Strip -->
+    </div>
+
+
+    <!-- Feature Strip -->
     <section class="w-full bg-white py-16 px-8">
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
             <div>
@@ -32,6 +47,54 @@
                 <p class="text-gray-600">Works anywhere with Google Maps integration.</p>
             </div>
         </div>
+    </section>
+
+    <section class="relative flex w-screen line-bg py-16 px-8 justify-center min-h-screen">
+
+        <!-- Top fade (into previous section) -->
+        <div class="absolute top-0 left-0 w-full h-32
+                bg-gradient-to-t from-transparent to-white
+                pointer-events-none"></div>
+
+        <!-- Bottom fade (into next section) -->
+        <div class="absolute bottom-0 left-0 w-full h-32
+                bg-gradient-to-b from-transparent to-white
+                pointer-events-none"></div>
+
+        <div class="max-w-8xl mx-auto gap-10 text-center transition">
+            <div>
+                <h3 class="text-2xl font-bold mb-2 text-white">AI Integration</h3>
+                <p class="text-gray-200">Ask our ai for help finding the specific bathroom you're looking for. (Coming Soon)</p>
+
+                <div id="askPeepalBtn" class="outer-cont flex">
+                    <!-- SVG unchanged -->
+                    <svg viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <g fill="none">
+                            <path d="m12.594 23.258l-.012.002l-.071.035l-.02.004l-.014-.004l-.071-.036q-.016-.004-.024.006l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.016-.018m.264-.113l-.014.002l-.184.093l-.01.01l-.003.011l.018.43l.005.012l.008.008l.201.092q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.003-.011l.018-.43l-.003-.012l-.01-.01z"></path>
+                            <path d="M9.107 5.448c.598-1.75 3.016-1.803 3.725-.159l.06.16l.807 2.36a4 4 0 0 0 2.276 2.411l.217.081l2.36.806c1.75.598 1.803 3.016.16 3.725l-.16.06l-2.36.807a4 4 0 0 0-2.412 2.276l-.081.216l-.806 2.361c-.598 1.75-3.016 1.803-3.724.16l-.062-.16l-.806-2.36a4 4 0 0 0-2.276-2.412l-.216-.081l-2.36-.806c-1.751-.598-1.804-3.016-.16-3.724l.16-.062l2.36-.806A4 4 0 0 0 8.22 8.025l.081-.216zM11 6.094l-.806 2.36a6 6 0 0 1-3.49 3.649l-.25.091l-2.36.806l2.36.806a6 6 0 0 1 3.649 3.49l.091.25l.806 2.36l.806-2.36a6 6 0 0 1 3.49-3.649l.25-.09l2.36-.807l-2.36-.806a6 6 0 0 1-3.649-3.49l-.09-.25zM19 2a1 1 0 0 1 .898.56l.048.117l.35 1.026l1.027.35a1 1 0 0 1 .118 1.845l-.118.048l-1.026.35l-.35 1.027a1 1 0 0 1-1.845.117l-.048-.117l-.35-1.026l-1.027-.35a1 1 0 0 1-.118-1.845l.118-.048l1.026-.35l.35-1.027A1 1 0 0 1 19 2"
+                                  fill="currentColor"></path>
+                        </g>
+                    </svg>
+                    Ask PeePal AI
+                </div>
+            </div>
+        </div>
+        
+        <div id="peepalChatbox" class="hidden w-[60%] mx-auto mt-10">
+            <div class="card">
+                <div class="chat-header">Chat</div>
+                <div class="chat-window">
+                    <ul class="message-list"></ul>
+                </div>
+                <div class="chat-input">
+                    <input type="text" class="message-input" placeholder="Type your message here">
+                    <button class="send-button">Send</button>
+                </div>
+            </div>
+        </div>
+
+
+
     </section>
 
     <section class="p-6 dark:bg-gray-100 dark:text-gray-800">
@@ -107,3 +170,12 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjZrhvMBT9CR0niRdl8GLD7KtBA1uUYUE&callback=initMap">
 </script> *@
 @* TAKE OUT API KEY AT SOME POINT  AIzaSyDjZrhvMBT9CR0niRdl8GLD7KtBA1uUYUE *@
+
+<script>
+    const btn = document.getElementById("askPeepalBtn");
+    const chatbox = document.getElementById("peepalChatbox");
+
+    btn.addEventListener("click", () => {
+        chatbox.classList.remove("hidden");
+    });
+</script>

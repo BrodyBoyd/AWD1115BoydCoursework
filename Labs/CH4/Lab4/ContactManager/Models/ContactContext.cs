@@ -14,6 +14,9 @@ namespace ContactManager.Models
             // Use a fixed seed date so EF Core's model snapshot remains stable.
             var seedDate = new DateTime(2026, 1, 23, 13, 50, 54, 33, DateTimeKind.Local).AddTicks(9517);
 
+            //Broken Code Below
+            var seedDateBroken = DateTime.Now;
+
             modelBuilder.Entity<Contact>().HasData(
                 new Contact { ContactId = 1, FirstName = "Terry", LastName = "Silver", CategoryId = 1, Email = "TSilver@gmail.com", PhoneNumber = "131-123-2351", DateAdded = seedDate },
                 new Contact { ContactId = 2, FirstName = "Johnny", LastName = "Lawrence", CategoryId = 2, Email = "CobraKaiNeverDies@gmail.com", PhoneNumber = "417-163-7853", DateAdded = seedDate },

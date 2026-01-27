@@ -233,3 +233,164 @@
     .inputbox input:focus ~ i {
         height: 44px;
     }
+
+/* From Uiverse.io by biswacpcode */
+
+    .hover-button::before {
+        margin-left: auto;
+    }
+
+.hover-button::after, .hover-button::before {
+    content: '';
+    width: 0%;
+    height: 4px;
+    background: #AD76FA;
+    display: block;
+    transition: 0.8s;
+}
+
+    .hover-button:hover::after, .hover-button:hover::before {
+        width: 100%;
+    }
+
+/* From Uiverse.io by Spacious74 */
+.flex {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.outer-cont {
+    padding: 12px 20px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    position: relative;
+    background: linear-gradient(90deg, #5bfcc4, #f593e4, #71a4f0);
+    border-radius: 12px;
+    color: #fff;
+    transition: all 0.3s ease;
+    box-shadow: inset 0px 0px 5px #ffffffa9, inset 0px 35px 30px #000, 0px 5px 10px #000000cc;
+    text-shadow: 1px 1px 1px #000;
+}
+
+    .outer-cont::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        border-radius: 12px;
+        filter: blur(0);
+        z-index: -1;
+        box-shadow: none;
+        background: conic-gradient( #00000000 80deg, #40baf7, #f34ad7, #5bfcc4, #00000000 280deg );
+        transition: all 0.3s ease;
+    }
+
+    .outer-cont:hover::before {
+        filter: blur(15px);
+    }
+
+    .outer-cont:active::before {
+        filter: blur(5px);
+        transform: translateY(1px);
+    }
+
+    .outer-cont:active {
+        box-shadow: inset 0px 0px 5px #ffffffa9, inset 0px 35px 30px #000;
+        margin-top: 3px;
+    }
+
+
+.line-bg {
+    width: 100%;
+    height: 100%;
+    --color: rgba(114, 114, 114, 0.3);
+    background-color: #191a1a;
+    background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent), linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent);
+    background-size: 55px 55px;
+}
+
+/* From Uiverse.io by ahmed150up */
+/* Main card container */
+.card {
+    width: 60%;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border: 1px solid #e5d4ff; /* soft purple border */
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Header */
+.chat-header {
+    background: linear-gradient(90deg, #7c3aed, #a78bfa); /* PeePal purple gradient */
+    color: #ffffff;
+    padding: 14px 18px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Chat window */
+.chat-window {
+    height: 350px;
+    overflow-y: auto;
+    padding: 16px;
+    background-color: #faf7ff; /* ultra-light purple */
+}
+
+/* Message list */
+.message-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Input area */
+.chat-input {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-top: 1px solid #e5d4ff;
+    background-color: #ffffff;
+}
+
+/* Text input */
+.message-input {
+    flex: 1;
+    border: 1px solid #d6bbfc;
+    background-color: #faf7ff;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 15px;
+    outline: none;
+    transition: border 0.2s ease;
+}
+
+    .message-input:focus {
+        border-color: #7c3aed;
+    }
+
+/* Send button */
+.send-button {
+    margin-left: 10px;
+    border: none;
+    background-color: #7c3aed;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+    .send-button:hover {
+        background-color: #ffffff;
+        color: #7c3aed;
+        border: 1px solid #7c3aed;
+        box-shadow: 0 4px 18px rgba(124, 58, 237, 0.25);
+    }
