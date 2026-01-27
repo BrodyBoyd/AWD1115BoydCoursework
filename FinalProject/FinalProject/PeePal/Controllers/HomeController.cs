@@ -6,14 +6,17 @@ namespace PeePal.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.Title = "Home Page";
             return View();
         }
         public IActionResult Contact()
         {
+            ViewBag.Title = "Contact";
             return View();
         }
         public IActionResult RateRestroom()
         {
+            ViewBag.Title = "Rate a Restroom";
             return View();
         }
     }
