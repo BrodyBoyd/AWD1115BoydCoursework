@@ -22,7 +22,7 @@
             data-[bg=stone]:bg-violet-600/40
             data-text-bright:**:text-white absolute z-50">
 
-        <div class="absolute top-1/2 -translate-y-1/2 right-8">Login</div>
+        <div class="absolute top-1/2 -translate-y-1/2 right-8"><partial name="_LoginPartial"/></div>
 
         <input type="checkbox" id="navbar__control"
                class="md:hidden absolute w-8 h-8 top-4 left-4 z-10 opacity-0" />
@@ -35,7 +35,7 @@
                 <img src="~/images/PeePalLogo.png" class="w-16 h-fit"  viewBox="0 0 512 512"/>
             </div>
 
-            <a asp-action="Index"><span class="ml-2 mr-4 text-[clamp(1.1rem,calc(2vw_+_0.1rem),2rem)] font-bold text-violet-100">
+            <a asp-controller="Home" asp-action="Index"><span class="ml-2 mr-4 text-[clamp(1.1rem,calc(2vw_+_0.1rem),2rem)] font-bold text-violet-100">
                 PeePal
                 </span>
             </a>
@@ -84,7 +84,7 @@
                **:has-[a]:group-has-checked:h-[2rem]">
 
             <li>
-                <a asp-action="Index" onClick="closeMenu()"
+                <a asp-controller="Home" asp-action="Index" onClick="closeMenu()"
                    class="h-0 opacity-0 md:opacity-100 group-has-checked:opacity-100">
                     Home
                 </a>
@@ -135,5 +135,6 @@
             </div>
         </div>
     </footer>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

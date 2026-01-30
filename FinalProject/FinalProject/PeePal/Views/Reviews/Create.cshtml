@@ -1,0 +1,184 @@
+﻿@model PeePal.Models.Review
+
+@{
+    ViewData["Title"] = "Create Review";
+}
+
+<section class="dark:bg-gray-100 dark:text-gray-800 pt-16">
+    <div class="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl">
+
+        <h1 class="text-4xl font-bold leading-none sm:text-5xl">Rate A Restroom</h1>
+        <p class="px-8 mt-8 mb-12 text-lg">Give us some information for other users to see</p>
+
+        <form asp-action="Create" class="w-full flex flex-col gap-10">
+
+            <div asp-validation-summary="ModelOnly" class="text-red-500 text-sm mb-4"></div>
+
+            <!-- FORM INPUTS -->
+            <div class="flex gap-10 justify-center">
+
+                <!-- LEFT COLUMN -->
+                <div class="flex flex-col h-full inputbox">
+
+                    <!-- Address -->
+                    <div class="inputbox">
+                        <input asp-for="address" required="required" type="text" />
+                        <span>Address</span>
+                        <i></i>
+                    </div>
+                    <span asp-validation-for="address" class="text-red-500 text-sm"></span>
+                    <br />
+
+                    <!-- Restroom Name -->
+                    <div class="inputbox">
+                        <input asp-for="name" required="required" type="text" />
+                        <span>Restroom Name</span>
+                        <i></i>
+                    </div>
+                    <span asp-validation-for="name" class="text-red-500 text-sm"></span>
+                    <br />
+
+                    <!-- Likes -->
+                    <div class="inputbox">
+                        <input asp-for="Likes" required="required" type="text" />
+                        <span>Likes</span>
+                        <i></i>
+                    </div>
+                    <span asp-validation-for="Likes" class="text-red-500 text-sm"></span>
+                    <br />
+
+                    <!-- Dislikes -->
+                    <div class="inputbox">
+                        <input asp-for="Dislikes" required="required" type="text" />
+                        <span>Dislikes</span>
+                        <i></i>
+                    </div>
+                    <span asp-validation-for="Dislikes" class="text-red-500 text-sm"></span>
+                    <br />
+
+                    <!-- Tips -->
+                    <div class="inputbox">
+                        <input asp-for="Tips" required="required" type="text" />
+                        <span>Tips</span>
+                        <i></i>
+                    </div>
+                    <span asp-validation-for="Tips" class="text-red-500 text-sm"></span>
+                    <br />
+
+                    <!-- Notes -->
+                    <div class="inputbox">
+                        <input asp-for="Notes" required="required" type="text" />
+                        <span>Other Notes</span>
+                        <i></i>
+                    </div>
+                    <span asp-validation-for="Notes" class="text-red-500 text-sm"></span>
+
+                </div>
+
+                <!-- RIGHT COLUMN: STAR RATINGS -->
+                <div class="flex flex-col flex-wrap justify-center mb-4">
+
+                    <!-- Availability -->
+                    <h1 class="text-3xl font-bold mb-2">Availability:</h1>
+                    <div class="rating flex flex-row justify-center gap-3" data-category="Availability">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <svg data-value="@i" class="h-12 transition-all duration-100 fill-gray-400 cursor-pointer"
+                                 viewBox="0 0 1024 1024">
+                                <path d="M575.85 115.43L661.09 288.05c10.13 20.47 29.68 34.69 52.29 37.96l190.43 27.63c56.99 8.29 79.71 78.28 38.48 118.5L804.35 606.49c-16.37 15.96-23.84 38.99-19.95 61.5l32.54 189.72c9.72 56.79-49.83 100.08-100.79 73.27L545.87 841.45a69.49 69.49 0 0 0-64.67 0l-170.38 89.54c-50.96 26.81-110.51-16.47-100.79-73.27l32.54-189.72c3.89-22.51-3.58-45.54-19.95-61.5L84.78 472.25c-41.24-40.22-18.52-110.21 38.48-118.5l190.43-27.63c22.61-3.27 42.16-17.5 52.29-37.96L451.32 115.43c25.48-51.68 99.05-51.68 124.53 0z"></path>
+                            </svg>
+                        }
+                    </div>
+                    <input type="hidden" asp-for="Availability" />
+                    <input type="hidden" asp-for="UserId" />
+                    <!-- Cleanliness -->
+                    <h1 class="text-3xl font-bold mt-6 mb-2">Cleanliness:</h1>
+                    <div class="rating flex flex-row justify-center gap-3" data-category="Cleanliness">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <svg data-value="@i" class="h-12 transition-all duration-100 fill-gray-400 cursor-pointer"
+                                 viewBox="0 0 1024 1024">
+                                <path d="M575.85 115.43L661.09 288.05c10.13 20.47 29.68 34.69 52.29 37.96l190.43 27.63c56.99 8.29 79.71 78.28 38.48 118.5L804.35 606.49c-16.37 15.96-23.84 38.99-19.95 61.5l32.54 189.72c9.72 56.79-49.83 100.08-100.79 73.27L545.87 841.45a69.49 69.49 0 0 0-64.67 0l-170.38 89.54c-50.96 26.81-110.51-16.47-100.79-73.27l32.54-189.72c3.89-22.51-3.58-45.54-19.95-61.5L84.78 472.25c-41.24-40.22-18.52-110.21 38.48-118.5l190.43-27.63c22.61-3.27 42.16-17.5 52.29-37.96L451.32 115.43c25.48-51.68 99.05-51.68 124.53 0z"></path>
+                            </svg>
+                        }
+                    </div>
+                    <input type="hidden" asp-for="Cleanliness" />
+
+                    <!-- Smell -->
+                    <h1 class="text-3xl font-bold mb-2">Smell:</h1>
+                    <div class="rating flex flex-row justify-center gap-3" data-category="Smell">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <svg data-value="@i" class="h-12 transition-all duration-100 fill-gray-400 cursor-pointer"
+                                 viewBox="0 0 1024 1024">
+                                <path d="M575.85 115.43L661.09 288.05c10.13 20.47 29.68 34.69 52.29 37.96l190.43 27.63c56.99 8.29 79.71 78.28 38.48 118.5L804.35 606.49c-16.37 15.96-23.84 38.99-19.95 61.5l32.54 189.72c9.72 56.79-49.83 100.08-100.79 73.27L545.87 841.45a69.49 69.49 0 0 0-64.67 0l-170.38 89.54c-50.96 26.81-110.51-16.47-100.79-73.27l32.54-189.72c3.89-22.51-3.58-45.54-19.95-61.5L84.78 472.25c-41.24-40.22-18.52-110.21 38.48-118.5l190.43-27.63c22.61-3.27 42.16-17.5 52.29-37.96L451.32 115.43c25.48-51.68 99.05-51.68 124.53 0z"></path>
+                            </svg>
+                        }
+                    </div>
+                    <input type="hidden" asp-for="Smell" />
+
+                    <!-- Privacy -->
+                    <h1 class="text-3xl font-bold mb-2">Privacy:</h1>
+                    <div class="rating flex flex-row justify-center gap-3" data-category="Privacy">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <svg data-value="@i" class="h-12 transition-all duration-100 fill-gray-400 cursor-pointer"
+                                 viewBox="0 0 1024 1024">
+                                <path d="M575.85 115.43L661.09 288.05c10.13 20.47 29.68 34.69 52.29 37.96l190.43 27.63c56.99 8.29 79.71 78.28 38.48 118.5L804.35 606.49c-16.37 15.96-23.84 38.99-19.95 61.5l32.54 189.72c9.72 56.79-49.83 100.08-100.79 73.27L545.87 841.45a69.49 69.49 0 0 0-64.67 0l-170.38 89.54c-50.96 26.81-110.51-16.47-100.79-73.27l32.54-189.72c3.89-22.51-3.58-45.54-19.95-61.5L84.78 472.25c-41.24-40.22-18.52-110.21 38.48-118.5l190.43-27.63c22.61-3.27 42.16-17.5 52.29-37.96L451.32 115.43c25.48-51.68 99.05-51.68 124.53 0z"></path>
+                            </svg>
+                        }
+                    </div>
+                    <input type="hidden" asp-for="Privacy" />
+
+                    <!-- Comfort -->
+                    <h1 class="text-3xl font-bold mb-2">Comfort:</h1>
+                    <div class="rating flex flex-row justify-center gap-3" data-category="Comfort">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <svg data-value="@i" class="h-12 transition-all duration-100 fill-gray-400 cursor-pointer"
+                                 viewBox="0 0 1024 1024">
+                                <path d="M575.85 115.43L661.09 288.05c10.13 20.47 29.68 34.69 52.29 37.96l190.43 27.63c56.99 8.29 79.71 78.28 38.48 118.5L804.35 606.49c-16.37 15.96-23.84 38.99-19.95 61.5l32.54 189.72c9.72 56.79-49.83 100.08-100.79 73.27L545.87 841.45a69.49 69.49 0 0 0-64.67 0l-170.38 89.54c-50.96 26.81-110.51-16.47-100.79-73.27l32.54-189.72c3.89-22.51-3.58-45.54-19.95-61.5L84.78 472.25c-41.24-40.22-18.52-110.21 38.48-118.5l190.43-27.63c22.61-3.27 42.16-17.5 52.29-37.96L451.32 115.43c25.48-51.68 99.05-51.68 124.53 0z"></path>
+                            </svg>
+                        }
+                    </div>
+                    <input type="hidden" asp-for="Comfort" />
+
+
+                </div>
+            </div>
+
+            <!-- SUBMIT BUTTON -->
+            <button type="submit"
+                    class="px-8 py-3 bg-violet-600 text-white rounded-lg text-lg font-semibold hover:bg-violet-700 transition mx-auto">
+                Submit Review
+            </button>
+
+        </form>
+
+        <a asp-action="Index" class="mt-6 text-violet-600 hover:underline">Back to List</a>
+
+    </div>
+</section>
+
+<script>
+    const ratingGroups = document.querySelectorAll('.rating');
+
+    ratingGroups.forEach(group => {
+        const category = group.dataset.category;
+        const hiddenInput = document.querySelector(`input[name="${category}"]`);
+        const svgs = group.querySelectorAll('svg');
+
+        svgs.forEach(star => {
+            star.onclick = () => {
+                const value = parseInt(star.dataset.value);
+
+                svgs.forEach((s, i) => {
+                    if (i < value) s.classList.add("fill-yellow-200");
+                    else s.classList.remove("fill-yellow-200");
+                });
+
+                hiddenInput.value = value;
+            };
+        });
+    });
+</script>

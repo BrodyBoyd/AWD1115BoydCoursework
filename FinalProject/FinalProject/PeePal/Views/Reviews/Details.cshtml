@@ -1,0 +1,115 @@
+﻿@model PeePal.Models.Review
+
+@{
+    ViewData["Title"] = "Review Details";
+}
+
+<section class="relative min-h-screen bg-gray-50 py-20 px-6 flex justify-center">
+
+    <!-- PeePal background blobs -->
+    <div class="absolute -top-20 -left-20 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-80 h-80 bg-violet-400/20 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 w-full max-w-4xl bg-white shadow-xl rounded-2xl p-10 border border-gray-200">
+
+        <h1 class="text-4xl font-bold text-center mb-8">Restroom Review</h1>
+
+        <!-- DETAILS GRID -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-10">
+
+            <!-- Address -->
+            <div>
+                <p class="text-gray-500 text-sm font-medium">Address</p>
+                <p class="text-gray-900 text-lg">@Model.address</p>
+            </div>
+
+            <!-- Name -->
+            <div>
+                <p class="text-gray-500 text-sm font-medium">Restroom Name</p>
+                <p class="text-gray-900 text-lg">@Model.name</p>
+            </div>
+
+            <!-- Smell -->
+            <div>
+                <p class="text-gray-500 text-sm font-medium">Smell</p>
+                <p class="text-gray-900 text-lg">@Model.Smell</p>
+            </div>
+
+            <!-- Cleanliness -->
+            <div>
+                <p class="text-gray-500 text-sm font-medium">Cleanliness</p>
+                <p class="text-gray-900 text-lg">@Model.Cleanliness</p>
+            </div>
+
+            <!-- Privacy -->
+            <div>
+                <p class="text-gray-500 text-sm font-medium">Privacy</p>
+                <p class="text-gray-900 text-lg">@Model.Privacy</p>
+            </div>
+
+            <!-- Comfort -->
+            <div>
+                <p class="text-gray-500 text-sm font-medium">Comfort</p>
+                <p class="text-gray-900 text-lg">@Model.Comfort</p>
+            </div>
+
+            <!-- Availability -->
+            <div>
+                <p class="text-gray-500 text-sm font-medium">Availability</p>
+                <p class="text-gray-900 text-lg">@Model.Availability</p>
+            </div>
+
+            <!-- Likes -->
+            <div>
+                <p class="text-gray-500 text-sm font-medium">Likes</p>
+                <p class="text-gray-900 text-lg">@Model.Likes</p>
+            </div>
+
+            <!-- Dislikes -->
+            <div>
+                <p class="text-gray-500 text-sm font-medium">Dislikes</p>
+                <p class="text-gray-900 text-lg">@Model.Dislikes</p>
+            </div>
+
+            <!-- Tips -->
+            <div>
+                <p class="text-gray-500 text-sm font-medium">Tips</p>
+                <p class="text-gray-900 text-lg">@Model.Tips</p>
+            </div>
+
+            <!-- Notes -->
+            <div>
+                <p class="text-gray-500 text-sm font-medium">Notes</p>
+                <p class="text-gray-900 text-lg">@Model.Notes</p>
+            </div>
+
+            <!-- Date Submitted -->
+            <div>
+                <p class="text-gray-500 text-sm font-medium">Date Submitted</p>
+                <p class="text-gray-900 text-lg">@Model.DateSubmitted</p>
+            </div>
+
+            <!-- User -->
+            <div>
+                <p class="text-gray-500 text-sm font-medium">Submitted By</p>
+                <p class="text-gray-900 text-lg">@Model.User?.ProfileUsername</p>
+            </div>
+
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="mt-10 flex justify-center gap-6">
+            <a asp-action="Edit"
+               asp-route-id="@Model?.ReviewId"
+               class="px-6 py-3 bg-violet-600 text-white rounded-lg font-semibold hover:bg-violet-700 transition">
+                Edit Review
+            </a>
+
+            <a asp-action="Index"
+               class="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg font-semibold hover:bg-gray-300 transition">
+                Back to List
+            </a>
+        </div>
+
+    </div>
+</section>

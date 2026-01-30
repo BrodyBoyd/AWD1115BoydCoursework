@@ -1,0 +1,97 @@
+﻿@model IEnumerable<PeePal.Models.Review>
+
+@{
+    ViewData["Title"] = "Restroom Reviews";
+}
+
+<section class="relative min-h-screen bg-gray-50 py-20 px-6">
+
+    <!-- PeePal background blobs -->
+    <div class="absolute -top-20 -left-20 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-80 h-80 bg-violet-400/20 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto">
+
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-10">
+            <h1 class="text-4xl font-bold">Restroom Reviews</h1>
+
+            <a asp-action="Create"
+               class="px-6 py-3 bg-violet-600 text-white rounded-lg font-semibold hover:bg-violet-700 transition">
+                + Create New
+            </a>
+        </div>
+
+        <!-- Review Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            @foreach (var item in Model)
+            {
+                <div class="bg-white shadow-xl rounded-2xl p-6 border border-gray-200 flex flex-col justify-between">
+
+                    <!-- Top Section -->
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900">@item.name</h2>
+                        <p class="text-gray-600 text-sm mt-1">@item.address</p>
+
+                        <div class="mt-4 grid grid-cols-2 gap-y-2 text-sm">
+                            <p class="text-gray-500">Smell:</p>
+                            <p class="text-gray-900 font-medium">@item.Smell</p>
+
+                            <p class="text-gray-500">Cleanliness:</p>
+                            <p class="text-gray-900 font-medium">@item.Cleanliness</p>
+
+                            <p class="text-gray-500">Privacy:</p>
+                            <p class="text-gray-900 font-medium">@item.Privacy</p>
+
+                            <p class="text-gray-500">Comfort:</p>
+                            <p class="text-gray-900 font-medium">@item.Comfort</p>
+
+                            <p class="text-gray-500">Availability:</p>
+                            <p class="text-gray-900 font-medium">@item.Availability</p>
+
+                            <p class="text-gray-500">Likes:</p>
+                            <p class="text-gray-900">@item.Likes</p>
+
+                            <p class="text-gray-500">Dislikes:</p>
+                            <p class="text-gray-900">@item.Dislikes</p>
+
+                            <p class="text-gray-500">Tips:</p>
+                            <p class="text-gray-900">@item.Tips</p>
+
+                            <p class="text-gray-500">Notes:</p>
+                            <p class="text-gray-900">@item.Notes</p>
+
+                            <p class="text-gray-500">Submitted:</p>
+                            <p class="text-gray-900">@item.DateSubmitted</p>
+
+                            <p class="text-gray-500">User:</p>
+                            <p class="text-gray-900">@item.User?.ProfileUsername</p>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="mt-6 flex gap-4">
+                        <a asp-action="Details" asp-route-id="@item.ReviewId"
+                           class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition">
+                            Details
+                        </a>
+
+                        <a asp-action="Edit" asp-route-id="@item.ReviewId"
+                           class="px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition">
+                            Edit
+                        </a>
+
+                        <a asp-action="Delete" asp-route-id="@item.ReviewId"
+                           class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
+                            Delete
+                        </a>
+                    </div>
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+</section>
