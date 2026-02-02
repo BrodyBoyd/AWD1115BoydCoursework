@@ -4,112 +4,112 @@
     ViewData["Title"] = "Review Details";
 }
 
-<section class="relative min-h-screen bg-gray-50 py-20 px-6 flex justify-center">
+<section class="relative min-h-screen bg-gray-50 py-24 px-6 flex justify-center">
 
     <!-- PeePal background blobs -->
-    <div class="absolute -top-20 -left-20 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 right-0 w-80 h-80 bg-violet-400/20 rounded-full blur-3xl"></div>
+    <div class="absolute -top-24 -left-24 w-80 h-80 bg-purple-500/30 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-violet-400/20 rounded-full blur-3xl"></div>
 
-    <div class="relative z-10 w-full max-w-4xl bg-white shadow-xl rounded-2xl p-10 border border-gray-200">
+    <div class="relative z-10 w-full max-w-4xl bg-white shadow-2xl rounded-3xl p-12 border border-gray-200 animate-fadeIn">
 
-        <h1 class="text-4xl font-bold text-center mb-8">Restroom Review</h1>
+        <!-- Title -->
+        <h1 class="text-5xl font-extrabold text-center text-gray-900 mb-10 tracking-tight">
+            Restroom Review
+        </h1>
+
+        <!-- Divider -->
+        <div class="w-24 h-1 bg-violet-500 mx-auto rounded-full mb-12"></div>
 
         <!-- DETAILS GRID -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-10 gap-x-12">
 
             <!-- Address -->
             <div>
-                <p class="text-gray-500 text-sm font-medium">Address</p>
-                <p class="text-gray-900 text-lg">@Model.address</p>
+                <p class="text-gray-500 text-sm font-semibold uppercase tracking-wide">Address</p>
+                <p class="text-gray-900 text-xl mt-1">@Model.address</p>
             </div>
 
             <!-- Name -->
             <div>
-                <p class="text-gray-500 text-sm font-medium">Restroom Name</p>
-                <p class="text-gray-900 text-lg">@Model.name</p>
+                <p class="text-gray-500 text-sm font-semibold uppercase tracking-wide">Restroom Name</p>
+                <p class="text-gray-900 text-xl mt-1">@Model.name</p>
             </div>
 
-            <!-- Smell -->
-            <div>
-                <p class="text-gray-500 text-sm font-medium">Smell</p>
-                <p class="text-gray-900 text-lg">@Model.Smell</p>
-            </div>
+            <!-- Ratings (with star icons) -->
+            @foreach (var rating in new[] {
+                        new { Label = "Smell", Value = Model.Smell },
+                        new { Label = "Cleanliness", Value = Model.Cleanliness },
+                        new { Label = "Privacy", Value = Model.Privacy },
+                        new { Label = "Comfort", Value = Model.Comfort },
+                        new { Label = "Availability", Value = Model.Availability }
+                        })
+            {
+                <div>
+                    <p class="text-gray-500 text-sm font-semibold uppercase tracking-wide">@rating.Label</p>
 
-            <!-- Cleanliness -->
-            <div>
-                <p class="text-gray-500 text-sm font-medium">Cleanliness</p>
-                <p class="text-gray-900 text-lg">@Model.Cleanliness</p>
-            </div>
-
-            <!-- Privacy -->
-            <div>
-                <p class="text-gray-500 text-sm font-medium">Privacy</p>
-                <p class="text-gray-900 text-lg">@Model.Privacy</p>
-            </div>
-
-            <!-- Comfort -->
-            <div>
-                <p class="text-gray-500 text-sm font-medium">Comfort</p>
-                <p class="text-gray-900 text-lg">@Model.Comfort</p>
-            </div>
-
-            <!-- Availability -->
-            <div>
-                <p class="text-gray-500 text-sm font-medium">Availability</p>
-                <p class="text-gray-900 text-lg">@Model.Availability</p>
-            </div>
-
+                    <div class="flex items-center gap-1 mt-1">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <svg class="h-6 @(i <= rating.Value ? "fill-yellow-300" : "fill-gray-300")"
+                                 viewBox="0 0 1024 1024">
+                                <path d="M575.85 115.43L661.09 288.05c10.13 20.47 29.68 34.69 52.29 37.96l190.43 27.63c56.99 8.29 79.71 78.28 38.48 118.5L804.35 606.49c-16.37 15.96-23.84 38.99-19.95 61.5l32.54 189.72c9.72 56.79-49.83 100.08-100.79 73.27L545.87 841.45a69.49 69.49 0 0 0-64.67 0l-170.38 89.54c-50.96 26.81-110.51-16.47-100.79-73.27l32.54-189.72c3.89-22.51-3.58-45.54-19.95-61.5L84.78 472.25c-41.24-40.22-18.52-110.21 38.48-118.5l190.43-27.63c22.61-3.27 42.16-17.5 52.29-37.96L451.32 115.43c25.48-51.68 99.05-51.68 124.53 0z"></path>
+                            </svg>
+                        }
+                    </div>
+                </div>
+            }
             <!-- Likes -->
             <div>
-                <p class="text-gray-500 text-sm font-medium">Likes</p>
-                <p class="text-gray-900 text-lg">@Model.Likes</p>
+                <p class="text-gray-500 text-sm font-semibold uppercase tracking-wide">Likes</p>
+                <p class="text-gray-900 text-lg mt-1">@Model.Likes</p>
             </div>
 
             <!-- Dislikes -->
             <div>
-                <p class="text-gray-500 text-sm font-medium">Dislikes</p>
-                <p class="text-gray-900 text-lg">@Model.Dislikes</p>
+                <p class="text-gray-500 text-sm font-semibold uppercase tracking-wide">Dislikes</p>
+                <p class="text-gray-900 text-lg mt-1">@Model.Dislikes</p>
             </div>
 
             <!-- Tips -->
             <div>
-                <p class="text-gray-500 text-sm font-medium">Tips</p>
-                <p class="text-gray-900 text-lg">@Model.Tips</p>
+                <p class="text-gray-500 text-sm font-semibold uppercase tracking-wide">Tips</p>
+                <p class="text-gray-900 text-lg mt-1">@Model.Tips</p>
             </div>
 
             <!-- Notes -->
             <div>
-                <p class="text-gray-500 text-sm font-medium">Notes</p>
-                <p class="text-gray-900 text-lg">@Model.Notes</p>
+                <p class="text-gray-500 text-sm font-semibold uppercase tracking-wide">Notes</p>
+                <p class="text-gray-900 text-lg mt-1">@Model.Notes</p>
             </div>
 
             <!-- Date Submitted -->
             <div>
-                <p class="text-gray-500 text-sm font-medium">Date Submitted</p>
-                <p class="text-gray-900 text-lg">@Model.DateSubmitted</p>
+                <p class="text-gray-500 text-sm font-semibold uppercase tracking-wide">Date Submitted</p>
+                <p class="text-gray-900 text-lg mt-1">@Model.DateSubmitted</p>
             </div>
 
             <!-- User -->
             <div>
-                <p class="text-gray-500 text-sm font-medium">Submitted By</p>
-                <p class="text-gray-900 text-lg">@Model.User?.ProfileUsername</p>
+                <p class="text-gray-500 text-sm font-semibold uppercase tracking-wide">Submitted By</p>
+                <p class="text-gray-900 text-lg mt-1">@Model.User?.ProfileUsername</p>
             </div>
 
         </div>
 
         <!-- ACTION BUTTONS -->
-        <div class="mt-10 flex justify-center gap-6">
+        <div class="mt-14 flex justify-center gap-6">
             <a asp-action="Edit"
                asp-route-id="@Model?.ReviewId"
-               class="px-6 py-3 bg-violet-600 text-white rounded-lg font-semibold hover:bg-violet-700 transition">
+               class="px-8 py-3 bg-violet-600 text-white rounded-xl text-lg font-semibold hover:bg-violet-700 transition">
                 Edit Review
             </a>
 
             <a asp-action="Index"
-               class="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg font-semibold hover:bg-gray-300 transition">
+               class="px-8 py-3 bg-gray-200 text-gray-800 rounded-xl text-lg font-semibold hover:bg-gray-300 transition">
                 Back to List
             </a>
         </div>
 
     </div>
 </section>
+
