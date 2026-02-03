@@ -1,0 +1,114 @@
+﻿@model Product
+
+<div class="min-h-screen bg-gray-100 pt-20 pb-10">
+
+    <!-- Header -->
+    <header class="max-w-3xl mx-auto text-center mb-10">
+        <h1 class="text-5xl font-extrabold text-gray-800 tracking-tight">
+            @(Model.ProductId == 0 ? "Add New Product" : "Edit Product")
+        </h1>
+        <p class="text-gray-500 mt-2 text-lg">
+            Manage your Product details below
+        </p>
+    </header>
+
+    <!-- Form Container -->
+    <div class="max-w-3xl mx-auto bg-white shadow-xl rounded-xl p-8 border border-gray-200">
+
+        <form asp-action="AddEdit" method="post" class="space-y-6">
+            <input type="hidden" asp-for="ProductId" />
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label asp-for="Name" class="block text-sm font-semibold text-gray-700 mb-1">
+                        Product Name
+                    </label>
+                    <input asp-for="Name"
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+                    <span asp-validation-for="Name" class="text-red-500 text-sm"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Description" class="block text-sm font-semibold text-gray-700 mb-1">
+                        Description
+                    </label>
+                    <input asp-for="Description"
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+                    <span asp-validation-for="Description" class="text-red-500 text-sm"></span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label asp-for="ImageUrl" class="block text-sm font-semibold text-gray-700 mb-1">
+                        Image Url
+                    </label>
+                    <input asp-for="ImageUrl"
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+                    <span asp-validation-for="ImageUrl" class="text-red-500 text-sm"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Price" class="block text-sm font-semibold text-gray-700 mb-1">
+                        Price
+                    </label>
+                    <input asp-for="Price"
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+                    <span asp-validation-for="Price" class="text-red-500 text-sm"></span>
+                </div>
+                <div>
+                    <label asp-for="Quantity" class="block text-sm font-semibold text-gray-700 mb-1">
+                        Quantity
+                    </label>
+                    <input asp-for="Quantity"
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+                    <span asp-validation-for="Quantity" class="text-red-500 text-sm"></span>
+                </div>
+            </div>
+
+             <!-- Category -->
+            <div>
+                <label asp-for="CategoryId" class="block text-sm font-semibold text-gray-700 mb-1">
+                    Category
+                </label>
+                <select asp-for="CategoryId"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <option value="1">Sports</option>
+                    <option value="2">Vehicle</option>
+                    <option value="3">Office</option>
+                    <option value="4">Other</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-red-500 text-sm"></span>
+            </div>  
+
+            <!-- Buttons -->
+            <div class="flex justify-between pt-4">
+
+                <button type="submit"
+                        class="px-6 py-3 rounded-xl font-semibold shadow-md transition
+                               @(Model.ProductId == 0
+                                                         ? "bg-green-600 text-white hover:bg-green-700"
+                                                         : "bg-yellow-500 text-white hover:bg-yellow-600")">
+                    @(Model.ProductId == 0 ? "Add Product" : "Update Product")
+                </button>
+
+                @if (Model.ProductId == 0)
+                {
+                    <a asp-action="Index"
+                       class="px-6 py-3 bg-gray-200 text-gray-800 rounded-xl font-semibold shadow-md hover:bg-gray-300 transition">
+                        Cancel
+                    </a>
+                }
+                else
+                {
+                    <a asp-action="Details" asp-route-id="@Model.ProductId"
+                       class="px-6 py-3 bg-gray-200 text-gray-800 rounded-xl font-semibold shadow-md hover:bg-gray-300 transition">
+                        Cancel
+                    </a>
+                }
+            </div>
+
+        </form>
+    </div>
+
+</div>

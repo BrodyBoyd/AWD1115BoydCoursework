@@ -1,0 +1,79 @@
+﻿@model Product
+
+<div class="min-h-screen bg-gray-100 pt-20 pb-10">
+
+    <!-- Header -->
+    <header class="max-w-3xl mx-auto text-center mb-10">
+        <h1 class="text-5xl font-extrabold text-gray-800 tracking-tight">
+            Product Details
+        </h1>
+        <p class="text-gray-500 mt-2 text-lg">
+            View full information for this Product
+        </p>
+    </header>
+
+    <!-- Details Card -->
+    <div class="max-w-3xl mx-auto bg-white shadow-xl rounded-xl p-8 border border-gray-200">
+
+        <!-- Name -->
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+            @Model.Name
+        </h2>
+
+        <!-- Details List -->
+        <div class="space-y-4">
+
+            <div class="flex justify-between border-b pb-3">
+                <span class="text-gray-600 font-semibold">Description</span>
+                <span class="text-gray-900">@Model.Description</span>
+            </div>
+
+            <div class="flex justify-between border-b pb-3">
+                <span class="text-gray-600 font-semibold">Image Url</span>
+                <span class="text-gray-900">@Model.ImageUrl</span>
+            </div>
+
+            <div class="flex justify-between border-b pb-3">
+                <span class="text-gray-600 font-semibold">Price</span>
+                <span class="text-gray-900">@Model.Price</span>
+            </div>
+
+            <div class="flex justify-between border-b pb-3">
+                <span class="text-gray-600 font-semibold">Quantity</span>
+                <span class="text-gray-900">@Model.Quantity</span>
+            </div>
+
+            <div class="flex justify-between border-b pb-3">
+                <span class="text-gray-600 font-semibold">Category</span>
+                <span class="text-gray-900">@Model.Category?.CategoryName</span>
+            </div>
+
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex justify-between mt-10">
+
+            <a asp-action="AddEdit"
+               asp-route-id="@Model.ProductId"
+               asp-route-slug="@Model.Slug"
+               class="px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold shadow-md hover:bg-blue-700 transition">
+                Edit
+            </a>
+
+            <a asp-action="Delete"
+               asp-route-id="@Model.ProductId"
+               asp-route-slug="@Model.Slug"
+               class="px-6 py-3 bg-red-500 text-white rounded-xl font-semibold shadow-md hover:bg-red-600 transition">
+                Delete
+            </a>
+
+            <a asp-action="Index"
+               class="px-6 py-3 bg-gray-200 text-gray-800 rounded-xl font-semibold shadow-md hover:bg-gray-300 transition">
+                Home
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
