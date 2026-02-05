@@ -21,4 +21,5 @@
 		<ItemGroup>
 			<Content Include="wwwroot/css/output.css" CopyToPublishDirectory="Always" />
 		</ItemGroup>
-	</Target></Project>
+	</Target>
+</Project>

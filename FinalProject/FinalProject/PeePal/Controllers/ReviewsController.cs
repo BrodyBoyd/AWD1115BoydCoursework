@@ -29,8 +29,8 @@ namespace PeePal.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Reviews/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: Reviews/Details/5/{slug}
+        public async Task<IActionResult> Details(int? id, string slug)
         {
             if (id == null)
             {
@@ -45,6 +45,13 @@ namespace PeePal.Controllers
                 return NotFound();
             }
 
+            var expectedSlug = review.Slug;
+            // if slug missing or incorrect, redirect to canonical URL (permanent)
+            if (!string.Equals(slug ?? string.Empty, expectedSlug ?? string.Empty, StringComparison.OrdinalIgnoreCase))
+            {
+                return RedirectToActionPermanent(nameof(Details), new { id = review.ReviewId, slug = expectedSlug });
+            }
+
             return View(review);
         }
 
@@ -57,6 +64,7 @@ namespace PeePal.Controllers
             {
                 UserId = userId,
                 DateSubmitted = DateTime.Today
+
             };
             return View(newReview);
         }

@@ -72,17 +72,17 @@
 
                     <!-- Action Buttons -->
                     <div class="mt-6 flex gap-4">
-                        <a asp-action="Details" asp-route-id="@item.ReviewId"
+                        <a asp-action="Details" asp-route-id="@item.ReviewId" asp-route-slug="@item.Slug"
                            class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition">
                             Details
                         </a>
 
-                        <a asp-action="Edit" asp-route-id="@item.ReviewId"
+                        <a asp-action="Edit" asp-route-id="@item.ReviewId" asp-route-slug="@item.Slug"
                            class="px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition">
                             Edit
                         </a>
 
-                        <a asp-action="Delete" asp-route-id="@item.ReviewId"
+                        <a asp-action="Delete" asp-route-id="@item.ReviewId" asp-route-slug="@item.Slug"
                            class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
                             Delete
                         </a>

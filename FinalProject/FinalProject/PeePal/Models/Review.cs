@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.RegularExpressions;
 
 namespace PeePal.Models
 {
@@ -22,6 +24,39 @@ namespace PeePal.Models
         public ApplicationUser User { get; set; }
         public string UserId { get; set; }
 
+        public double getAverageScore()
+        {
+            double total = Smell + Cleanliness + Privacy + Comfort + Availability;
+            return total / 5;
+        }
 
+        [NotMapped]
+        public string Slug
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(name))
+                    return string.Empty;
+
+                // normalize
+                var slug = name.ToLowerInvariant().Trim();
+
+                // replace whitespace with hyphens
+                slug = Regex.Replace(slug, @"\s+", "-");
+
+                // remove invalid chars (keep a-z, 0-9 and hyphen)
+                slug = Regex.Replace(slug, @"[^a-z0-9\-]", string.Empty);
+
+                // collapse multiple hyphens and trim hyphens
+                slug = Regex.Replace(slug, @"-+", "-").Trim('-');
+
+                return slug;
+            }
+        }
+
+        public double AverageScore
+        {
+            get { return getAverageScore(); }
+        }
     }
 }
