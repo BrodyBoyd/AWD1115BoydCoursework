@@ -26,6 +26,11 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapAreaControllerRoute(
+    name: "default",
+    areaName: "Reviews",
+    pattern: "reviews/{controller=Reviews}/{action=Index}/{id?}/{slug?}");
+
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}/{slug?}");
 app.MapRazorPages();
 app.Run();

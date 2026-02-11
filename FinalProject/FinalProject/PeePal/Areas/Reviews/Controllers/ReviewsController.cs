@@ -10,9 +10,11 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace PeePal.Controllers
+namespace PeePal.Areas.Reviews.Controllers
 {
     [Authorize]
+    [Area("Reviews")]
+    [Route("Reviews/[action]/{id?}/{slug?}")]
     public class ReviewsController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -14,6 +14,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Story+Script&display=swap" rel="stylesheet">
 </head>
 <body class="story-script-regular">
+    @functions {
+        string ActiveClass(string controller, string action = "Index", string area = "")
+        {
+            var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+            var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+            var currentArea = ViewContext.RouteData.Values["area"]?.ToString() ?? "";
+
+            if (currentController == controller &&
+            currentAction == action &&
+            currentArea == area)
+            {
+                return "bg-violet-900/60 text-white shadow-inner";
+            }
+
+            return "";
+        }
+    }
+    @{
+        string currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+        string currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+        string currentArea = ViewContext.RouteData.Values["area"]?.ToString();
+    }
+
     <nav data-text-bright data-bg="purple"
          class="fixed w-[95vw] min-w-[380px] max-w-[1440px] shadow h-16 md:flex p-4 mx-0 mt-2 mb-12
             top-0 left-1/2 -translate-x-1/2 rounded-full ring-white/50 ring-2 backdrop-blur-md
@@ -22,7 +45,9 @@
             data-[bg=stone]:bg-violet-600/40
             data-text-bright:**:text-white absolute z-50">
 
-        <div class="absolute top-1/2 -translate-y-1/2 right-8"><partial name="_LoginPartial"/></div>
+        <div class="absolute top-1/2 -translate-y-1/2 right-8">
+            <partial name="_LoginPartial" />
+        </div>
 
         <input type="checkbox" id="navbar__control"
                class="md:hidden absolute w-8 h-8 top-4 left-4 z-10 opacity-0" />
@@ -31,17 +56,19 @@
                 absolute items-center left-1/2 top-1/2 transform -translate-1/2
                 md:left-0 md:mr-4 md:translate-x-0 md:left-4">
 
-            <div data-info="BRAND ICON">
-                <img src="~/images/PeePalLogo.png" class="w-16 h-fit"  viewBox="0 0 512 512"/>
+            <div>
+                <img src="~/images/PeePalLogo.png" class="w-16 h-fit" />
             </div>
 
-            <a asp-controller="Home" asp-action="Index"><span class="ml-2 mr-4 text-[clamp(1.1rem,calc(2vw_+_0.1rem),2rem)] font-bold text-violet-100">
-                PeePal
+            <a asp-controller="Home" asp-action="Index">
+                <span class="ml-2 mr-4 text-[clamp(1.1rem,calc(2vw_+_0.1rem),2rem)] font-bold text-violet-100">
+                    PeePal
                 </span>
             </a>
         </div>
 
-        <div data-info="OPEN MENU ICON" class="md:hidden relative w-8 h-8 cursor-pointer group-has-checked:hidden">
+        <!-- OPEN ICON -->
+        <div class="md:hidden relative w-8 h-8 cursor-pointer group-has-checked:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
                 <g fill="#fff" stroke-width="0.5" stroke="#fff">
                     <path d="M8 6.983a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2zM7 12a1 1 0 0 1 1-1h8a1 1 0 1 1 0 2H8a1 1 0 0 1-1-1m1 3.017a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2z" />
@@ -50,7 +77,8 @@
             </svg>
         </div>
 
-        <div data-info="CLOSE MENU ICON" class="md:!hidden hidden relative w-8 h-8 cursor-pointer group-has-checked:block">
+        <!-- CLOSE ICON -->
+        <div class="md:!hidden hidden relative w-8 h-8 cursor-pointer group-has-checked:block">
             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
                 <path fill="none" stroke="currentColor" stroke-dasharray="12" stroke-dashoffset="12"
                       stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -60,49 +88,54 @@
             </svg>
         </div>
 
-        <ul data-info="MENU ITEMS"
-            class="w-fit my-0 p-0 md:flex items-center align-center rounded-[16px] md:bg-transparent
+        <ul class="w-fit my-0 p-0 md:flex items-center align-center rounded-[16px] md:bg-transparent
                md:absolute md:top-1/2 md:left-1/2 md:-translate-1/2 transition-all
                border-[2px_solid_#ffffff88] md:py-4 gap-x-4 lg:gap-x-8
                bg-violet-700/40
-               **:transition-all
-               **:text-[clamp(1rem,calc(2vw_+_0.1rem),1.3rem)]
                group-has-checked:px-16
                group-has-checked:py-2
                group-has-checked:-translate-x-2
-               group-has-checked:my-8
-               **:[line-height:4px]
-               **:has-[a]:px-0
-               **:has-[a]:py-0
-               **:has-[a]:grid
-               **:has-[a]:place-content-center
-               **:has-[a]:rounded-full
-               **:has-[a]:bg-transparent
-               **:has-[a]:hover:bg-purple-300
-               **:has-[a]:group-has-checked:px-4
-               **:has-[a]:group-has-checked:py-2
-               **:has-[a]:group-has-checked:h-[2rem]">
+               group-has-checked:my-8">
 
+            <!-- HOME -->
             <li>
-                <a asp-controller="Home" asp-action="Index" onClick="closeMenu()"
-                   class="h-0 opacity-0 md:opacity-100 group-has-checked:opacity-100">
+                <a asp-controller="Home" asp-action="Index" asp-area=""
+                   class="px-4 py-2 rounded-full transition-all
+                      md:opacity-100 group-has-checked:opacity-100
+                      @ActiveClass("Home", "Index")">
                     Home
                 </a>
             </li>
 
-            <li class="my-0 h-0 group-has-checked:h-6 group-has-checked:my-4 md:mx-2 md:h-2 md:group-has-checked:my-0">
-                <a href="#" onClick="closeMenu()"
-                   class="h-0 opacity-0 md:opacity-100 group-has-checked:opacity-100">
+            <!-- ABOUT -->
+            <li>
+                <a asp-controller="Home" asp-action="About" asp-area=""
+                   class="px-4 py-2 rounded-full transition-all
+                      md:opacity-100 group-has-checked:opacity-100">
                     About
                 </a>
             </li>
 
-            <li class="my-0 h-0 group-has-checked:h-6 group-has-checked:my-4 md:mx-2 md:h-2 md:group-has-checked:my-0">
-                <a asp-action="Contact" onClick="closeMenu()"
-                   class="h-0 opacity-0 md:opacity-100 group-has-checked:opacity-100">
+            <!-- REVIEWS -->
+            <li>
+                <a asp-controller="Reviews" asp-action="Index" asp-area="Reviews"
+                   class="px-4 py-2 rounded-full transition-all
+                      md:opacity-100 group-has-checked:opacity-100
+                      @ActiveClass("Reviews", "Index", "Reviews")">
+                    Reviews
+                </a>
+            </li>
+
+            <!-- CONTACT -->
+            <li>
+                <a asp-controller="Home" asp-action="Contact" asp-area=""
+                   class="px-4 py-2 rounded-full transition-all
+                      md:opacity-100 group-has-checked:opacity-100
+                      @ActiveClass("Home", "Contact")">
                     Contact
                 </a>
             </li>
+
         </ul>
 
     </nav>
