@@ -12,21 +12,54 @@
         <nav class="bg-white shadow dark:bg-gray-800">
             <div class="container flex items-center justify-center p-6 mx-auto text-gray-600 capitalize dark:text-gray-300">
 
-                <a asp-action="Index" asp-area="" class="order-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6 text-2xl">Tutorial Website</a>
 
-                <a asp-action="Index" asp-area="" class="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6">Home</a>
+                <a asp-controller="Home" asp-action="Index" asp-area="" class="order-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6 text-2xl">Tutorial Website</a>
 
-                <a asp-action="About" asp-area="" class="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6">About</a>
+                <a asp-controller="Home" asp-action="Index" asp-area="" class="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6">Home</a>
 
-                <a asp-action="Contact" asp-area="" class="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6">Contact</a>
+                <a asp-controller="Home" asp-action="About" asp-area="" class="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6">About</a>
 
-                <a asp-action="Index" asp-area="Help" class="text-gray-800 dark:text-gray-200 border-b-2 border-blue-500 mx-1.5 sm:mx-6">Help</a>
+                <a asp-controller="Home" asp-action="Contact" asp-area="" class="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6">Contact</a>
+
+                <a asp-controller="Home" asp-action="Index" asp-area="Help" class="text-gray-800 dark:text-gray-200 border-b-2 border-blue-500 mx-1.5 sm:mx-6">Help</a>
 
 
             </div>
         </nav>
+        <h1 class="bg-gray-100 text-2xl font-semibold p-4 rounded-md shadow-sm mb-4">
+            @ViewBag.PageTitle
+        </h1>
     </header>
     <div>
+        @{
+            string currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+            string currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+        }
+
+        
+
+        <div class="flex gap-4 ml-4">
+            <a asp-controller="Home"
+               asp-action="Index"
+               asp-area="Help"
+               class="px-5 py-2 border rounded-md transition
+              @(currentController == "Home" && currentAction == "Index"
+                               ? "bg-blue-600 text-white border-blue-600 shadow"
+                               : "border-gray-300 text-blue-600 hover:bg-blue-50")">
+                Home
+            </a>
+
+            <a asp-controller="Tutorial"
+               asp-action="TutorialPages"
+               asp-route-id="1"
+               asp-area="Help"
+               class="px-5 py-2 border rounded-md transition
+              @(currentController == "Tutorial" && currentAction == "TutorialPages"
+                               ? "bg-blue-600 text-white border-blue-600 shadow"
+                               : "border-gray-300 text-blue-600 hover:bg-blue-50")">
+                Tutorial
+            </a>
+        </div>
         @RenderBody()
     </div>
 </body>

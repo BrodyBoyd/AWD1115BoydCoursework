@@ -7,6 +7,7 @@ namespace Ch7Lab.Areas.Help.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.PageTitle = "Help Page";
             return View();
         }
     }

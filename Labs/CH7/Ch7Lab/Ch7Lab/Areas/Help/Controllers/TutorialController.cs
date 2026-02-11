@@ -3,11 +3,19 @@
 namespace Ch7Lab.Areas.Help.Controllers
 {
     [Area("Help")]
+
     public class TutorialController : Controller
     {
-        public IActionResult Index()
+        public IActionResult TutorialPages(int id)
         {
-            return View();
+            ViewBag.PageTitle = "Tutorial Page";
+
+            var viewName = $"Page{id}";
+
+            if (id < 1 || id > 3)
+                return NotFound();
+
+            return View(viewName);
         }
     }
 }

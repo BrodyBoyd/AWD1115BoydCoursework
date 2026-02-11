@@ -18,7 +18,9 @@ namespace Ch7Lab.Controllers
         public IActionResult Contact()
         {
             ViewBag.PageTitle = "Contact Page";
-
+            ViewBag.Phone = "555-123-4567";
+            ViewBag.Email = "bjboyd@gmail.com";
+            ViewBag.Facebook = "https://www.facebook.com/bjboyd";
             return View();
         }
     }

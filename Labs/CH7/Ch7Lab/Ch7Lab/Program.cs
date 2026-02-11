@@ -10,10 +10,11 @@ builder.Services.AddRouting(options =>
 
 var app = builder.Build();
 app.UseStaticFiles();
+
 app.MapAreaControllerRoute(
     areaName: "Help",
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/help/{id?}");
+    pattern: "help/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",
