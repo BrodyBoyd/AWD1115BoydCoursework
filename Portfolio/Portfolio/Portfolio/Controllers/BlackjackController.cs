@@ -1,11 +1,11 @@
-﻿using CasinoMVC.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Portfolio.Models;
 using System.Reflection;
 using System.Text.Json;
 
-namespace CasinoMVC.Controllers
+namespace Portfolio.Controllers
 {
-    public class HomeController : Controller
+    public class BlackjackController : Controller
     {
         [HttpGet]
         public IActionResult Index()
@@ -98,7 +98,7 @@ namespace CasinoMVC.Controllers
             blackjack.Bet += blackjack.Bet;
             blackjack.Hit();
             blackjack.Stand();
-            
+
 
             // Save updated state
             HttpContext.Session.SetString("GameState", JsonSerializer.Serialize(blackjack));
@@ -109,23 +109,9 @@ namespace CasinoMVC.Controllers
         [HttpPost]
         public IActionResult ResetBalance()
         {
+
             var json = HttpContext.Session.GetString("GameState");
-
-            BlackjackPlayer model;
-
             var blackjack = JsonSerializer.Deserialize<BlackjackPlayer>(json);
-            if (string.IsNullOrEmpty(json))
-            {
-                // First visit — create new game
-                model = new BlackjackPlayer();
-                model.Balance = 1000; // starting balance
-
-                HttpContext.Session.SetString("GameState", JsonSerializer.Serialize(model));
-            }
-            else
-            {
-                model = JsonSerializer.Deserialize<BlackjackPlayer>(json);
-            }
 
             blackjack.Balance = 1000;
 
@@ -162,8 +148,8 @@ namespace CasinoMVC.Controllers
             var hand = blackjack.PlayerHands[blackjack.ActiveHandIndex];
 
             // Create two new hands
-            var hand1 = new List<Dictionary<string, string>> { hand[0], blackjack.DrawCard()};
-            var hand2 = new List<Dictionary<string, string>> { hand[1], blackjack.DrawCard()};
+            var hand1 = new List<Dictionary<string, string>> { hand[0], blackjack.DrawCard() };
+            var hand2 = new List<Dictionary<string, string>> { hand[1], blackjack.DrawCard() };
 
             blackjack.PlayerHands = new List<List<Dictionary<string, string>>> { hand1, hand2 };
             blackjack.ActiveHandIndex = 0;

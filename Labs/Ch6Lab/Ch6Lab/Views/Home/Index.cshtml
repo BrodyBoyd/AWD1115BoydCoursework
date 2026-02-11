@@ -1,0 +1,77 @@
+﻿@model List<FAQ>
+@{
+    ViewData["Title"] = "FAQ List";
+}
+
+<h1 class="text-4xl font-bold text-gray-800 mb-6 text-center bg-blue-100 p-3">
+    Frequently Asked Questions
+</h1>
+
+<!-- TOPIC NAV BAR -->
+<nav class="w-full bg-white shadow mb-8 rounded-lg">
+    <ul class="flex flex-wrap justify-center gap-3 p-4">
+        <li>
+            <a href="/"
+               class="px-4 py-2 rounded-md text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition">
+                All FAQs
+            </a>
+        </li>
+
+        @foreach (Topic topic in ViewBag.Topics)
+        {
+            <li>
+                <a asp-action="Index"
+                   asp-route-topic="@topic.TopicId"
+                   class="px-4 py-2 rounded-md text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition">
+                    @topic.Name
+                </a>
+            </li>
+        }
+    </ul>
+</nav>
+
+<div class="flex flex-col md:flex-row gap-8">
+
+    <!-- LEFT SIDEBAR: CATEGORIES -->
+    <aside class="w-full md:w-64 bg-white shadow-md rounded-lg p-4 space-y-6">
+
+        <div>
+            <h2 class="text-lg font-semibold text-gray-700 mb-2">Categories</h2>
+            <ul class="space-y-1">
+                @foreach (Category category in ViewBag.Categories)
+                {
+                    <li>
+                        <a asp-action="Index"
+                           asp-route-category="@category.CategoryId"
+                           asp-route-topic="@ViewBag.SelectedTopic"
+                           class="block px-3 py-2 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-700 transition">
+                            @category.Name
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+
+    </aside>
+
+    <!-- FAQ LIST -->
+    <section class="flex-1 bg-white shadow-md rounded-lg p-6">
+        <ul class="space-y-6">
+            @foreach (FAQ faq in Model)
+            {
+                <li class="border-b pb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-1">
+                        @faq.Question
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        @faq.Answer
+                    </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        Topic: @faq.Topic.Name       -      Category: @faq.Category.Name
+                    </p>
+                </li>
+            }
+        </ul>
+    </section>
+
+</div>
