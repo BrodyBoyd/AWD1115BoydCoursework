@@ -12,8 +12,8 @@ using PeePal.Models;
 namespace PeePal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260130210654_initCreation")]
-    partial class initCreation
+    [Migration("20260213210512_AddLatLngToReview")]
+    partial class AddLatLngToReview
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -182,7 +182,6 @@ namespace PeePal.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -208,8 +207,7 @@ namespace PeePal.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ProfileUserName")
-                        .IsRequired()
+                    b.Property<string>("ProfileUsername")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
@@ -275,6 +273,10 @@ namespace PeePal.Migrations
                     b.Property<int?>("BathroomId")
                         .HasColumnType("int");
 
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Cleanliness")
                         .HasColumnType("int");
 
@@ -288,9 +290,15 @@ namespace PeePal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double?>("Latitude")
+                        .HasColumnType("float");
+
                     b.Property<string>("Likes")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Longitude")
+                        .HasColumnType("float");
 
                     b.Property<string>("Notes")
                         .IsRequired()
@@ -302,7 +310,11 @@ namespace PeePal.Migrations
                     b.Property<int>("Smell")
                         .HasColumnType("int");
 
-                    b.Property<string>("Tips")
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -310,7 +322,7 @@ namespace PeePal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("address")
+                    b.Property<string>("Zip")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

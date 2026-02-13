@@ -14,7 +14,7 @@ namespace PeePal.Areas.Reviews.Controllers
 {
     [Authorize]
     [Area("Reviews")]
-    [Route("Reviews/[action]/{id?}/{slug?}")]
+    [Route("[controller]/[action]/{id?}/{slug?}")]
     public class ReviewsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -25,6 +25,7 @@ namespace PeePal.Areas.Reviews.Controllers
         }
 
         // GET: Reviews
+
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Reviews.Include(r => r.User);
@@ -62,8 +63,10 @@ namespace PeePal.Areas.Reviews.Controllers
         {
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             Review newReview = new Review
             {
+
                 UserId = userId,
                 DateSubmitted = DateTime.Today
 
@@ -71,18 +74,42 @@ namespace PeePal.Areas.Reviews.Controllers
             return View(newReview);
         }
 
+
+        public async Task<LatLng> GeocodeAddress(string address)
+        {
+            var apiKey = "X-UsA7HE5BsPx2kLv8UAs3iPHzK54NQP3nlQvmnxunY";
+            var url = $"https://geocode.search.hereapi.com/v1/geocode?q={Uri.EscapeDataString(address)}&apiKey={apiKey}";
+
+            using var client = new HttpClient();
+            var response = await client.GetStringAsync(url);
+
+            dynamic json = Newtonsoft.Json.JsonConvert.DeserializeObject(response);
+
+            double lat = json.items[0].position.lat;
+            double lng = json.items[0].position.lng;
+
+            return new LatLng { Lat = lat, Lng = lng };
+        }
+
         // POST: Reviews/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,ReviewId,address,name,Smell,Cleanliness,Privacy,Comfort,Availability,Likes,Dislikes,Tips,Notes")] Review review)
+        public async Task<IActionResult> Create([Bind("UserId,ReviewId,Street,City,State,Zip,name,Smell,Cleanliness,Privacy,Comfort,Availability,Likes,Dislikes,Notes,DateSubmitted")] Review review)
         {
             review.DateSubmitted = DateTime.Today;
-           // review.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            // ensure the review is associated with the currently logged in user
+            review.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (ModelState.IsValid)
             {
-                
+                var address = $"{review.Street}, {review.City}, {review.State} {review.Zip}";
+                var coords = await GeocodeAddress(address);
+
+                review.Latitude = coords.Lat;
+                review.Longitude = coords.Lng;
+
+
                 _context.Add(review);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -113,7 +140,7 @@ namespace PeePal.Areas.Reviews.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReviewId,address,name,Smell,Cleanliness,Privacy,Comfort,Availability,Likes,Dislikes,Tips,Notes,DateSubmitted,UserId")] Review review)
+        public async Task<IActionResult> Edit(int id, [Bind("ReviewId,address,name,Smell,Cleanliness,Privacy,Comfort,Availability,Likes,Dislikes,Notes,DateSubmitted,UserId")] Review review)
         {
             if (id != review.ReviewId)
             {

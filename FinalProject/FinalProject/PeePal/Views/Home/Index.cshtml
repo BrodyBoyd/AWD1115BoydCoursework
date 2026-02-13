@@ -1,123 +1,789 @@
-﻿@* <h1>When you need to go, you need to know.</h1> *@
-<div class="">
+﻿@model IEnumerable<PeePal.Models.Review>
 
-    <!-- Hero -->
-    <div class="relative w-full h-[60vh] flex items-center justify-center overflow-hidden bg-gray-50 pt-32">
+    <!-- ========================================== -->
+    <!-- HERO SECTION                               -->
+    <!-- ========================================== -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16">
+        <!-- Background blobs -->
+        <div class="absolute top-10 -left-20 w-96 h-96 rounded-full bg-primary/20 blur-3xl animate-pulse-glow" aria-hidden="true"></div>
+        <div class="absolute bottom-10 -right-20 w-80 h-80 rounded-full bg-secondary/30 blur-3xl animate-pulse-glow" style="animation-delay:2s" aria-hidden="true"></div>
+        <div class="absolute top-1/3 right-1/4 w-64 h-64 rounded-full bg-accent/15 blur-3xl" aria-hidden="true"></div>
 
-        <div class="absolute -top-20 -left-20 w-72 h-72 bg-purple-500/40 rounded-full blur-3xl"></div>
+        <!-- Floating decorative elements -->
+        <div class="absolute top-32 left-[10%] animate-float" aria-hidden="true">
+            <div class="w-16 h-16 rounded-2xl bg-primary/10 border-2 border-primary/20 flex items-center justify-center">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0d9668" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+            </div>
+        </div>
+        <div class="absolute top-48 right-[12%] animate-float-delayed" aria-hidden="true">
+            <div class="w-14 h-14 rounded-2xl bg-secondary/15 border-2 border-secondary/25 flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e8970a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+            </div>
+        </div>
+        <div class="absolute bottom-32 left-[15%] animate-float-slow" aria-hidden="true">
+            <div class="w-12 h-12 rounded-full bg-accent/10 border-2 border-accent/20 flex items-center justify-center">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e11d6d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+            </div>
+        </div>
+        <div class="absolute bottom-48 right-[18%] animate-float" aria-hidden="true">
+            <div class="w-10 h-10 rounded-lg bg-primary/10 border-2 border-primary/15 flex items-center justify-center" style="transform:rotate(12deg)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0d9668" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+        </div>
 
-        <!-- Blurred gray blob -->
-        <div class="absolute bottom-0 right-0 w-80 h-80 bg-gray-400/30 rounded-full blur-3xl"></div>
-
-        <!-- Soft white glow -->
-        <div class="absolute top-1/2 left-1/2 w-96 h-96 bg-white/40 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2"></div>
+        <!-- Dot grid pattern -->
+        <div class="absolute inset-0 opacity-[0.03]" style="background-image:radial-gradient(circle,#1e293b 1px,transparent 1px);background-size:32px 32px" aria-hidden="true"></div>
 
         <!-- Hero content -->
-        <div class="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl z-10">
-            <h1 class="text-4xl font-bold leading-none sm:text-5xl hover-button">
-                PeePal - When You Gotta
-                <span class="dark:text-violet-600">Go</span> You gotta <span class="dark:text-violet-600">Know</span>
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8">
+                <span class="relative flex h-2.5 w-2.5">
+                    <span class="animate-ping-custom absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+                </span>
+                <span class="text-sm font-medium text-primary">Now with AI-powered search</span>
+            </div>
+
+            <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-foreground" style="text-wrap:balance">
+                When You Gotta
+                <span class="relative inline-block">
+                    <span class="relative z-10 text-primary">Go</span>
+                    <span class="absolute -bottom-1 left-0 right-0 h-3 bg-primary/15 rounded-sm" aria-hidden="true"></span>
+                </span>
+                You Gotta
+                <span class="relative inline-block">
+                    <span class="relative z-10 text-secondary">Know</span>
+                    <span class="absolute -bottom-1 left-0 right-0 h-3 bg-secondary/15 rounded-sm" aria-hidden="true"></span>
+                </span>
             </h1>
-            <p class="px-8 mt-8 mb-12 text-lg">PeePal is a user based restroom rating application</p>
-            <div class="flex flex-wrap justify-center">
-                <button class="px-8 py-3 m-2 text-lg font-semibold rounded dark:bg-violet-600 dark:text-gray-50 hover:bg-violet-800 hover:cursor-pointer">Bathrooms Near me</button>
-                <a asp-area="Reviews" asp-controller="Reviews" asp-action="Index" class="px-8 py-3 m-2 text-lg border rounded dark:text-gray-900 dark:border-gray-300 hover:bg-gray-300 hover:cursor-pointer">Rate Bathroom</a>
-                
 
-            </div>
-        </div>
-        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
+            <p class="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed" style="text-wrap:pretty">
+                PeePal is the community-powered restroom finder that helps you discover clean, accessible bathrooms wherever you are. Rated by real people, for real emergencies.
+            </p>
 
-    </div>
-
-
-    <!-- Feature Strip -->
-    <section class="w-full bg-white py-16 px-8">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
-            <div>
-                <h3 class="text-2xl font-bold mb-2">Fast</h3>
-                <p class="text-gray-600">Instant geolocation with no setup required.</p>
-            </div>
-            <div>
-                <h3 class="text-2xl font-bold mb-2">Accurate</h3>
-                <p class="text-gray-600">Find the closest restrooms with precision.</p>
-            </div>
-            <div>
-                <h3 class="text-2xl font-bold mb-2">Reliable</h3>
-                <p class="text-gray-600">Works anywhere with Google Maps integration.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="relative flex w-screen line-bg py-16 px-8 justify-center min-h-screen">
-
-        <!-- Top fade (into previous section) -->
-        <div class="absolute top-0 left-0 w-full h-32
-                bg-gradient-to-t from-transparent to-white
-                pointer-events-none"></div>
-
-        <!-- Bottom fade (into next section) -->
-        <div class="absolute bottom-0 left-0 w-full h-32
-                bg-gradient-to-b from-transparent to-white
-                pointer-events-none"></div>
-
-        <div class="max-w-8xl mx-auto gap-10 text-center transition">
-            <div>
-                <h3 class="text-2xl font-bold mb-2 text-white">AI Integration</h3>
-                <p class="text-gray-200">Ask our ai for help finding the specific bathroom you're looking for. (Coming Soon)</p>
-
-                <div id="askPeepalBtn" class="outer-cont flex">
-                    <!-- SVG unchanged -->
-                    <svg viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-                        <g fill="none">
-                            <path d="m12.594 23.258l-.012.002l-.071.035l-.02.004l-.014-.004l-.071-.036q-.016-.004-.024.006l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.016-.018m.264-.113l-.014.002l-.184.093l-.01.01l-.003.011l.018.43l.005.012l.008.008l.201.092q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.003-.011l.018-.43l-.003-.012l-.01-.01z"></path>
-                            <path d="M9.107 5.448c.598-1.75 3.016-1.803 3.725-.159l.06.16l.807 2.36a4 4 0 0 0 2.276 2.411l.217.081l2.36.806c1.75.598 1.803 3.016.16 3.725l-.16.06l-2.36.807a4 4 0 0 0-2.412 2.276l-.081.216l-.806 2.361c-.598 1.75-3.016 1.803-3.724.16l-.062-.16l-.806-2.36a4 4 0 0 0-2.276-2.412l-.216-.081l-2.36-.806c-1.751-.598-1.804-3.016-.16-3.724l.16-.062l2.36-.806A4 4 0 0 0 8.22 8.025l.081-.216zM11 6.094l-.806 2.36a6 6 0 0 1-3.49 3.649l-.25.091l-2.36.806l2.36.806a6 6 0 0 1 3.649 3.49l.091.25l.806 2.36l.806-2.36a6 6 0 0 1 3.49-3.649l.25-.09l2.36-.807l-2.36-.806a6 6 0 0 1-3.649-3.49l-.09-.25zM19 2a1 1 0 0 1 .898.56l.048.117l.35 1.026l1.027.35a1 1 0 0 1 .118 1.845l-.118.048l-1.026.35l-.35 1.027a1 1 0 0 1-1.845.117l-.048-.117l-.35-1.026l-1.027-.35a1 1 0 0 1-.118-1.845l.118-.048l1.026-.35l.35-1.027A1 1 0 0 1 19 2"
-                                  fill="currentColor"></path>
-                        </g>
+            <!-- CTAs -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+                <a href="#search" class="group inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-primary text-primary-foreground font-bold text-base hover:opacity-90 transition-all shadow-lg" style="box-shadow:0 10px 25px -5px rgba(13,150,104,0.25)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
                     </svg>
-                    Ask PeePal AI
+                    Bathrooms Near Me
+                </a>
+                <a asp-area="Reviews" asp-controller="Reviews" asp-action="Create" class="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-border text-foreground font-bold text-base hover:bg-muted transition-all">
+                    Rate a Bathroom
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Stats -->
+            <div class="mt-16 flex flex-wrap items-center justify-center gap-8 sm:gap-12">
+                <div class="text-center">
+                    <p class="font-display text-3xl sm:text-4xl font-bold text-foreground">50K+</p>
+                    <p class="text-sm text-muted-foreground mt-1">Restrooms Rated</p>
+                </div>
+                <div class="hidden sm:block w-px h-12 bg-border" aria-hidden="true"></div>
+                <div class="text-center">
+                    <p class="font-display text-3xl sm:text-4xl font-bold text-foreground">4.8</p>
+                    <p class="text-sm text-muted-foreground mt-1">Average Rating</p>
+                </div>
+                <div class="hidden sm:block w-px h-12 bg-border" aria-hidden="true"></div>
+                <div class="text-center">
+                    <p class="font-display text-3xl sm:text-4xl font-bold text-foreground">120+</p>
+                    <p class="text-sm text-muted-foreground mt-1">Cities Covered</p>
                 </div>
             </div>
         </div>
-        
-        <div id="peepalChatbox" class="hidden w-[60%] mx-auto mt-10">
-            <div class="card">
-                <div class="chat-header">Chat</div>
-                <div class="chat-window">
-                    <ul class="message-list"></ul>
-                </div>
-                <div class="chat-input">
-                    <input type="text" class="message-input" placeholder="Type your message here">
-                    <button class="send-button">Send</button>
-                </div>
-            </div>
-        </div>
 
-
-
+        <!-- Bottom fade -->
+        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" aria-hidden="true"></div>
     </section>
 
-    <section class="p-6 dark:bg-gray-100 dark:text-gray-800">
-        <div class="container grid gap-6 mx-auto text-center lg:grid-cols-2 xl:grid-cols-5">
-            <div class="w-full px-6 py-16 rounded-md sm:px-12 md:px-16 xl:col-span-2 dark:bg-gray-50">
-                <h1 class="text-5xl font-extrabold dark:text-gray-900">Search Your Location</h1>
-                <p class="my-8">
-                    <span class="font-medium dark:text-gray-900">You want the best!</span> We want that for you as well, no more guessing and getting a gross public restroom, use PeePal to find the cleanest bathroom near you
+
+    <!-- ========================================== -->
+    <!-- MARQUEE STRIP                              -->
+    <!-- ========================================== -->
+    <section class="relative overflow-hidden bg-primary py-4" aria-label="Feature highlights">
+        <div class="animate-marquee flex whitespace-nowrap">
+            <span class="mx-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary-foreground">
+                <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor" opacity="0.6"></circle></svg>
+                Clean Restrooms
+            </span>
+            <span class="mx-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary-foreground">
+                <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor" opacity="0.6"></circle></svg>
+                User Reviews
+            </span>
+            <span class="mx-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary-foreground">
+                <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor" opacity="0.6"></circle></svg>
+                GPS Powered
+            </span>
+            <span class="mx-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary-foreground">
+                <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor" opacity="0.6"></circle></svg>
+                AI Search
+            </span>
+            <span class="mx-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary-foreground">
+                <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor" opacity="0.6"></circle></svg>
+                Accessibility Info
+            </span>
+            <span class="mx-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary-foreground">
+                <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor" opacity="0.6"></circle></svg>
+                Real-Time Data
+            </span>
+            <span class="mx-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary-foreground">
+                <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor" opacity="0.6"></circle></svg>
+                Community Driven
+            </span>
+            <span class="mx-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary-foreground">
+                <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor" opacity="0.6"></circle></svg>
+                Free to Use
+            </span>
+            <!-- Duplicate for seamless loop -->
+            <span class="mx-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary-foreground">
+                <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor" opacity="0.6"></circle></svg>
+                Clean Restrooms
+            </span>
+            <span class="mx-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary-foreground">
+                <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor" opacity="0.6"></circle></svg>
+                User Reviews
+            </span>
+            <span class="mx-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary-foreground">
+                <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor" opacity="0.6"></circle></svg>
+                GPS Powered
+            </span>
+            <span class="mx-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary-foreground">
+                <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor" opacity="0.6"></circle></svg>
+                AI Search
+            </span>
+            <span class="mx-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary-foreground">
+                <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor" opacity="0.6"></circle></svg>
+                Accessibility Info
+            </span>
+            <span class="mx-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary-foreground">
+                <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor" opacity="0.6"></circle></svg>
+                Real-Time Data
+            </span>
+            <span class="mx-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary-foreground">
+                <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor" opacity="0.6"></circle></svg>
+                Community Driven
+            </span>
+            <span class="mx-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary-foreground">
+                <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor" opacity="0.6"></circle></svg>
+                Free to Use
+            </span>
+        </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- FEATURES SECTION                           -->
+    <!-- ========================================== -->
+    <section id="features" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <!-- Section header -->
+            <div class="text-center mb-16">
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/10 border border-secondary/20 text-sm font-semibold text-secondary mb-4">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    Features
+                </span>
+                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground" style="text-wrap:balance">
+                    Everything you need for a <span class="text-primary">better bathroom</span> experience
+                </h2>
+                <p class="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed" style="text-wrap:pretty">
+                    From lightning-fast search to community reviews, PeePal is packed with features that make finding clean restrooms effortless.
                 </p>
-                <form novalidate="" action="" class="self-stretch space-y-3">
-                    <div>
-                        <label for="Search" class="text-sm sr-only">Zip Code:</label>
-                        <input id="Search" type="text" placeholder="Your Zipcode" class="w-full rounded-md focus:ring focus:dark:ring-violet-600 dark:border-gray-300">
-                    </div>
-                    <button type="button" class="w-full py-2 font-semibold rounded dark:bg-violet-600 dark:text-gray-50">Search Nearby</button>
-                </form>
             </div>
-           <div id="map" class="w-full rounded-md xl:col-span-3 dark:bg-gray-500"></div>  
+
+            <!-- Feature cards grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Card 1: Lightning Fast -->
+                <div class="group relative rounded-2xl border border-primary/20 bg-card p-8 hover:shadow-xl transition-all duration-300">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary mb-5">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-card-foreground mb-2">Lightning Fast</h3>
+                    <p class="text-muted-foreground leading-relaxed">Instant geolocation finds the closest restrooms in under 2 seconds. No setup, no fuss.</p>
+                </div>
+
+                <!-- Card 2: Pinpoint Accurate -->
+                <div class="group relative rounded-2xl border border-secondary/20 bg-card p-8 hover:shadow-xl transition-all duration-300">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-secondary/10 text-secondary mb-5">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-card-foreground mb-2">Pinpoint Accurate</h3>
+                    <p class="text-muted-foreground leading-relaxed">GPS-powered precision with Google Maps integration ensures you never miss a nearby restroom.</p>
+                </div>
+
+                <!-- Card 3: Community Driven -->
+                <div class="group relative rounded-2xl border border-accent/20 bg-card p-8 hover:shadow-xl transition-all duration-300">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-accent/10 text-accent mb-5">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-card-foreground mb-2">Community Driven</h3>
+                    <p class="text-muted-foreground leading-relaxed">Real reviews from real people. Thousands of users share honest ratings every day.</p>
+                </div>
+
+                <!-- Card 4: Safe & Reliable -->
+                <div class="group relative rounded-2xl border border-primary/20 bg-card p-8 hover:shadow-xl transition-all duration-300">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary mb-5">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-card-foreground mb-2">Safe &amp; Reliable</h3>
+                    <p class="text-muted-foreground leading-relaxed">Verified locations with safety ratings. Know what to expect before you arrive.</p>
+                </div>
+
+                <!-- Card 5: Works Everywhere -->
+                <div class="group relative rounded-2xl border border-secondary/20 bg-card p-8 hover:shadow-xl transition-all duration-300">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-secondary/10 text-secondary mb-5">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-card-foreground mb-2">Works Everywhere</h3>
+                    <p class="text-muted-foreground leading-relaxed">Coverage across 120+ cities and growing. Travel with confidence anywhere.</p>
+                </div>
+
+                <!-- Card 6: Real-Time Updates -->
+                <div class="group relative rounded-2xl border border-accent/20 bg-card p-8 hover:shadow-xl transition-all duration-300">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-accent/10 text-accent mb-5">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-card-foreground mb-2">Real-Time Updates</h3>
+                    <p class="text-muted-foreground leading-relaxed">Live data on restroom conditions, wait times, and availability. Always current.</p>
+                </div>
+
+            </div>
         </div>
     </section>
 
-</div>
 
+    <!-- ========================================== -->
+    <!-- HOW IT WORKS                               -->
+    <!-- ========================================== -->
+    <section id="how-it-works" class="py-24 px-6 bg-muted/50">
+        <div class="max-w-7xl mx-auto">
+            <!-- Section header -->
+            <div class="text-center mb-16">
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-sm font-semibold text-accent mb-4">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    How It Works
+                </span>
+                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground" style="text-wrap:balance">
+                    Four steps to <span class="text-accent">restroom bliss</span>
+                </h2>
+                <p class="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed" style="text-wrap:pretty">
+                    Finding a clean bathroom has never been this easy. Here is how PeePal works.
+                </p>
+            </div>
+
+            <!-- Steps -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <!-- Step 1 -->
+                <div class="relative flex flex-col items-center text-center">
+                    <!-- Connector (hidden on small screens) -->
+                    <div class="hidden lg:block absolute top-14 left-[calc(50%+40px)] w-[calc(100%-40px)] h-px border-t-2 border-dashed border-primary/30" aria-hidden="true"></div>
+                    <div class="relative mb-6">
+                        <div class="w-28 h-28 rounded-3xl bg-card border-2 border-primary/20 flex items-center justify-center text-primary shadow-lg" style="box-shadow:0 4px 14px rgba(13,150,104,0.08)">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                            </svg>
+                        </div>
+                        <span class="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-primary text-primary-foreground font-display font-bold text-sm flex items-center justify-center shadow-md">01</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-foreground mb-2">Open PeePal</h3>
+                    <p class="text-muted-foreground leading-relaxed max-w-xs">Launch the app and instantly share your location. We detect the nearest restrooms in real time.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative flex flex-col items-center text-center">
+                    <div class="hidden lg:block absolute top-14 left-[calc(50%+40px)] w-[calc(100%-40px)] h-px border-t-2 border-dashed border-primary/30" aria-hidden="true"></div>
+                    <div class="relative mb-6">
+                        <div class="w-28 h-28 rounded-3xl bg-card border-2 border-primary/20 flex items-center justify-center text-primary shadow-lg" style="box-shadow:0 4px 14px rgba(13,150,104,0.08)">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <span class="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-primary text-primary-foreground font-display font-bold text-sm flex items-center justify-center shadow-md">02</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-foreground mb-2">Pick Your Spot</h3>
+                    <p class="text-muted-foreground leading-relaxed max-w-xs">Browse nearby restrooms with ratings, photos, and accessibility info. Filter by what matters to you.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative flex flex-col items-center text-center">
+                    <div class="hidden lg:block absolute top-14 left-[calc(50%+40px)] w-[calc(100%-40px)] h-px border-t-2 border-dashed border-primary/30" aria-hidden="true"></div>
+                    <div class="relative mb-6">
+                        <div class="w-28 h-28 rounded-3xl bg-card border-2 border-primary/20 flex items-center justify-center text-primary shadow-lg" style="box-shadow:0 4px 14px rgba(13,150,104,0.08)">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                            </svg>
+                        </div>
+                        <span class="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-primary text-primary-foreground font-display font-bold text-sm flex items-center justify-center shadow-md">03</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-foreground mb-2">Navigate There</h3>
+                    <p class="text-muted-foreground leading-relaxed max-w-xs">Get turn-by-turn directions right to the door. No more wandering around in desperation.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative flex flex-col items-center text-center">
+                    <div class="relative mb-6">
+                        <div class="w-28 h-28 rounded-3xl bg-card border-2 border-primary/20 flex items-center justify-center text-primary shadow-lg" style="box-shadow:0 4px 14px rgba(13,150,104,0.08)">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                        </div>
+                        <span class="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-primary text-primary-foreground font-display font-bold text-sm flex items-center justify-center shadow-md">04</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-foreground mb-2">Leave a Review</h3>
+                    <p class="text-muted-foreground leading-relaxed max-w-xs">Rate your experience and help the community. Your feedback keeps PeePal accurate and useful.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- AI ASSISTANT SECTION                       -->
+    <!-- ========================================== -->
+    <section id="ai" class="relative py-24 px-6 overflow-hidden" style="background:#1e293b">
+        <!-- Background blobs -->
+        <div class="absolute top-20 left-10 w-72 h-72 rounded-full bg-primary/10 blur-3xl" aria-hidden="true"></div>
+        <div class="absolute bottom-10 right-10 w-64 h-64 rounded-full bg-secondary/10 blur-3xl" aria-hidden="true"></div>
+
+        <!-- Grid pattern -->
+        <div class="absolute inset-0 opacity-[0.04]" style="background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:24px 24px" aria-hidden="true"></div>
+
+        <div class="relative max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+                <!-- Left content -->
+                <div>
+                    <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/20 border border-primary/30 text-sm font-semibold text-primary mb-6">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M9.107 5.448c.598-1.75 3.016-1.803 3.725-.159l.06.16l.807 2.36a4 4 0 0 0 2.276 2.411l.217.081l2.36.806c1.75.598 1.803 3.016.16 3.725l-.16.06l-2.36.807a4 4 0 0 0-2.412 2.276l-.081.216l-.806 2.361c-.598 1.75-3.016 1.803-3.724.16l-.062-.16l-.806-2.36a4 4 0 0 0-2.276-2.412l-.216-.081l-2.36-.806c-1.751-.598-1.804-3.016-.16-3.724l.16-.062l2.36-.806A4 4 0 0 0 8.22 8.025l.081-.216z" fill="currentColor"></path>
+                            <path d="M19 2a1 1 0 0 1 .898.56l.048.117l.35 1.026l1.027.35a1 1 0 0 1 .118 1.845l-.118.048l-1.026.35l-.35 1.027a1 1 0 0 1-1.845.117l-.048-.117l-.35-1.026l-1.027-.35a1 1 0 0 1-.118-1.845l.118-.048l1.026-.35l.35-1.027A1 1 0 0 1 19 2" fill="currentColor"></path>
+                        </svg>
+                        AI-Powered
+                    </span>
+
+                    <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6" style="text-wrap:balance">
+                        Meet your <span class="text-primary">PeePal AI</span> assistant
+                    </h2>
+
+                    <p class="text-lg text-white/70 leading-relaxed mb-8" style="text-wrap:pretty">
+                        Can't find what you're looking for? Ask our AI assistant for help. It knows every restroom in our database and can help you find exactly what you need based on your specific requirements.
+                    </p>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3">
+                            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0d9668" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                            <span class="text-white/80">Natural language restroom search</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0d9668" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                            <span class="text-white/80">Accessibility-specific recommendations</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0d9668" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                            <span class="text-white/80">Real-time availability updates</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0d9668" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                            <span class="text-white/80">Personalized suggestions based on preferences</span>
+                        </li>
+                    </ul>
+
+                    <span class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-bold text-base shadow-lg" style="box-shadow:0 10px 25px -5px rgba(13,150,104,0.3)">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M9.107 5.448c.598-1.75 3.016-1.803 3.725-.159l.06.16l.807 2.36a4 4 0 0 0 2.276 2.411l.217.081l2.36.806c1.75.598 1.803 3.016.16 3.725l-.16.06l-2.36.807a4 4 0 0 0-2.412 2.276l-.081.216l-.806 2.361c-.598 1.75-3.016 1.803-3.724.16l-.062-.16l-.806-2.36a4 4 0 0 0-2.276-2.412l-.216-.081l-2.36-.806c-1.751-.598-1.804-3.016-.16-3.724l.16-.062l2.36-.806A4 4 0 0 0 8.22 8.025l.081-.216z" fill="currentColor"></path>
+                            <path d="M19 2a1 1 0 0 1 .898.56l.048.117l.35 1.026l1.027.35a1 1 0 0 1 .118 1.845l-.118.048l-1.026.35l-.35 1.027a1 1 0 0 1-1.845.117l-.048-.117l-.35-1.026l-1.027-.35a1 1 0 0 1-.118-1.845l.118-.048l1.026-.35l.35-1.027A1 1 0 0 1 19 2" fill="currentColor"></path>
+                        </svg>
+                        Coming Soon
+                    </span>
+                </div>
+
+                <!-- Right - Chat mockup -->
+                <div class="relative">
+                    <div class="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl" style="backdrop-filter:blur(8px)">
+                        <!-- Chat header -->
+                        <div class="flex items-center gap-3 pb-5 border-b border-white/10 mb-5">
+                            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-sm">AI</div>
+                            <div>
+                                <p class="font-display font-bold text-white text-sm">PeePal AI</p>
+                                <p class="text-xs text-white/50">Always online</p>
+                            </div>
+                            <span class="ml-auto relative flex h-2.5 w-2.5">
+                                <span class="animate-ping-custom absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+                            </span>
+                        </div>
+
+                        <!-- Chat messages -->
+                        <div class="space-y-4">
+                            <div class="flex justify-end">
+                                <div class="max-w-[80%] rounded-2xl rounded-br-md bg-primary px-4 py-3">
+                                    <p class="text-sm text-primary-foreground">I need a wheelchair-accessible restroom near Times Square</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-start">
+                                <div class="max-w-[80%] rounded-2xl rounded-bl-md bg-white/10 px-4 py-3 border border-white/10">
+                                    <p class="text-sm text-white/90">I found 3 wheelchair-accessible restrooms near Times Square! The closest is at the Marriott Marquis lobby (0.2 mi) - rated 4.7 stars with automatic doors and grab bars.</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-end">
+                                <div class="max-w-[80%] rounded-2xl rounded-br-md bg-primary px-4 py-3">
+                                    <p class="text-sm text-primary-foreground">Is it free to use?</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-start">
+                                <div class="max-w-[80%] rounded-2xl rounded-bl-md bg-white/10 px-4 py-3 border border-white/10">
+                                    <p class="text-sm text-white/90">Yes! The Marriott Marquis lobby restrooms are free and open to the public. Would you like directions?</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Input mockup -->
+                        <div class="mt-5 flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                            <p class="text-sm text-white/30 flex-1">Ask PeePal AI anything...</p>
+                            <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating sparkles -->
+                    <div class="absolute -top-4 -right-4 w-8 h-8 text-secondary animate-float" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.107 5.448c.598-1.75 3.016-1.803 3.725-.159l.06.16l.807 2.36a4 4 0 0 0 2.276 2.411l.217.081l2.36.806c1.75.598 1.803 3.016.16 3.725l-.16.06l-2.36.807a4 4 0 0 0-2.412 2.276l-.081.216l-.806 2.361c-.598 1.75-3.016 1.803-3.724.16l-.062-.16l-.806-2.36a4 4 0 0 0-2.276-2.412l-.216-.081l-2.36-.806c-1.751-.598-1.804-3.016-.16-3.724l.16-.062l2.36-.806A4 4 0 0 0 8.22 8.025l.081-.216z"></path></svg>
+                    </div>
+                    <div class="absolute -bottom-3 -left-3 w-6 h-6 text-primary animate-float-delayed" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 2a1 1 0 0 1 .898.56l.048.117l.35 1.026l1.027.35a1 1 0 0 1 .118 1.845l-.118.048l-1.026.35l-.35 1.027a1 1 0 0 1-1.845.117l-.048-.117l-.35-1.026l-1.027-.35a1 1 0 0 1-.118-1.845l.118-.048l1.026-.35l.35-1.027A1 1 0 0 1 19 2"></path></svg>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- SEARCH SECTION                             -->
+    <!-- ========================================== -->
+    <section id="search" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch">
+
+                <!-- Left card - Search form -->
+                <div class="lg:col-span-2 rounded-3xl bg-card border border-border p-8 lg:p-10 flex flex-col justify-center shadow-lg">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-semibold text-primary mb-6 w-fit">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        SEARCH
+                    </span>
+
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-card-foreground mb-4" style="text-wrap:balance">
+                        Search Your <span class="text-primary">Location</span>
+                    </h2>
+
+                    <p class="text-muted-foreground leading-relaxed mb-8">
+                        You deserve the best! No more guessing and ending up at a gross public restroom. Use PeePal to find the cleanest bathroom near you.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label for="zipcode" class="block text-sm font-semibold text-card-foreground mb-2">Enter Your Zip Code</label>
+                            <div class="relative">
+                                <svg class="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <input id="zipcode" type="text" placeholder="e.g. 10001" class="w-full pl-12 pr-4 py-3.5 rounded-xl border-2 border-border bg-background text-foreground focus:border-primary focus:outline-none transition-colors text-base" style="font-family:'DM Sans',system-ui,sans-serif" />
+                            </div>
+                        </div>
+                        <button type="button" class="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-primary text-primary-foreground font-bold text-base hover:opacity-90 transition-opacity shadow-md" style="box-shadow:0 4px 14px rgba(13,150,104,0.2)">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            Search Nearby
+                        </button>
+                    <button class="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-primary text-primary-foreground font-bold text-base hover:opacity-90 transition-opacity shadow-md" style="box-shadow:0 4px 14px rgba(13,150,104,0.2)" onclick="getLocation()">Get My Location</button>
+
+                    </div>
+
+                    <!-- Popular locations -->
+                    <div class="mt-8 pt-6 border-t border-border">
+                        <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Popular Searches</p>
+                        <div class="popular-searches flex flex-wrap gap-2">
+                            <button id="stl" class="px-3 py-1.5 rounded-full bg-muted text-sm font-medium text-muted-foreground border border-border hover:border-primary/30 hover:text-primary cursor-pointer transition-colors">St. Louis</button>
+                            <button id="chi" class="px-3 py-1.5 rounded-full bg-muted text-sm font-medium text-muted-foreground border border-border hover:border-primary/30 hover:text-primary cursor-pointer transition-colors">Chicago</button>
+                            <button id="nyk" class="px-3 py-1.5 rounded-full bg-muted text-sm font-medium text-muted-foreground border border-border hover:border-primary/30 hover:text-primary cursor-pointer transition-colors">New York</button>
+                            <button id="las" class="px-3 py-1.5 rounded-full bg-muted text-sm font-medium text-muted-foreground border border-border hover:border-primary/30 hover:text-primary cursor-pointer transition-colors">Los Angeles</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right - Map visualization -->
+                <div class="lg:col-span-3 rounded-3xl overflow-hidden border border-border shadow-lg min-h-[400px] lg:min-h-0 relative bg-muted">
+                    <div style="width: 100%; height: 100%;" id="mapContainer"></div>
+
+                @*     <div class="absolute inset-0 bg-primary/5">
+                        <!-- Grid lines -->
+                        <div class="absolute inset-0 opacity-10" style="background-image:linear-gradient(#0d9668 1px,transparent 1px),linear-gradient(90deg,#0d9668 1px,transparent 1px);background-size:60px 60px" aria-hidden="true"></div>
+
+                        <!-- Map pins -->
+                        <div class="absolute top-[20%] left-[30%] animate-float" aria-hidden="true">
+                            <div class="relative">
+                                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-lg" style="box-shadow:0 4px 14px rgba(13,150,104,0.3)">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                </div>
+                                <div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-card text-card-foreground text-xs font-bold px-2 py-1 rounded-md shadow-md border border-border">4.9 Stars</div>
+                            </div>
+                        </div>
+
+                        <div class="absolute top-[45%] left-[55%] animate-float-delayed" aria-hidden="true">
+                            <div class="relative">
+                                <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center shadow-lg" style="box-shadow:0 4px 14px rgba(232,151,10,0.3)">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                </div>
+                                <div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-card text-card-foreground text-xs font-bold px-2 py-1 rounded-md shadow-md border border-border">4.7 Stars</div>
+                            </div>
+                        </div>
+
+                        <div class="absolute top-[65%] left-[25%] animate-float-slow" aria-hidden="true">
+                            <div class="relative">
+                                <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center shadow-lg" style="box-shadow:0 4px 14px rgba(225,29,109,0.3)">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                </div>
+                                <div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-card text-card-foreground text-xs font-bold px-2 py-1 rounded-md shadow-md border border-border">4.5 Stars</div>
+                            </div>
+                        </div>
+
+                        <div class="absolute top-[35%] left-[75%] animate-float" aria-hidden="true">
+                            <div class="w-8 h-8 rounded-full bg-primary/20 border-2 border-primary/40 flex items-center justify-center">
+                                <div class="w-3 h-3 rounded-full bg-primary"></div>
+                            </div>
+                        </div>
+
+                        <!-- "You are here" marker -->
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" aria-hidden="true">
+                            <div class="relative">
+                                <div class="w-5 h-5 rounded-full bg-foreground border-4 border-background shadow-xl"></div>
+                                <div class="absolute -inset-4 rounded-full border-2 border-foreground/20 animate-ping-custom"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom info bar -->
+                    <div class="absolute bottom-0 left-0 right-0 bg-card/90 border-t border-border px-6 py-4 flex items-center justify-between" style="backdrop-filter:blur(8px)">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-card-foreground">12 restrooms found</p>
+                                <p class="text-xs text-muted-foreground">Within 0.5 miles</p>
+                            </div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold">Live</span>
+                    </div>
+                </div> *@
+
+            </div>
+        </div>
+    </section>
+
+<!-- ========================================== -->
+<!-- SEARCH RESULTS SECTION                     -->
+<!-- ========================================== -->
+
+<div id="search-results" class="mt-16"></div>
+
+    <!-- ========================================== -->
+    <!-- TESTIMONIALS                               -->
+    <!-- ========================================== -->
+    <section class="py-24 px-6 bg-muted/50">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-sm font-semibold text-primary mb-4">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    Loved by Users
+                </span>
+                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground" style="text-wrap:balance">
+                    What our <span class="text-primary">community</span> says
+                </h2>
+            </div>
+
+            <!-- Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Testimonial 1 -->
+                <div class="rounded-2xl bg-card border border-border p-8 shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center gap-1 mb-4" aria-label="5 out of 5 stars">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e8970a" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e8970a" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e8970a" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e8970a" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e8970a" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <p class="text-card-foreground leading-relaxed mb-6">"PeePal saved my life on a road trip! Found a super clean gas station bathroom in the middle of nowhere. The ratings were spot on."</p>
+                    <div class="flex items-center gap-3 pt-4 border-t border-border">
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-sm font-bold text-primary-foreground">SM</div>
+                        <div>
+                            <p class="font-display font-bold text-sm text-card-foreground">Sarah M.</p>
+                            <p class="text-xs text-muted-foreground">New York, NY</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="rounded-2xl bg-card border border-border p-8 shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center gap-1 mb-4" aria-label="5 out of 5 stars">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e8970a" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e8970a" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e8970a" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e8970a" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e8970a" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <p class="text-card-foreground leading-relaxed mb-6">"As a parent with young kids, finding clean restrooms quickly is non-negotiable. PeePal makes it so easy. Can't imagine traveling without it."</p>
+                    <div class="flex items-center gap-3 pt-4 border-t border-border">
+                        <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-sm font-bold text-secondary-foreground">MT</div>
+                        <div>
+                            <p class="font-display font-bold text-sm text-card-foreground">Mike T.</p>
+                            <p class="text-xs text-muted-foreground">Los Angeles, CA</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="rounded-2xl bg-card border border-border p-8 shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center gap-1 mb-4" aria-label="5 out of 5 stars">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e8970a" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e8970a" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e8970a" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e8970a" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#e8970a" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <p class="text-card-foreground leading-relaxed mb-6">"The accessibility info is a game-changer for me. I use a wheelchair and PeePal helps me find restrooms I can actually use. So grateful!"</p>
+                    <div class="flex items-center gap-3 pt-4 border-t border-border">
+                        <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-sm font-bold text-accent-foreground">JL</div>
+                        <div>
+                            <p class="font-display font-bold text-sm text-card-foreground">Jamie L.</p>
+                            <p class="text-xs text-muted-foreground">Chicago, IL</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- CTA SECTION                                -->
+    <!-- ========================================== -->
+    <section class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="relative rounded-3xl bg-primary overflow-hidden px-8 py-16 sm:px-16 sm:py-20 text-center">
+                <!-- Decorative blobs -->
+                <div class="absolute top-0 left-0 w-64 h-64 rounded-full bg-white/5 -translate-x-1/2 -translate-y-1/2" aria-hidden="true"></div>
+                <div class="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-white/5 translate-x-1/3 translate-y-1/3" aria-hidden="true"></div>
+                <div class="absolute top-10 right-10 w-20 h-20 rounded-full bg-secondary/30 blur-xl" aria-hidden="true"></div>
+
+                <div class="relative z-10">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-sm font-semibold text-primary-foreground mb-6">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        Join 50,000+ users
+                    </div>
+
+                    <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-foreground mb-4" style="text-wrap:balance">
+                        Never get stuck without a clean bathroom again
+                    </h2>
+
+                    <p class="text-lg text-white/80 max-w-xl mx-auto mb-10 leading-relaxed" style="text-wrap:pretty">
+                        Join the PeePal community and start finding, rating, and sharing the best restrooms in your area today.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="#search" class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-foreground font-bold text-base hover:opacity-90 transition-opacity shadow-lg">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                            </svg>
+                            Get Started Free
+                        </a>
+                        <a href="#features" class="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-primary-foreground font-bold text-base hover:bg-white/10 transition-all">
+                            Learn More
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+@* <div id="map" class="w-full rounded-md xl:col-span-3 dark:bg-gray-500"></div>   *@
 @* 
  <script>
 //     let map, infoWindow;
@@ -168,14 +834,173 @@
 
 @* <script async
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjZrhvMBT9CR0niRdl8GLD7KtBA1uUYUE&callback=initMap">
-</script>  *@
-@* TAKE OUT API KEY AT SOME POINT  AIzaSyDjZrhvMBT9CR0niRdl8GLD7KtBA1uUYUE *@
+</script>  
+ TAKE OUT API KEY AT SOME POINT  AIzaSyDjZrhvMBT9CR0niRdl8GLD7KtBA1uUYUE 
 
- <script>
-    const btn = document.getElementById("askPeepalBtn");
-    const chatbox = document.getElementById("peepalChatbox");
+*@
+<script>
+    document.querySelector("#search button").addEventListener("click", async () => {
+        const zip = document.getElementById("zipcode").value.trim();
+        if (!zip) return;
 
-    btn.addEventListener("click", () => {
-        chatbox.classList.remove("hidden");
+        const resultsDiv = document.getElementById("search-results");
+        resultsDiv.innerHTML = `
+            <div class="text-center py-10 text-muted-foreground">
+                Searching...
+            </div>
+        `;
+
+        try {
+            const response = await fetch(`/Home/SearchByZip?zip=${zip}`);
+
+            if (!response.ok) {
+                resultsDiv.innerHTML = "<p class='text-red-500'>Server error.</p>";
+                return;
+            }
+
+            const html = await response.text();
+            resultsDiv.innerHTML = html;
+
+        } catch (err) {
+            resultsDiv.innerHTML = "<p class='text-red-500'>Network error.</p>";
+        }
     });
+
+    document.querySelectorAll("#search .popular-searches button").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const zipMap = {
+                stl: "63101",
+                chi: "60601",
+                nyk: "10001",
+                las: "89101"
+            };
+            const zip = zipMap[btn.id];
+            document.getElementById("zipcode").value = zip;
+            document.querySelector("#search button").click();
+        });
+    });
+
+
+
+    // MapInfo
+
+    // const apiKey = "X-UsA7HE5BsPx2kLv8UAs3iPHzK54NQP3nlQvmnxunY";
+
+    // Initialize HERE platform
+    var platform = new H.service.Platform({
+        apikey: "X-UsA7HE5BsPx2kLv8UAs3iPHzK54NQP3nlQvmnxunY"
+    });
+
+    var maptypes = platform.createDefaultLayers();
+
+    // Create the map ONCE
+    var map = new H.Map(
+        document.getElementById('mapContainer'),
+        maptypes.vector.normal.map,
+        {
+            zoom: 10,
+            center: { lat: 52.51, lng: 13.4 }
+        }
+    );
+
+    // Enable interactions
+    var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+    var ui = H.ui.UI.createDefault(map, maptypes);
+
+    // -------------------------
+    // USER LOCATION
+    // -------------------------
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+
+    function showPosition(position) {
+        const lat = Number(position.coords.latitude);
+        const lng = Number(position.coords.longitude);
+
+        console.log("User location:", lat, lng);
+
+        map.setCenter({ lat: lat, lng: lng });
+        map.setZoom(14);
+
+        var userMarker = new H.map.Marker({ lat: lat, lng: lng });
+        map.addObject(userMarker);
+        addBathrooms();
+
+        
+
+
+    }
+
+    function showError(error) {
+        console.error("Geolocation error:", error.message);
+    }
+
+    // -------------------------
+    // REVIEW MARKERS
+    // -------------------------
+    
+    function addBathrooms() {
+        // var svgMarkup = `
+        //     <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http:www.w3.org/2000/svg">
+        //       <defs>
+        //         <radialGradient id="shadow" cx="50%" cy="50%" r="50%">
+        //           <stop offset="0%" stop-color="rgba(0,0,0,0.4)"/>
+        //           <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+        //         </radialGradient>
+        //       </defs>
+        //       <!-- shadow -->
+        //       <ellipse cx="16" cy="29" rx="7" ry="3" fill="url(#shadow)"/>
+        //       <!-- pin body -->
+        //       <path d="M16 3C11.6 3 8 6.6 8 11c0 5.9 6.3 11.9 7.4 12.9.3.3.9.3 1.2 0C17.7 22.9 24 16.9 24 11 24 6.6 20.4 3 16 3z"
+        //             fill="#E53935" stroke="#B71C1C" stroke-width="1.2"/>
+        //       <!-- inner circle -->
+        //       <circle cx="16" cy="11" r="3.5" fill="#FFFFFF"/>
+        //     </svg>
+        //     `;
+
+        var svgMarkup = `
+            <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="16" r="12" fill="red" stroke="black" stroke-width="2"/>
+            </svg>
+            `;
+
+
+        var reviews = @Html.Raw(Json.Serialize(Model));
+
+
+        console.log("Reviews loaded:", reviews);
+
+        reviews.forEach(r => {
+            console.log("Checking review:", r);
+
+            if (r.latitude != null && r.longitude != null) {
+
+                const reviewLat = Number(r.latitude);
+                const reviewLng = Number(r.longitude);
+
+                console.log("Adding review marker:", reviewLat, reviewLng);
+                var icon = new H.map.Icon(svgMarkup, {
+                    anchor: { x: 16, y: 32 }   // bottom center of the SVG
+                });
+
+                var marker = new H.map.Marker({ lat: reviewLat, lng: reviewLng },);
+                console.log(marker)
+                map.addObject(marker);
+            }
+
+            else {
+                console.warn("Review missing coordinates:", r);
+            }
+        });
+    }
+
+    // Auto-get user location
+    getLocation();
+
+
 </script>

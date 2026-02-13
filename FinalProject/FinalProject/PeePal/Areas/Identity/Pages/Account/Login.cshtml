@@ -7,8 +7,8 @@
 <section class="min-h-screen flex items-center justify-center bg-gray-50 relative">
 
     <!-- Background blobs (PeePal style) -->
-    <div class="absolute -top-20 -left-20 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 right-0 w-80 h-80 bg-violet-400/20 rounded-full blur-3xl"></div>
+    <div class="absolute -top-20 -left-20 w-72 h-72 bg-primary/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-80 h-80 bg-secondary/30 rounded-full blur-3xl"></div>
 
     <div class="relative z-10 w-full max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 p-8">
 
@@ -24,7 +24,7 @@
                 <div>
                     <label asp-for="Input.Email" class="block text-gray-700 font-medium mb-1">Email</label>
                     <input asp-for="Input.Email"
-                           class="w-full rounded-lg border-gray-300 bg-gray-100 focus:ring-violet-600 focus:border-violet-600"
+                           class="w-full rounded-lg border border-border px-3 py-2 bg-card focus:ring-primary focus:border-primary"
                            autocomplete="username" aria-required="true" />
                     <span asp-validation-for="Input.Email" class="text-red-500 text-sm"></span>
                 </div>
@@ -33,7 +33,7 @@
                 <div>
                     <label asp-for="Input.Password" class="block text-gray-700 font-medium mb-1">Password</label>
                     <input asp-for="Input.Password"
-                           class="w-full rounded-lg border-gray-300 bg-gray-100 focus:ring-violet-600 focus:border-violet-600"
+                           class="w-full rounded-lg border border-border px-3 py-2 bg-card focus:ring-primary focus:border-primary"
                            autocomplete="current-password" aria-required="true" />
                     <span asp-validation-for="Input.Password" class="text-red-500 text-sm"></span>
                 </div>
@@ -50,23 +50,23 @@
                 <!-- Submit -->
                 <button id="login-submit"
                         type="submit"
-                        class="w-full py-3 bg-violet-600 text-white font-semibold rounded-lg hover:bg-violet-700 transition">
+                        class="w-full py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition">
                     Log in
                 </button>
 
                 <!-- Links -->
                 <div class="text-center space-y-2 mt-4">
                     <a id="forgot-password" asp-page="./ForgotPassword"
-                       class="text-violet-600 hover:underline">Forgot your password?</a>
+                       class="text-primary hover:underline">Forgot your password?</a>
 
                     <p>
                         <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl"
-                           class="text-violet-600 hover:underline">Register as a new user</a>
+                           class="text-primary hover:underline">Register as a new user</a>
                     </p>
 
                     <p>
                         <a id="resend-confirmation" asp-page="./ResendEmailConfirmation"
-                           class="text-violet-600 hover:underline">Resend email confirmation</a>
+                           class="text-primary hover:underline">Resend email confirmation</a>
                     </p>
                 </div>
 
@@ -100,7 +100,7 @@
                         <button type="submit"
                                 name="provider"
                                 value="@provider.Name"
-                                class="w-full py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition"
+                                class="w-full py-3 bg-secondary text-white rounded-lg hover:opacity-90 transition"
                                 title="Log in using your @provider.DisplayName account">
                             @provider.DisplayName
                         </button>

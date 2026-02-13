@@ -7,7 +7,10 @@ namespace PeePal.Models
     public class Review
     {
         public int ReviewId { get; set; }
-        public string address { get; set; }
+        public string Street { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Zip { get; set; }
         public string name { get; set; }
         public int Smell { get; set; }
         public int Cleanliness { get; set; }
@@ -16,9 +19,10 @@ namespace PeePal.Models
         public int Availability { get; set; }
         public string Likes { get; set; }
         public string Dislikes { get; set; }
-        public string Tips { get; set; }
         public string Notes { get; set; }
         public DateTime DateSubmitted { get; set; } = DateTime.Today;
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
 
         [ValidateNever]
         public ApplicationUser User { get; set; }

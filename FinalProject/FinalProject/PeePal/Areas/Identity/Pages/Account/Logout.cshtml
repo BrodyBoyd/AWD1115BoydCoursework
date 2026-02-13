@@ -4,18 +4,29 @@
     ViewData["Title"] = "Log out";
 }
 
-<header>
-    <h1>@ViewData["Title"]</h1>
-    @{
-        if (User.Identity?.IsAuthenticated ?? false)
-        {
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
-            </form>
-        }
-        else
-        {
-            <p>You have successfully logged out of the application.</p>
-        }
-    }
-</header>
+<section class="min-h-screen flex items-center justify-center bg-gray-50 relative">
+
+    <!-- PeePal background blobs -->
+    <div class="absolute -top-20 -left-20 w-72 h-72 bg-primary/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-80 h-80 bg-secondary/30 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 w-full max-w-2xl mx-auto p-8">
+        <div class="bg-white shadow-xl rounded-2xl p-8 border border-gray-200 text-center">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Log out of PeePal</h2>
+
+            @if (User.Identity?.IsAuthenticated ?? false)
+            {
+                <p class="text-muted-foreground mb-6">You're currently signed in. Use the button below to sign out of your account.</p>
+
+                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                    <button type="submit" class="w-full py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition">Sign out</button>
+                </form>
+            }
+            else
+            {
+                <p class="text-foreground">You have successfully logged out of the application.</p>
+                <p class="mt-4"><a asp-area="" asp-page="/Index" class="text-primary hover:underline">Return to home</a></p>
+            }
+        </div>
+    </div>
+</section>

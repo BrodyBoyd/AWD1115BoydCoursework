@@ -5,16 +5,60 @@
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content="PeePal is a public restroom finder app that helps you quickly locate nearby bathrooms wherever you are. Find clean public restrooms fast and stress-free.">
     <meta name="keywords" content="public restrooms near me, restroom finder app, bathroom locator, find public bathrooms, nearby restrooms, toilet finder, restroom map, public toilet app, bathroom near me, pee finder app, travel restroom finder">
-    <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Story+Script&display=swap" rel="stylesheet">
+
+    <title>PeePal - When You Gotta Go, You Gotta Know</title>
+    <meta name="description" content="PeePal is the user-powered restroom rating app that helps you find the cleanest, closest bathrooms near you." />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['DM Sans', 'system-ui', 'sans-serif'],
+                        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        background: '#f5f8fa',
+                        foreground: '#1e293b',
+                        card: '#ffffff',
+                        'card-foreground': '#1e293b',
+                        primary: '#0d9668',
+                        'primary-foreground': '#ffffff',
+                        secondary: '#e8970a',
+                        'secondary-foreground': '#1e293b',
+                        accent: '#e11d6d',
+                        'accent-foreground': '#ffffff',
+                        muted: '#f0f4f8',
+                        'muted-foreground': '#64748b',
+                        border: '#dfe6ed',
+                    },
+                },
+            },
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+
+    <!--MAP INFO-->
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
+            type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
+            type="text/javascript" charset="utf-8"></script>
 </head>
 <body class="story-script-regular">
-    @functions {
+     @functions {
         string ActiveClass(string controller, string action = "Index", string area = "")
         {
             var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
@@ -25,7 +69,7 @@
             currentAction == action &&
             currentArea == area)
             {
-                return "bg-violet-900/60 text-white shadow-inner";
+                return "bg-primary text-white shadow-inner p-2 rounded-xl";
             }
 
             return "";
@@ -36,6 +80,7 @@
         string currentAction = ViewContext.RouteData.Values["action"]?.ToString();
         string currentArea = ViewContext.RouteData.Values["area"]?.ToString();
     }
+    @*
 
     <nav data-text-bright data-bg="purple"
          class="fixed w-[95vw] min-w-[380px] max-w-[1440px] shadow h-16 md:flex p-4 mx-0 mt-2 mb-12
@@ -138,9 +183,10 @@
 
         </ul>
 
-    </nav>
+    </nav> *@
 
-    <script>
+
+   @* <script>
         function closeMenu() {
           document.getElementById("navbar__control").checked = false;
         }
@@ -153,18 +199,128 @@
           })
         }
         closeMobileMenuOnResizeWindow();
-    </script>
+    </script> *@
 
+    <!-- ========================================== -->
+    <!-- NAVBAR                                     -->
+    <!-- ========================================== -->
+    <nav style="position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(245,248,250,0.8);backdrop-filter:blur(12px);border-bottom:1px solid #dfe6ed;">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
 
+                <!-- LEFT: Logo -->
+                <a asp-area="" asp-controller="Home" asp-action="Index"
+                   class="flex items-center gap-2" aria-label="PeePal home">
+                    <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-primary text-primary-foreground font-display font-bold text-lg">P</span>
+                    <span class="font-display text-xl font-bold text-foreground">
+                        Pee<span class="text-primary">Pal</span>
+                    </span>
+                </a>
+
+                <!-- CENTER: Nav Links -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a asp-area="" asp-controller="Home" asp-action="Index"
+                       class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors @ActiveClass("Home", "Index")">Home</a>
+
+                    <a asp-area="Reviews" asp-controller="Reviews" asp-action="Index"
+                       class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors @ActiveClass("Reviews", "Index", "Reviews")">Reviews</a>
+
+                    <a asp-area="" asp-controller="Home" asp-action="About"
+                       class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors @ActiveClass("Home", "About")">About</a>
+
+                    <a asp-area="" asp-controller="Home" asp-action="Contact"
+                       class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors @ActiveClass("Home", "Contact")">Contact</a>
+                </div>
+
+                <!-- RIGHT: CTA + Login -->
+                <div class="flex items-center gap-4">
+                    <a href="#search"
+                       class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                             stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        Find Nearby
+                    </a>
+
+                    <partial name="_LoginPartial" />
+                </div>
+
+            </div>
+        </div>
+    </nav>
 
     <section>
         @RenderBody()
     </section>
 
-    <footer>    
-        <div class="w-full bg-slate-900 text-gray-300 py-6 mt-12">
-            <div class="max-w-6xl mx-auto text-center">
-                <p>&copy; @DateTime.Now.Year PeePal. All rights reserved.</p>
+    <!-- ========================================== -->
+    <!-- FOOTER                                     -->
+    <!-- ========================================== -->
+    <footer style="background:#1e293b;color:rgba(255,255,255,0.7)" class="pt-16 pb-8 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-10 border-b border-white/10">
+                <!-- Brand -->
+                <div class="md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-primary text-primary-foreground font-display font-bold text-lg">P</span>
+                        <span class="font-display text-xl font-bold text-white">Pee<span class="text-primary">Pal</span></span>
+                    </div>
+                    <p class="text-sm leading-relaxed text-white/50">
+                        The community-powered restroom finder. Find, rate, and share the best bathrooms wherever you go.
+                    </p>
+                </div>
+
+                <!-- Product links -->
+                <nav aria-label="Product links">
+                    <h3 class="font-display font-bold text-white text-sm mb-4 uppercase tracking-wider">Product</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#features" class="text-sm text-white/50 hover:text-primary transition-colors">Features</a></li>
+                        <li><a href="#how-it-works" class="text-sm text-white/50 hover:text-primary transition-colors">How It Works</a></li>
+                        <li><a href="#ai" class="text-sm text-white/50 hover:text-primary transition-colors">AI Assistant</a></li>
+                        <li><a href="#" class="text-sm text-white/50 hover:text-primary transition-colors">Pricing</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Company links -->
+                <nav aria-label="Company links">
+                    <h3 class="font-display font-bold text-white text-sm mb-4 uppercase tracking-wider">Company</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm text-white/50 hover:text-primary transition-colors">About</a></li>
+                        <li><a href="#" class="text-sm text-white/50 hover:text-primary transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-sm text-white/50 hover:text-primary transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-sm text-white/50 hover:text-primary transition-colors">Press</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Support links -->
+                <nav aria-label="Support links">
+                    <h3 class="font-display font-bold text-white text-sm mb-4 uppercase tracking-wider">Support</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm text-white/50 hover:text-primary transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-sm text-white/50 hover:text-primary transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-sm text-white/50 hover:text-primary transition-colors">Privacy</a></li>
+                        <li><a href="#" class="text-sm text-white/50 hover:text-primary transition-colors">Terms</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Bottom bar -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8">
+                <p class="text-xs text-white/40">2026 PeePal. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/50 hover:text-primary hover:bg-primary/10 transition-colors" aria-label="Twitter">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                    </a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/50 hover:text-primary hover:bg-primary/10 transition-colors" aria-label="Instagram">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/50 hover:text-primary hover:bg-primary/10 transition-colors" aria-label="GitHub">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
+                    </a>
+                </div>
             </div>
         </div>
     </footer>

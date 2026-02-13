@@ -4,93 +4,107 @@
     ViewData["Title"] = "Restroom Reviews";
 }
 
-<section class="relative min-h-screen bg-gray-50 py-20 px-6">
-
-    <!-- PeePal background blobs -->
-    <div class="absolute -top-20 -left-20 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 right-0 w-80 h-80 bg-violet-400/20 rounded-full blur-3xl"></div>
-
-    <div class="relative z-10 max-w-6xl mx-auto">
+<section class="py-20 px-6 bg-muted/50 min-h-screen">
+    <div class="max-w-6xl mx-auto">
 
         <!-- Header -->
-        <div class="flex justify-between items-center mb-10">
-            <h1 class="text-4xl font-bold">Restroom Reviews</h1>
+        <div class="flex items-center justify-between mb-12">
+            <h1 class="font-display text-4xl font-bold text-foreground">Restroom Reviews</h1>
 
             <a asp-action="Create"
-               class="px-6 py-3 bg-violet-600 text-white rounded-lg font-semibold hover:bg-violet-700 transition">
+               class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold shadow-sm hover:opacity-90 transition">
                 + Create New
             </a>
         </div>
 
         <!-- Review Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
             @foreach (var item in Model)
             {
-                <div class="bg-white shadow-xl rounded-2xl p-6 border border-gray-200 flex flex-col justify-between">
+                <article class="bg-card border border-border rounded-2xl p-6 shadow-md flex flex-col justify-between">
 
                     <!-- Top Section -->
                     <div>
-                        <h2 class="text-2xl font-bold text-gray-900">@item.name</h2>
-                        <p class="text-gray-600 text-sm mt-1">@item.address</p>
+                        <h2 class="text-2xl font-bold text-card-foreground">@item.name</h2>
 
-                        <div class="mt-4 grid grid-cols-2 gap-y-2 text-sm">
-                            <p class="text-gray-500">Smell:</p>
-                            <p class="text-gray-900 font-medium">@item.Smell</p>
+                        <p class="text-sm text-muted-foreground mt-1">
+                            @($"{item.Street}, {item.City}, {item.State} {item.Zip}")
+                        </p>
 
-                            <p class="text-gray-500">Cleanliness:</p>
-                            <p class="text-gray-900 font-medium">@item.Cleanliness</p>
+                        <!-- Ratings Summary -->
+                        <div class="mt-4 flex items-center gap-1">
+                            @{
+                                var avg = item.AverageScore;
+                                for (int i = 1; i <= 5; i++)
+                                {
+                                    <svg class="h-5 w-5 @(i <= avg ? "fill-yellow-300" : "fill-gray-300")"
+                                         viewBox="0 0 1024 1024">
+                                        <path d="M575.85 115.43L661.09 288.05c10.13 20.47 29.68 34.69 52.29 37.96l190.43 27.63c56.99 8.29 79.71 78.28 38.48 118.5L804.35 606.49c-16.37 15.96-23.84 38.99-19.95 61.5l32.54 189.72c9.72 56.79-49.83 100.08-100.79 73.27L545.87 841.45a69.49 69.49 0 0 0-64.67 0l-170.38 89.54c-50.96 26.81-110.51-16.47-100.79-73.27l32.54-189.72c3.89-22.51-3.58-45.54-19.95-61.5L84.78 472.25c-41.24-40.22-18.52-110.21 38.48-118.5l190.43-27.63c22.61-3.27 42.16-17.5 52.29-37.96L451.32 115.43c25.48-51.68 99.05-51.68 124.53 0"></path>
+                                    </svg>
+                                }
+                            }
+                        </div>
 
-                            <p class="text-gray-500">Privacy:</p>
-                            <p class="text-gray-900 font-medium">@item.Privacy</p>
+                        <!-- Details Grid -->
+                        <div class="mt-6 grid grid-cols-2 gap-y-2 text-sm">
+                            <p class="text-muted-foreground">Smell:</p>
+                            <p class="text-card-foreground font-medium">@item.Smell</p>
 
-                            <p class="text-gray-500">Comfort:</p>
-                            <p class="text-gray-900 font-medium">@item.Comfort</p>
+                            <p class="text-muted-foreground">Cleanliness:</p>
+                            <p class="text-card-foreground font-medium">@item.Cleanliness</p>
 
-                            <p class="text-gray-500">Availability:</p>
-                            <p class="text-gray-900 font-medium">@item.Availability</p>
+                            <p class="text-muted-foreground">Privacy:</p>
+                            <p class="text-card-foreground font-medium">@item.Privacy</p>
 
-                            <p class="text-gray-500">Likes:</p>
-                            <p class="text-gray-900">@item.Likes</p>
+                            <p class="text-muted-foreground">Comfort:</p>
+                            <p class="text-card-foreground font-medium">@item.Comfort</p>
 
-                            <p class="text-gray-500">Dislikes:</p>
-                            <p class="text-gray-900">@item.Dislikes</p>
+                            <p class="text-muted-foreground">Availability:</p>
+                            <p class="text-card-foreground font-medium">@item.Availability</p>
 
-                            <p class="text-gray-500">Tips:</p>
-                            <p class="text-gray-900">@item.Tips</p>
+                            <p class="text-muted-foreground">Likes:</p>
+                            <p class="text-card-foreground">@item.Likes</p>
 
-                            <p class="text-gray-500">Notes:</p>
-                            <p class="text-gray-900">@item.Notes</p>
+                            <p class="text-muted-foreground">Dislikes:</p>
+                            <p class="text-card-foreground">@item.Dislikes</p>
 
-                            <p class="text-gray-500">Submitted:</p>
-                            <p class="text-gray-900">@item.DateSubmitted</p>
+                            <p class="text-muted-foreground">Notes:</p>
+                            <p class="text-card-foreground">@item.Notes</p>
 
-                            <p class="text-gray-500">User:</p>
-                            <p class="text-gray-900">@item.User?.ProfileUsername</p>
+                            <p class="text-muted-foreground">Submitted:</p>
+                            <p class="text-card-foreground">@item.DateSubmitted.ToShortDateString()</p>
+
+                            <p class="text-muted-foreground">User:</p>
+                            <p class="text-card-foreground">@item.User?.ProfileUsername</p>
                         </div>
                     </div>
 
-                    <!-- Action Buttons -->
-                    <div class="mt-6 flex gap-4">
-                        <a asp-action="Details" asp-route-id="@item.ReviewId" asp-route-slug="@item.Slug"
-                           class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition">
+                    <!-- Actions -->
+                    <div class="mt-6 flex gap-3">
+                        <a asp-action="Details"
+                           asp-route-id="@item.ReviewId"
+                           asp-route-slug="@item.Slug"
+                           class="px-4 py-2 rounded-full border border-border text-sm text-foreground hover:bg-muted transition">
                             Details
                         </a>
 
-                        <a asp-action="Edit" asp-route-id="@item.ReviewId" asp-route-slug="@item.Slug"
-                           class="px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition">
+                        <a asp-action="Edit"
+                           asp-route-id="@item.ReviewId"
+                           asp-route-slug="@item.Slug"
+                           class="px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm hover:opacity-90 transition">
                             Edit
                         </a>
 
-                        <a asp-action="Delete" asp-route-id="@item.ReviewId" asp-route-slug="@item.Slug"
-                           class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
+                        <a asp-action="Delete"
+                           asp-route-id="@item.ReviewId"
+                           asp-route-slug="@item.Slug"
+                           class="px-4 py-2 rounded-full bg-red-500 text-white text-sm hover:bg-red-600 transition">
                             Delete
                         </a>
                     </div>
 
-                </div>
+                </article>
             }
-
         </div>
 
     </div>
