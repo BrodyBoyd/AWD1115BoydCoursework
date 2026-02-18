@@ -20,10 +20,10 @@ namespace Lab8.Controllers
             {
                 case "1":
                     vm.PageNumber = 1;
-                    return View("Page1");
+                    return View("Page1", vm);
                 case "2":
                     vm.PageNumber = 2;
-                    return View("Page2");
+                    return View("Page2", vm);
                 case "3":
                     return View("Page3");
                 default:
@@ -53,15 +53,15 @@ namespace Lab8.Controllers
             {
                 TempData["AccommodationEmail"] = vm.Trip.AccommodationEmail;
                 TempData["AccommodationPhone"] = vm.Trip.AccommodationPhone;
-                return RedirectToAction("Add", new { id = "2" });
+                return RedirectToAction("Add", new { id = "3" });
             } else
             {
-                Trip trip = new Trip()
+                Trip trip = new()
                 {
                     Destination = TempData["Destination"].ToString(),
                     Accommodation = TempData["Accommodation"].ToString(),
-                    StartDate = DateTime.Parse(TempData["StartDate"].ToString()),
-                    EndDate = DateTime.Parse(TempData["EndDate"].ToString()),
+                    StartDate = (System.DateTime)TempData["StartDate"],
+                    EndDate = (System.DateTime)TempData["EndDate"],
                     AccommodationEmail = TempData["AccommodationEmail"].ToString(),
                     AccommodationPhone = TempData["AccommodationPhone"].ToString(),
                     Activity1 = vm.Trip.Activity1,
@@ -71,7 +71,7 @@ namespace Lab8.Controllers
                 _context.Trips.Add(trip);
                 _context.SaveChanges();
             }
-            return View("Index","Home");
+            return RedirectToAction("Index","Home");
         }
 
     }

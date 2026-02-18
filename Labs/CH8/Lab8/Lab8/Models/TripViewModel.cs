@@ -2,7 +2,7 @@
 {
     public class TripViewModel
     {
-        public Trip Trip { get; set; }
+        public Trip Trip { get; set; } 
         public int PageNumber { get; set; }
     }
 }

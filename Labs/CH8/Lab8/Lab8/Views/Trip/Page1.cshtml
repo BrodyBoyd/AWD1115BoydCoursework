@@ -10,6 +10,12 @@
         <form asp-action="Add" class="space-y-6">
             <div asp-validation-summary="All"></div>
             <input type="hidden" asp-for="PageNumber" />
+            <input type="hidden" value="" asp-for="Trip.AccommodationEmail" />
+            <input type="hidden" value="" asp-for="Trip.AccommodationPhone" />
+            <input type="hidden" value="" asp-for="Trip.Activity1" />
+            <input type="hidden" value="" asp-for="Trip.Activity2" />
+            <input type="hidden" value="" asp-for="Trip.Activity3" />
+
             <div>
                 <label asp-for="Trip.Destination" class="block text-sm font-medium text-gray-700">Destination</label>
                 <input asp-for="Trip.Destination"
@@ -33,9 +39,20 @@
                 <input asp-for="Trip.EndDate" type="date"
                        class="w-full mt-2 rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500" />
             </div>
-            <div>
-                <button type="submit">Next</button>
-                <a asp-controller="Home" asp-action="Index">Cancel</a>
+            <div class="flex justify-between pt-6 border-t mt-6">
+
+                <button type="submit"
+                        class="px-5 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow
+                        hover:bg-blue-700 transition">
+                    Next
+                </button>
+
+                <a asp-controller="Home" asp-action="Index"
+                   class="px-5 py-2 bg-gray-200 text-gray-800 font-semibold rounded-lg shadow
+                        hover:bg-gray-300 transition">
+                    Cancel
+                </a>
+
             </div>
 
         </form>

@@ -1,33 +1,50 @@
 ﻿@model IEnumerable<Trip>
-<div>
-    <a asp-controller="Trip" asp-action="Add" asp-route-id="1">Add Trip</a>
+
+<div class="min-h-screen bg-gray-100 py-10 flex flex-col items-center">
+
+    <div class="w-full max-w-5xl bg-white shadow-lg rounded-2xl p-8">
+
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold text-gray-800">Your Trips</h1>
+
+            <a asp-controller="Trip" asp-action="Add" asp-route-id="1"
+               class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
+                Add Trip
+            </a>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full border border-gray-200 rounded-lg overflow-hidden">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 border-b">Destination</th>
+                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 border-b">Start Date</th>
+                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 border-b">End Date</th>
+                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 border-b">Accommodations</th>
+                        <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 border-b">Things To Do</th>
+                    </tr>
+                </thead>
+
+                <tbody class="divide-y divide-gray-200">
+                    @foreach (var trip in Model)
+                    {
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-4 py-3 text-gray-800">@trip.Destination</td>
+                            <td class="px-4 py-3 text-gray-800">@trip.StartDate</td>
+                            <td class="px-4 py-3 text-gray-800">@trip.EndDate</td>
+                            <td class="px-4 py-3 text-gray-800">@trip.Accommodation</td>
+                            <td class="px-4 py-3 text-gray-800">
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>@trip.Activity1</li>
+                                    <li>@trip.Activity2</li>
+                                    <li>@trip.Activity3</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
 </div>
-<table>
-    <thead>
-        <tr>
-            <th>Destination</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Accommodations</th>
-            <th>Things To Do</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var trip in Model)
-        {
-            <tr>
-                <td>@trip.Destination</td>
-                <td>@trip.StartDate.ToShortDateString()</td>
-                <td>@trip.EndDate.ToShortDateString()</td>
-                <td>@trip.Accommodation</td>
-                <td>
-                    <ul>
-                        <li>@trip.Activity1</li>
-                        <li>@trip.Activity2</li>
-                        <li>@trip.Activity3</li>
-                    </ul>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
