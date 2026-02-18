@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PeePal.Models.Review>
+﻿@model IEnumerable<PeePal.Models.Bathroom>
 
 @{
     ViewData["Title"] = "Restroom Reviews";
@@ -7,7 +7,6 @@
 <section class="py-20 px-6 bg-muted/50 min-h-screen">
     <div class="max-w-6xl mx-auto">
 
-        <!-- Header -->
         <div class="flex items-center justify-between mb-12">
             <h1 class="font-display text-4xl font-bold text-foreground">Restroom Reviews</h1>
 
@@ -17,93 +16,68 @@
             </a>
         </div>
 
-        <!-- Review Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            @foreach (var item in Model)
+        <div class="space-y-8">
+            @foreach (var bathroom in Model)
             {
-                <article class="bg-card border border-border rounded-2xl p-6 shadow-md flex flex-col justify-between">
+                <section class="bg-card border border-border rounded-2xl p-6 shadow-md">
+                    <header class="flex items-start justify-between">
+                        <div>
+                            <h2 class="text-2xl font-bold text-card-foreground">@bathroom.Name</h2>
+                            <p class="text-sm text-muted-foreground mt-1">@($"{bathroom.Street}, {bathroom.City}, {bathroom.State} {bathroom.Zip}")</p>
+                        </div>
 
-                    <!-- Top Section -->
-                    <div>
-                        <h2 class="text-2xl font-bold text-card-foreground">@item.name</h2>
-
-                        <p class="text-sm text-muted-foreground mt-1">
-                            @($"{item.Street}, {item.City}, {item.State} {item.Zip}")
-                        </p>
-
-                        <!-- Ratings Summary -->
-                        <div class="mt-4 flex items-center gap-1">
+                        <div class="text-right">
                             @{
-                                var avg = item.AverageScore;
-                                for (int i = 1; i <= 5; i++)
-                                {
-                                    <svg class="h-5 w-5 @(i <= avg ? "fill-yellow-300" : "fill-gray-300")"
-                                         viewBox="0 0 1024 1024">
-                                        <path d="M575.85 115.43L661.09 288.05c10.13 20.47 29.68 34.69 52.29 37.96l190.43 27.63c56.99 8.29 79.71 78.28 38.48 118.5L804.35 606.49c-16.37 15.96-23.84 38.99-19.95 61.5l32.54 189.72c9.72 56.79-49.83 100.08-100.79 73.27L545.87 841.45a69.49 69.49 0 0 0-64.67 0l-170.38 89.54c-50.96 26.81-110.51-16.47-100.79-73.27l32.54-189.72c3.89-22.51-3.58-45.54-19.95-61.5L84.78 472.25c-41.24-40.22-18.52-110.21 38.48-118.5l190.43-27.63c22.61-3.27 42.16-17.5 52.29-37.96L451.32 115.43c25.48-51.68 99.05-51.68 124.53 0"></path>
-                                    </svg>
-                                }
+                                var avg = bathroom.Reviews != null && bathroom.Reviews.Any()
+                                    ? Math.Round(bathroom.Reviews.Average(r => r.AverageScore), 1)
+                                    : 0.0;
                             }
+                            <div class="text-sm text-muted-foreground">Average</div>
+                            <div class="text-xl font-semibold">@avg</div>
                         </div>
+                    </header>
 
-                        <!-- Details Grid -->
-                        <div class="mt-6 grid grid-cols-2 gap-y-2 text-sm">
-                            <p class="text-muted-foreground">Smell:</p>
-                            <p class="text-card-foreground font-medium">@item.Smell</p>
+                    <div class="mt-6 grid md:grid-cols-2 gap-6">
+                        @if (bathroom.Reviews != null && bathroom.Reviews.Any())
+                        {
+                            @foreach (var review in bathroom.Reviews)
+                            {
+                                <article class="bg-muted/20 rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="text-sm text-muted-foreground">Submitted</div>
+                                        <div class="text-sm">@review.DateSubmitted.ToShortDateString()</div>
+                                    </div>
 
-                            <p class="text-muted-foreground">Cleanliness:</p>
-                            <p class="text-card-foreground font-medium">@item.Cleanliness</p>
+                                    <div class="text-sm grid grid-cols-2 gap-y-2">
+                                        <div class="text-muted-foreground">Smell</div>
+                                        <div class="font-medium">@review.Smell</div>
 
-                            <p class="text-muted-foreground">Privacy:</p>
-                            <p class="text-card-foreground font-medium">@item.Privacy</p>
+                                        <div class="text-muted-foreground">Cleanliness</div>
+                                        <div class="font-medium">@review.Cleanliness</div>
 
-                            <p class="text-muted-foreground">Comfort:</p>
-                            <p class="text-card-foreground font-medium">@item.Comfort</p>
+                                        <div class="text-muted-foreground">Privacy</div>
+                                        <div class="font-medium">@review.Privacy</div>
 
-                            <p class="text-muted-foreground">Availability:</p>
-                            <p class="text-card-foreground font-medium">@item.Availability</p>
+                                        <div class="text-muted-foreground">Comfort</div>
+                                        <div class="font-medium">@review.Comfort</div>
 
-                            <p class="text-muted-foreground">Likes:</p>
-                            <p class="text-card-foreground">@item.Likes</p>
+                                        <div class="text-muted-foreground">Availability</div>
+                                        <div class="font-medium">@review.Availability</div>
+                                    </div>
 
-                            <p class="text-muted-foreground">Dislikes:</p>
-                            <p class="text-card-foreground">@item.Dislikes</p>
-
-                            <p class="text-muted-foreground">Notes:</p>
-                            <p class="text-card-foreground">@item.Notes</p>
-
-                            <p class="text-muted-foreground">Submitted:</p>
-                            <p class="text-card-foreground">@item.DateSubmitted.ToShortDateString()</p>
-
-                            <p class="text-muted-foreground">User:</p>
-                            <p class="text-card-foreground">@item.User?.ProfileUsername</p>
-                        </div>
+                                    <div class="mt-4 flex gap-2">
+                                        <a asp-action="Details" asp-route-id="@review.ReviewId" class="px-3 py-1 rounded-full border text-sm">Details</a>
+                                        <a asp-action="Edit" asp-route-id="@review.ReviewId" class="px-3 py-1 rounded-full bg-primary text-primary-foreground text-sm">Edit</a>
+                                    </div>
+                                </article>
+                            }
+                        }
+                        else
+                        {
+                            <div class="text-sm text-muted-foreground">No reviews yet for this bathroom.</div>
+                        }
                     </div>
-
-                    <!-- Actions -->
-                    <div class="mt-6 flex gap-3">
-                        <a asp-action="Details"
-                           asp-route-id="@item.ReviewId"
-                           asp-route-slug="@item.Slug"
-                           class="px-4 py-2 rounded-full border border-border text-sm text-foreground hover:bg-muted transition">
-                            Details
-                        </a>
-
-                        <a asp-action="Edit"
-                           asp-route-id="@item.ReviewId"
-                           asp-route-slug="@item.Slug"
-                           class="px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm hover:opacity-90 transition">
-                            Edit
-                        </a>
-
-                        <a asp-action="Delete"
-                           asp-route-id="@item.ReviewId"
-                           asp-route-slug="@item.Slug"
-                           class="px-4 py-2 rounded-full bg-red-500 text-white text-sm hover:bg-red-600 transition">
-                            Delete
-                        </a>
-                    </div>
-
-                </article>
+                </section>
             }
         </div>
 

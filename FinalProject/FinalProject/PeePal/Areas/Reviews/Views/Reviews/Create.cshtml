@@ -13,39 +13,41 @@
             <div asp-validation-summary="ModelOnly" class="text-red-500 text-sm"></div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-card-foreground">Select Bathroom</label>
+                    <select asp-for="BathroomId" asp-items="ViewBag.BathroomId" class="w-full rounded-lg border border-border px-4 py-2">
+                        <option value="">-- choose existing bathroom --</option>
+                    </select>
+                    <p class="text-xs text-muted-foreground mt-2">If the bathroom isn't listed, create it from the Bathrooms admin area first.</p>
+                </div>
 
-                    <!-- Address Block -->
-                    <div class="space-y-4">
-                        <label class="block text-sm font-medium text-card-foreground">Address</label>
-
-                        <input asp-for="Street"
-                               class="w-full rounded-lg border border-border px-4 py-2 focus:ring-2 focus:ring-primary"
-                               placeholder="Street address (e.g., 123 W Shoreline Rd)" />
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <input asp-for="City"
-                                   class="w-full rounded-lg border border-border px-4 py-2 focus:ring-2 focus:ring-primary"
-                                   placeholder="City" />
-
-                            <input asp-for="State"
-                                   class="w-full rounded-lg border border-border px-4 py-2 focus:ring-2 focus:ring-primary"
-                                   placeholder="State (e.g., MO)" />
+                <!-- Or create a new bathroom inline -->
+                <div class="col-span-2 mt-4 p-4 border border-dashed rounded-md">
+                    <h4 class="text-sm font-semibold mb-2">Or add a new bathroom</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs text-muted-foreground">Name</label>
+                            <input name="NewBathroomName" class="w-full rounded-lg border border-border px-3 py-2" placeholder="e.g. Joe's Cafe Restroom" />
                         </div>
-
-                        <input asp-for="Zip"
-                               class="w-full rounded-lg border border-border px-4 py-2 focus:ring-2 focus:ring-primary"
-                               placeholder="ZIP Code" />
-
+                        <div>
+                            <label class="block text-xs text-muted-foreground">ZIP</label>
+                            <input name="NewBathroomZip" class="w-full rounded-lg border border-border px-3 py-2" placeholder="ZIP" />
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs text-muted-foreground">Street</label>
+                            <input name="NewBathroomStreet" class="w-full rounded-lg border border-border px-3 py-2" placeholder="Street address" />
+                        </div>
+                        <div>
+                            <label class="block text-xs text-muted-foreground">City</label>
+                            <input name="NewBathroomCity" class="w-full rounded-lg border border-border px-3 py-2" placeholder="City" />
+                        </div>
+                        <div>
+                            <label class="block text-xs text-muted-foreground">State</label>
+                            <input name="NewBathroomState" class="w-full rounded-lg border border-border px-3 py-2" placeholder="State" />
+                        </div>
                     </div>
-
-                    <!-- Restroom Name -->
-                    <div>
-                        <label asp-for="name" class="block text-sm font-medium text-card-foreground">Restroom Name</label>
-                        <input asp-for="name"
-                               class="w-full mt-2 rounded-lg border border-border px-4 py-2 focus:ring-2 focus:ring-primary" />
-                        <span asp-validation-for="name" class="text-red-500 text-sm"></span>
-                    </div>
+                    <p class="text-xs text-muted-foreground mt-2">Provide at least a name and street to create a new bathroom. Coordinates will be looked up automatically.</p>
+                </div>
 
                     <!-- Likes -->
                     <div>
@@ -92,7 +94,6 @@
 
                     <input type="hidden" asp-for="UserId" />
                 </div>
-            </div>
 
             <div class="pt-4">
                 <button type="submit"
@@ -118,4 +119,4 @@
             if (input) input.value = i + 1;
         }));
     });
-</script>
+</script> 

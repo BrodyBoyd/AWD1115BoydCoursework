@@ -15,10 +15,21 @@ namespace PeePal.Controllers
         public IActionResult Index()
         {
             ViewBag.Title = "Home Page";
-            var results = _context.Reviews.ToList();
+            var reviews = _context.Reviews
+                .Include(r => r.Bathroom)
+                .Include(r => r.User)
+                .ToList();
 
+            // Also include bathrooms so the view model is populated
+            var bathrooms = _context.Bathrooms.ToList();
 
-            return View(results);
+            var model = new ReviewsViewModel
+            {
+                Reviews = reviews,
+                Bathrooms = bathrooms
+            };
+
+            return View(model);
         }
 
         [Route("Contact")]
@@ -52,8 +63,14 @@ namespace PeePal.Controllers
             if (string.IsNullOrWhiteSpace(zip))
                 return PartialView("_SearchResults", Enumerable.Empty<Review>());
 
+            // Normalize input
+            zip = zip.Trim();
+
+            // Filter reviews by the associated Bathroom's Zip and eager-load related data
             var results = _context.Reviews
-                .Where(r => r.Zip == zip)
+                .Include(r => r.Bathroom)
+                .Include(r => r.User)
+                .Where(r => r.Bathroom != null && r.Bathroom.Zip == zip)
                 .ToList();
 
             return PartialView("_SearchResults", results);

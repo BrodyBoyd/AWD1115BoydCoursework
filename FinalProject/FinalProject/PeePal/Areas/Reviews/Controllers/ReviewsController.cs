@@ -28,8 +28,13 @@ namespace PeePal.Areas.Reviews.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Reviews.Include(r => r.User);
-            return View(await applicationDbContext.ToListAsync());
+            // Load bathrooms with their reviews and the users who wrote those reviews
+            var bathrooms = await _context.Bathrooms
+                .Include(b => b.Reviews)
+                    .ThenInclude(r => r.User)
+                .ToListAsync();
+
+            return View(bathrooms);
         }
 
         // GET: Reviews/Details/5/{slug}
@@ -42,19 +47,14 @@ namespace PeePal.Areas.Reviews.Controllers
 
             var review = await _context.Reviews
                 .Include(r => r.User)
+                .Include(r => r.Bathroom)
                 .FirstOrDefaultAsync(m => m.ReviewId == id);
             if (review == null)
             {
                 return NotFound();
             }
-
-            var expectedSlug = review.Slug;
-            // if slug missing or incorrect, redirect to canonical URL (permanent)
-            if (!string.Equals(slug ?? string.Empty, expectedSlug ?? string.Empty, StringComparison.OrdinalIgnoreCase))
-            {
-                return RedirectToActionPermanent(nameof(Details), new { id = review.ReviewId, slug = expectedSlug });
-            }
-
+            // Note: bathrooms are stored in the Bathrooms table; reviews reference those records.
+            // Slug handling removed because Review does not expose a Slug property.
             return View(review);
         }
 
@@ -62,6 +62,7 @@ namespace PeePal.Areas.Reviews.Controllers
         public IActionResult Create()
         {
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["BathroomId"] = new SelectList(_context.Bathrooms, "BathroomId", "Name");
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             Review newReview = new Review
@@ -96,25 +97,61 @@ namespace PeePal.Areas.Reviews.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,ReviewId,Street,City,State,Zip,name,Smell,Cleanliness,Privacy,Comfort,Availability,Likes,Dislikes,Notes,DateSubmitted")] Review review)
+        public async Task<IActionResult> Create(
+            [Bind("UserId,ReviewId,BathroomId,Smell,Cleanliness,Privacy,Comfort,Availability,Likes,Dislikes,Notes,DateSubmitted")] Review review,
+            string NewBathroomName,
+            string NewBathroomStreet,
+            string NewBathroomCity,
+            string NewBathroomState,
+            string NewBathroomZip)
         {
             review.DateSubmitted = DateTime.Today;
             // ensure the review is associated with the currently logged in user
             review.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (ModelState.IsValid)
             {
-                var address = $"{review.Street}, {review.City}, {review.State} {review.Zip}";
-                var coords = await GeocodeAddress(address);
+                // If the user did not pick an existing bathroom, create a new Bathroom
+                // from the provided address fields and associate it with the review.
+                if (review.BathroomId == null || review.BathroomId == 0)
+                {
+                    // require at least a name and street to create a bathroom
+                    if (!string.IsNullOrWhiteSpace(NewBathroomName) && !string.IsNullOrWhiteSpace(NewBathroomStreet))
+                    {
+                        var bathroom = new Bathroom
+                        {
+                            Name = NewBathroomName.Trim(),
+                            Street = NewBathroomStreet.Trim(),
+                            City = NewBathroomCity?.Trim() ?? string.Empty,
+                            State = NewBathroomState?.Trim() ?? string.Empty,
+                            Zip = NewBathroomZip?.Trim() ?? string.Empty
+                        };
 
-                review.Latitude = coords.Lat;
-                review.Longitude = coords.Lng;
+                        // try to geocode the address if provided
+                        try
+                        {
+                            var address = $"{bathroom.Street}, {bathroom.City}, {bathroom.State} {bathroom.Zip}";
+                            var coords = await GeocodeAddress(address);
+                            bathroom.Latitude = coords.Lat;
+                            bathroom.Longitude = coords.Lng;
+                        }
+                        catch
+                        {
+                            // Geocoding failures should not block creating the bathroom; leave coords null
+                        }
 
+                        _context.Bathrooms.Add(bathroom);
+                        await _context.SaveChangesAsync();
+
+                        review.BathroomId = bathroom.BathroomId;
+                    }
+                }
 
                 _context.Add(review);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", review.UserId);
+            ViewData["BathroomId"] = new SelectList(_context.Bathrooms, "BathroomId", "Name", review.BathroomId);
             return View(review);
         }
 
@@ -126,12 +163,16 @@ namespace PeePal.Areas.Reviews.Controllers
                 return NotFound();
             }
 
-            var review = await _context.Reviews.FindAsync(id);
+            var review = await _context.Reviews
+                .Include(r => r.Bathroom)
+                .FirstOrDefaultAsync(m => m.ReviewId == id);
+            var bathrooms = await _context.Bathrooms.ToListAsync();
             if (review == null)
             {
                 return NotFound();
             }
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", review.UserId);
+            ViewData["BathroomId"] = new SelectList(bathrooms, "BathroomId", "Name", review.BathroomId);
             return View(review);
         }
 
@@ -140,7 +181,7 @@ namespace PeePal.Areas.Reviews.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReviewId,address,name,Smell,Cleanliness,Privacy,Comfort,Availability,Likes,Dislikes,Notes,DateSubmitted,UserId")] Review review)
+        public async Task<IActionResult> Edit(int id, [Bind("ReviewId,Smell,Cleanliness,Privacy,Comfort,Availability,Likes,Dislikes,Notes,DateSubmitted,UserId")] Review review)
         {
             if (id != review.ReviewId)
             {

@@ -19,14 +19,14 @@
             <div>
                 <p class="text-sm font-semibold text-muted-foreground uppercase">Address</p>
                 <p class="mt-1 text-lg text-card-foreground">
-                    @($"{Model.Street}, {Model.City}, {Model.State} {Model.Zip}")
+                    @($"{Model.Bathroom?.Street}, {Model.Bathroom?.City}, {Model.Bathroom?.State} {Model.Bathroom?.Zip}")
                 </p>
             </div>
 
             <!-- Restroom Name -->
             <div>
                 <p class="text-sm font-semibold text-muted-foreground uppercase">Restroom Name</p>
-                <p class="mt-1 text-lg text-card-foreground">@Model.name</p>
+                <p class="mt-1 text-lg text-card-foreground">@Model.Bathroom?.Name</p>
             </div>
 
             <!-- Ratings -->

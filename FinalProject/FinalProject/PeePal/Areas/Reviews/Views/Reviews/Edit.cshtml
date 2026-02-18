@@ -21,35 +21,12 @@
                 <!-- Left Column -->
                 <div class="space-y-6">
 
-                    <!-- Address Block -->
-                    <div class="space-y-4">
-                        <label class="block text-sm font-medium text-card-foreground">Address</label>
-
-                        <input asp-for="Street"
-                               class="w-full rounded-lg border border-border px-4 py-2 focus:ring-2 focus:ring-primary"
-                               placeholder="Street address" />
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <input asp-for="City"
-                                   class="w-full rounded-lg border border-border px-4 py-2 focus:ring-2 focus:ring-primary"
-                                   placeholder="City" />
-
-                            <input asp-for="State"
-                                   class="w-full rounded-lg border border-border px-4 py-2 focus:ring-2 focus:ring-primary"
-                                   placeholder="State (e.g., MO)" />
-                        </div>
-
-                        <input asp-for="Zip"
-                               class="w-full rounded-lg border border-border px-4 py-2 focus:ring-2 focus:ring-primary"
-                               placeholder="ZIP Code" />
-                    </div>
-
-                    <!-- Restroom Name -->
                     <div>
-                        <label asp-for="name" class="block text-sm font-medium text-card-foreground">Restroom Name</label>
-                        <input asp-for="name"
-                               class="w-full mt-2 rounded-lg border border-border px-4 py-2 focus:ring-2 focus:ring-primary" />
-                        <span asp-validation-for="name" class="text-red-500 text-sm"></span>
+                        <label class="block text-sm font-medium text-card-foreground">Bathroom</label>
+                        <select asp-for="BathroomId" asp-items="ViewBag.BathroomId" class="w-full rounded-lg border border-border px-4 py-2">
+                            <option value="">-- choose bathroom --</option>
+                        </select>
+                        <p class="text-xs text-muted-foreground mt-2">To change address/name, edit the associated Bathroom record.</p>
                     </div>
 
                     <!-- Likes -->

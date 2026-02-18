@@ -7,5 +7,7 @@ namespace PeePal.Models
     {
         public DbSet<Review> Reviews { get; set; }
 
+        public DbSet<Bathroom> Bathrooms { get; set; }
+
     }
 }

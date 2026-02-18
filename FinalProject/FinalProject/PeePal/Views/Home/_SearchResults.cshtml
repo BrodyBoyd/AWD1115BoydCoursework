@@ -17,10 +17,10 @@ else
             <article class="bg-card border border-border rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
 
                 <div>
-                    <h3 class="text-xl font-bold text-card-foreground">@item.name</h3>
+                    <h3 class="text-xl font-bold text-card-foreground">@item.Bathroom?.Name</h3>
 
                     <p class="text-sm text-muted-foreground mt-1">
-                        @($"{item.Street}, {item.City}, {item.State} {item.Zip}")
+                        @($"{item.Bathroom?.Street}, {item.Bathroom?.City}, {item.Bathroom?.State} {item.Bathroom?.Zip}")
                     </p>
 
                     <!-- Star Rating -->
@@ -43,7 +43,7 @@ else
                        asp-controller="Reviews"
                        asp-action="Details"
                        asp-route-id="@item.ReviewId"
-                       asp-route-slug="@item.Slug"
+                       asp-route-slug="@item.Bathroom?.Slug"
                        class="px-4 py-2 rounded-full border border-border text-sm text-foreground hover:bg-muted transition">
                         Details
                     </a>
