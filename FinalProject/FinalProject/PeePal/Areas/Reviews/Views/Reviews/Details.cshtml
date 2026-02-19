@@ -100,6 +100,11 @@
                class="px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold hover:opacity-90 transition">
                 Edit Review
             </a>
+            <a asp-action="Delete"
+               asp-route-id="@Model?.ReviewId"
+               class="px-8 py-3 rounded-full border border-border text-foreground hover:bg-muted transition">
+                Delete Review
+            </a>
 
             <a asp-action="Index"
                class="px-8 py-3 rounded-full border border-border text-foreground hover:bg-muted transition">

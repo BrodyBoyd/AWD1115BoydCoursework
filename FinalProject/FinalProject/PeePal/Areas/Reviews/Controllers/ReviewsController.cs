@@ -62,7 +62,13 @@ namespace PeePal.Areas.Reviews.Controllers
         public IActionResult Create()
         {
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["BathroomId"] = new SelectList(_context.Bathrooms, "BathroomId", "Name");
+            ViewData["BathroomId"] = _context.Bathrooms
+                .Select(b => new SelectListItem
+                {
+                    Value = b.BathroomId.ToString(),
+                    Text = $"{b.Name} — {b.Street}, {b.City}"
+                })
+                .ToList();
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             Review newReview = new Review
@@ -99,12 +105,13 @@ namespace PeePal.Areas.Reviews.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
             [Bind("UserId,ReviewId,BathroomId,Smell,Cleanliness,Privacy,Comfort,Availability,Likes,Dislikes,Notes,DateSubmitted")] Review review,
-            string NewBathroomName,
-            string NewBathroomStreet,
-            string NewBathroomCity,
-            string NewBathroomState,
-            string NewBathroomZip)
+            string? NewBathroomName,
+            string? NewBathroomStreet,
+            string? NewBathroomCity,
+            string? NewBathroomState,
+            string? NewBathroomZip)
         {
+
             review.DateSubmitted = DateTime.Today;
             // ensure the review is associated with the currently logged in user
             review.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -148,6 +155,7 @@ namespace PeePal.Areas.Reviews.Controllers
 
                 _context.Add(review);
                 await _context.SaveChangesAsync();
+                TempData["Message"] = "Review Created.";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", review.UserId);
@@ -181,7 +189,7 @@ namespace PeePal.Areas.Reviews.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReviewId,Smell,Cleanliness,Privacy,Comfort,Availability,Likes,Dislikes,Notes,DateSubmitted,UserId")] Review review)
+        public async Task<IActionResult> Edit(int id, [Bind("ReviewId,BathroomId,Smell,Cleanliness,Privacy,Comfort,Availability,Likes,Dislikes,Notes,DateSubmitted,UserId")] Review review)
         {
             if (id != review.ReviewId)
             {
@@ -206,9 +214,14 @@ namespace PeePal.Areas.Reviews.Controllers
                         throw;
                     }
                 }
+                TempData["Message"] = "Review Updated.";
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", review.UserId);
+            TempData["Message"] = "Failed to update review. Please check your input and try again.";
+
+
             return View(review);
         }
 
