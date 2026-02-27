@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ShoppingCartLab.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Orders</h1>
+
+    <div class="mb-6">
+        <a asp-action="Create" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
+            + Create New
+        </a>
+    </div>
+
+    <div class="overflow-x-auto rounded-lg shadow">
+        <table class="min-w-full bg-white">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        @Html.DisplayNameFor(model => model.OrderDate)
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        @Html.DisplayNameFor(model => model.TotalAmount)
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        @Html.DisplayNameFor(model => model.User)
+                    </th>
+                    <th class="px-6 py-3 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                @foreach (var item in Model)
+                {
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                            @Html.DisplayFor(modelItem => item.OrderDate)
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                            @Html.DisplayFor(modelItem => item.TotalAmount)
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                            @Html.DisplayFor(modelItem => item.User.Id)
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm space-x-2">
+                            <a asp-action="Edit" asp-route-id="@item.OrderId" class="text-blue-600 hover:text-blue-800 hover:underline">Edit</a>
+                            <a asp-action="Details" asp-route-id="@item.OrderId" class="text-green-600 hover:text-green-800 hover:underline">Details</a>
+                            <a asp-action="Delete" asp-route-id="@item.OrderId" class="text-red-600 hover:text-red-800 hover:underline">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

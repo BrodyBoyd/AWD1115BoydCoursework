@@ -109,9 +109,23 @@ namespace Portfolio.Controllers
         [HttpPost]
         public IActionResult ResetBalance()
         {
-
             var json = HttpContext.Session.GetString("GameState");
+
+            BlackjackPlayer model;
+
             var blackjack = JsonSerializer.Deserialize<BlackjackPlayer>(json);
+            if (string.IsNullOrEmpty(json))
+            {
+                // First visit — create new game
+                model = new BlackjackPlayer();
+                model.Balance = 1000; // starting balance
+
+                HttpContext.Session.SetString("GameState", JsonSerializer.Serialize(model));
+            }
+            else
+            {
+                model = JsonSerializer.Deserialize<BlackjackPlayer>(json);
+            }
 
             blackjack.Balance = 1000;
 
