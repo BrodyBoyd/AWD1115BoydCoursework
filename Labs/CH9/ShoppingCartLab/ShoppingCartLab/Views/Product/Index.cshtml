@@ -1,35 +1,119 @@
 ﻿@model IEnumerable<Product>
 
+@{
+    ViewData["Title"] = "Products";
+    var categories = ViewBag.Categories as List<Category>;
+    var currentCategory = ViewBag.CurrentCategory as int?;
+    var searchString = ViewBag.SearchString as string;
+}
+
+
+<div class="max-w-7xl mx-auto mb-8">
+
+    <!-- Search Bar -->
+    <form asp-action="Index" method="get" class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+
+        <!-- Search Input Wrapper -->
+        <div class="flex items-center w-full sm:w-80 bg-white border border-gray-300 rounded-lg px-3 py-2 shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke-width="1.5"
+                 stroke="currentColor"
+                 class="size-5 text-gray-500">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
+
+            <input type="text"
+                   name="searchString"
+                   value="@searchString"
+                   placeholder="Search products..."
+                   class="ml-2 w-full bg-transparent focus:outline-none text-gray-700" />
+        </div>
+
+        <!-- Search Button -->
+        <button type="submit"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-lg shadow-sm transition">
+            Search
+        </button>
+    </form>
+
+    <!-- Category Filter -->
+    <form asp-action="Index" method="get" class="mt-4">
+        <select name="categoryId"
+                onchange="this.form.submit()"
+                class="w-full sm:w-64 bg-white border border-gray-300 rounded-lg px-4 py-2 shadow-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="">All Categories</option>
+
+            @if (categories != null)
+            {
+                @foreach (var category in categories)
+                {
+                    <option value="@category.CategoryId"
+                            selected="@(currentCategory == category.CategoryId)">
+                        @category.Name
+                    </option>
+                }
+            }
+        </select>
+    </form>
+
+</div>
+
 <div> 
     <h1>Products</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var product in Model)
-            {
-                <tr>
 
-                @if (product.ImageUrl != null)
-                {
-                    <td colspan="4">
-                        <img src="@product.ImageUrl" alt="@product.Name" class="img-thumbnail" style="max-width: 200px;" />
-                    </td>   
-                }
-                    <td>@product.Name</td>
-                    <td>@product.Description</td>
-                    <td>@product.Price.ToString("C")</td>
-                    <td>
-                        <a asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-primary">Add to Cart</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+        @foreach (var product in Model)
+        {
+            <div class="bg-gray-900 rounded-2xl shadow-xl border border-gray-800 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+
+                <!-- Image Frame -->
+                <div class="w-full h-72 bg-gray-800 flex items-center justify-center p-4">
+                    <img src="@Url.Content(product.ImageUrl)"
+                            alt="@product.Name"
+                            class="max-h-full max-w-full object-contain" />
+                </div>
+
+                <!-- Content -->
+                <div class="p-6 space-y-4 text-gray-200">
+
+                    <h2 class="text-xl font-semibold text-white">@product.Name</h2>
+
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        @product.Description
+                    </p>
+
+                    <p class="text-lg font-bold text-blue-400">
+                        @product.Price.ToString("C")
+                    </p>
+
+                    <!-- Stock Badge -->
+                    <span class="inline-block text-sm font-medium text-blue-500 bg-blue-100/10 border border-blue-500/30 px-3 py-1 rounded-full">
+                        @product.StockQuantity in stock
+                    </span>
+
+                    <!-- Buttons -->
+                    <div class="space-y-2">
+                        <a asp-action="Details"
+                            asp-route-id="@product.ProductId"
+                            class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition">
+                            Details
+                        </a>
+                        <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                            <input type="hidden" name="productId" value="@product.ProductId"/>
+                            <button
+                               type="submit"
+                               class="block w-full text-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg transition">
+                                Add to Cart
+                            </button>
+                        </form>
+                        
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
 </div>

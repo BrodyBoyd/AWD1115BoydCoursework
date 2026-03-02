@@ -28,6 +28,8 @@ namespace ShoppingCartLab.Models
         [ValidateNever]
         public Product Product { get; set; } = null!;
 
+        [NotMapped]
+        public decimal TotalPrice => Quantity * UnitPrice;
 
     }
 }

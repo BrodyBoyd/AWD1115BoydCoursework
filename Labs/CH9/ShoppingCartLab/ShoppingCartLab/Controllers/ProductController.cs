@@ -1,12 +1,49 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ShoppingCartLab.Models;
 
 namespace ShoppingCartLab.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController(ApplicationDbContext context) : Controller
     {
-        public IActionResult Index()
+        private readonly ApplicationDbContext _context = context;
+
+        public async Task<IActionResult> Index(int? categoryId, string? searchString)
         {
-            return View();
+            var productsQuery = _context.Products
+                .Include(p => p.Category)
+                .Where(p => p.IsAvtive);
+
+            if (categoryId.HasValue)
+            {
+                productsQuery = productsQuery.Where(p => p.CategoryId == categoryId);
+            }
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                productsQuery = productsQuery.Where(p => p.Name.Contains(searchString) || p.Description.Contains(searchString));
+            }
+
+            ViewBag.Categories = await _context.Categories.ToListAsync();
+            ViewBag.CurrentCategory = categoryId;
+            ViewBag.SearchString = searchString;
+            ViewBag.PageTitle = "Products";
+
+            return View(await productsQuery.ToListAsync());
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            var product = await _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefaultAsync(p => p.ProductId == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            ViewBag.PageTitle = product.Name.ToString();
+
+            return View(product);
         }
     }
 }

@@ -24,8 +24,13 @@ namespace ShoppingCartLab.Controllers
         // GET: Order
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Orders.Include(o => o.User);
-            return View(await applicationDbContext.ToListAsync());
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userOrders = _context.Orders
+                .Where(o => o.UserId == userId)
+                .Include(o => o.User)
+                .Include(o => o.OrderItems)
+                    .ThenInclude(oi => oi.Product);
+            return View(await userOrders.ToListAsync());
         }
 
         // GET: Order/Details/5

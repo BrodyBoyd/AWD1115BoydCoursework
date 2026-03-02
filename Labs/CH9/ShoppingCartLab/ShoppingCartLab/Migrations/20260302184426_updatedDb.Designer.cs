@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShoppingCartLab.Models;
 
@@ -11,9 +12,11 @@ using ShoppingCartLab.Models;
 namespace ShoppingCartLab.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260302184426_updatedDb")]
+    partial class updatedDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -377,18 +380,18 @@ namespace ShoppingCartLab.Migrations
                             IsAvtive = true,
                             Name = "Skateboard",
                             Price = 34.99m,
-                            StockQuantity = 15
+                            StockQuantity = 0
                         },
                         new
                         {
                             ProductId = 2,
                             CategoryId = 2,
                             Description = "A t-shirt for wearing.",
-                            ImageUrl = "~/images/whiteShirt.jpg",
+                            ImageUrl = "~/images/whiteShirt.png",
                             IsAvtive = true,
                             Name = "White T-Shirt",
                             Price = 14.99m,
-                            StockQuantity = 24
+                            StockQuantity = 0
                         },
                         new
                         {
@@ -399,7 +402,7 @@ namespace ShoppingCartLab.Migrations
                             IsAvtive = true,
                             Name = "Peach T-Shirt",
                             Price = 14.99m,
-                            StockQuantity = 3
+                            StockQuantity = 0
                         },
                         new
                         {
@@ -410,7 +413,7 @@ namespace ShoppingCartLab.Migrations
                             IsAvtive = true,
                             Name = "Smartphone",
                             Price = 499.99m,
-                            StockQuantity = 19
+                            StockQuantity = 0
                         });
                 });
 
