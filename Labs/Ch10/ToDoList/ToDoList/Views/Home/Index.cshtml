@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ToDoItem>
+
+<h1 class="bg-slate-900 text-mist-200 text-center py-4 text-4xl">My Tasks</h1>
+
+<div class="grid grid-cols-6 mt-4">
+    <div class="col-span-1 col-start-2 ">
+        <form asp-action="Filter" method="post" class="pl-4">
+            <div class="mb-2 flex flex-col">
+                <label>Category</label>
+                <select name="filter" class="border-2 border-slate-200 rounded-full bg-gray-200 focus:bg-gray-300 w-1/2" asp-items="@(new SelectList(ViewBag.Categories, "CategoryId", "Name", ViewBag.Filters.CategoryId))">
+                    <option value="all">All</option>
+                </select>
+            </div>
+            <div class="mb-3 flex flex-col">
+                <label>Due: </label>
+                <select name="filter" class="border-2 border-slate-200 rounded-full bg-gray-200 focus:bg-gray-300 w-1/2" asp asp-items="@(new SelectList(ViewBag.DueFilters, "Key", "Value", ViewBag.Filters.Due))">
+                    @* <option value="all">All</option> *@
+                </select>
+            </div>
+            <div class="mb-3 flex flex-col">
+                <label>Statuses: </label>
+                <select name="filter" class="border-2 border-slate-200 rounded-full bg-gray-200 focus:bg-gray-300 w-1/2" asp asp-items="@(new SelectList(ViewBag.Statuses, "StatusId", "Name", ViewBag.Filters.StatusId))">
+                    <option value="all">All</option>
+                </select>
+            </div>
+            <button type="submit" class="bg-mauve-800 rounded-full py-2 px-4 text-zinc-300">Filter</button>
+            <a asp-action="Index" asp-route-id="" class="bg-mauve-800 rounded-full py-2 px-4 text-zinc-300">Clear</a>
+
+        </form>
+    </div>
+    <div class="col-span-3 col-start-3">
+        <form asp-action="MarkComplete" method="post" asp-route-id="@ViewBag.Filters.Filterstring">
+            <table class="w-full border-separate border-spacing-0 rounded-xl overflow-hidden shadow-lg">
+                <thead class="bg-gray-100 text-gray-700">
+                    <tr>
+                        <th class="px-4 py-3 text-left font-semibold border-b">Description</th>
+                        <th class="px-4 py-3 text-left font-semibold border-b">Category</th>
+                        <th class="px-4 py-3 text-left font-semibold border-b">Due Date</th>
+                        <th class="px-4 py-3 text-left font-semibold border-b">Status</th>
+                    </tr>
+                </thead>
+
+                <tbody class="bg-white">
+                    @foreach (ToDoItem task in Model)
+                    {
+                        string overdue = task.Overdue ? "bg-red-200 text-red-900 font-semibold" : "";
+                        <tr class="odd:bg-gray-50 hover:bg-gray-100 transition">
+                            <td class="px-4 py-3 border-b">@task.Description</td>
+                            <td class="px-4 py-3 border-b">@task.Category.Name</td>
+                            <td class="px-4 py-3 border-b @overdue">
+                                @task.DueDate?.ToShortDateString()
+                            </td>
+                            <td class="px-4 py-3 border-b">
+                                @if (task.StatusId == "open")
+                                {
+                                    <div class="flex">
+                                        <p class="mr-2">Open</p>
+                                        <button type="submit"
+                                                class="px-3 py-1 text-sm bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition"
+                                                name="@nameof(ToDoItem.Id)"
+                                                value="@task.Id">
+                                            Mark Complete
+                                        </button>
+                                    </div>
+                                    } else
+                                    {
+                                        <p class="text-green-400">Completed</p>
+                                    }
+                                </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </form>
+        <form asp-action="DeleteComplete" method="post" asp-route-id="@ViewBag.Filters.Filterstring">
+            <a asp-action="Add" class="bg-mauve-800 rounded-full py-2 px-4 text-zinc-300">Add New Task</a>
+            <button type="submit" class="bg-mauve-800 rounded-full py-2 px-4 text-zinc-300">Delete completed Tasks</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+﻿@model ToDoItem
+
+<h2 class="bg-slate-900 text-mist-200 text-center py-4 text-4xl rounded-t-xl">
+    New Task
+</h2>
+
+<div asp-validation-summary="All" class="text-red-500 mt-4 text-center"></div>
+
+<form asp-action="Add" method="post"
+      class="max-w-xl mx-auto bg-white shadow-lg rounded-b-xl p-8 space-y-6">
+
+    <!-- Description -->
+    <div class="flex flex-col space-y-1">
+        <label asp-for="Description" class="font-medium text-gray-700">Description</label>
+        <input asp-for="Description"
+               class="border border-gray-300 rounded-lg px-4 py-2 bg-gray-100 focus:bg-white focus:ring-2 focus:ring-blue-500 transition" />
+    </div>
+
+    <!-- Category -->
+    <div class="flex flex-col space-y-1">
+        <label asp-for="CategoryId" class="font-medium text-gray-700">Category</label>
+        <select asp-for="CategoryId"
+                asp-items="@(new SelectList(ViewBag.Categories, "CategoryId", "Name"))"
+                class="border border-gray-300 rounded-lg px-4 py-2 bg-gray-100 focus:bg-white focus:ring-2 focus:ring-blue-500 transition">
+            <option value=""></option>
+        </select>
+    </div>
+
+    <!-- Due Date -->
+    <div class="flex flex-col space-y-1">
+        <label asp-for="DueDate" class="font-medium text-gray-700">Due Date</label>
+        <input asp-for="DueDate" type="datetime-local"
+               class="border border-gray-300 rounded-lg px-4 py-2 bg-gray-100 focus:bg-white focus:ring-2 focus:ring-blue-500 transition" />
+    </div>
+
+    <!-- Status -->
+    <div class="flex flex-col space-y-1">
+        <label class="font-medium text-gray-700">Status</label>
+        <select name="StatusId"
+                asp-items="@(new SelectList(ViewBag.Statuses, "StatusId", "Name"))"
+                class="border border-gray-300 rounded-lg px-4 py-2 bg-gray-100 focus:bg-white focus:ring-2 focus:ring-blue-500 transition">
+            <option value=""></option>
+        </select>
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex items-center justify-between pt-4">
+        <button type="submit"
+                class="bg-mauve-800 text-zinc-200 px-6 py-2 rounded-full shadow hover:bg-mauve-700 transition">
+            Submit
+        </button>
+
+        <a asp-action="Index"
+           class="bg-gray-300 text-gray-800 px-6 py-2 rounded-full shadow hover:bg-gray-400 transition">
+            Back to List
+        </a>
+    </div>
+
+</form>
