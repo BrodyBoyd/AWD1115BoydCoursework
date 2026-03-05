@@ -36,15 +36,15 @@ namespace ToDoList.Controllers
                 var today = DateTime.Today;
                 if (filters.IsOverdue)
                 {
-                    query = query.Where(t => t.DueDate < today);
+                    query = query.Where(t => t.DueDate.Value.Date < today);
                 }
                 else if (filters.IsToday)
                 {
-                    query = query.Where(t => t.DueDate == today);
+                    query = query.Where(t => t.DueDate.Value.Date == today);
                 }
                 else if (filters.IsFuture)
                 {
-                    query = query.Where(t => t.DueDate > today);
+                    query = query.Where(t => t.DueDate.Value.Date > today);
                 }
             }
 
