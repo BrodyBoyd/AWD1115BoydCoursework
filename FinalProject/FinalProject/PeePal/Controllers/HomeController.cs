@@ -58,20 +58,43 @@ namespace PeePal.Controllers
         }
 
         [HttpGet]
-        public IActionResult SearchByZip(string zip)
+        public IActionResult SearchByZip(string zip, int page = 1)
         {
+            int pageSize = 6;
+
             if (string.IsNullOrWhiteSpace(zip))
                 return PartialView("_SearchResults", Enumerable.Empty<Review>());
 
-            // Normalize input
+            // Normalize input before counting
             zip = zip.Trim();
+
+            int totalCount = _context.Reviews
+                .Include(r => r.Bathroom)
+                .Where(r => r.Bathroom != null && r.Bathroom.Zip == zip)
+                .Count();
+
+            int totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+            // If there are no results, totalPages should be 0 (handled by view)
+            ViewBag.TotalPages = totalPages;
+
+            // Validate requested page bounds
+            int searchPage = page;
+            if (searchPage < 1) searchPage = 1;
+            if (totalPages > 0 && searchPage > totalPages) searchPage = totalPages;
+
+            ViewBag.CurrentPage = searchPage;
 
             // Filter reviews by the associated Bathroom's Zip and eager-load related data
             var results = _context.Reviews
                 .Include(r => r.Bathroom)
                 .Include(r => r.User)
                 .Where(r => r.Bathroom != null && r.Bathroom.Zip == zip)
+                .Skip((searchPage - 1) * pageSize)
+                .Take(pageSize)
                 .ToList();
+
+            
+
 
             return PartialView("_SearchResults", results);
         }
