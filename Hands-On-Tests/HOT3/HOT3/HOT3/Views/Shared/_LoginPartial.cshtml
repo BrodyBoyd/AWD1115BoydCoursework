@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using HOT3.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="flex items-center gap-6">
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li>
+            <a id="manage"
+               asp-area="Identity"
+               asp-page="/Account/Manage/Index"
+               class="text-slate-800 hover:text-slate-700 font-medium transition">
+                Hello @UserManager.GetUserName(User)!
+            </a>
+        </li>
+
+        <li>
+            <form id="logoutForm"
+                  asp-area="Identity"
+                  asp-page="/Account/Logout"
+                  asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+
+                <button id="logout"
+                        type="submit"
+                        class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition">
+                    Logout
+                </button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a id="register"
+               asp-area="Identity"
+               asp-page="/Account/Register"
+               class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition">
+                Register
+            </a>
+        </li>
+
+        <li>
+            <a id="login"
+               asp-area="Identity"
+               asp-page="/Account/Login"
+               class="px-4 py-2 bg-gray-700 hover:bg-gray-800 text-white rounded-lg font-medium transition">
+                Login
+            </a>
+        </li>
+    }
+</ul>

@@ -1,0 +1,91 @@
+﻿@model HOT3.Models.Product
+
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<div class="max-w-3xl mx-auto px-6 py-12">
+
+    <h1 class="text-4xl font-bold text-white mb-6">Create Product</h1>
+
+    <div class="bg-gray-900 border border-gray-800 rounded-2xl shadow-xl p-8">
+
+        <form asp-action="Create" class="space-y-6">
+
+            <div asp-validation-summary="ModelOnly" class="text-red-400 mb-4"></div>
+
+            <!-- Name -->
+            <div>
+                <label asp-for="Name" class="block text-gray-300 font-medium mb-1"></label>
+                <input asp-for="Name"
+                       class="w-full bg-gray-800 border border-gray-700 text-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" />
+                <span asp-validation-for="Name" class="text-red-400 text-sm"></span>
+            </div>
+
+            <!-- Description -->
+            <div>
+                <label asp-for="Description" class="block text-gray-300 font-medium mb-1"></label>
+                <input asp-for="Description"
+                       class="w-full bg-gray-800 border border-gray-700 text-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" />
+                <span asp-validation-for="Description" class="text-red-400 text-sm"></span>
+            </div>
+
+            <!-- Stock Quantity -->
+            <div>
+                <label asp-for="StockQuantity" class="block text-gray-300 font-medium mb-1"></label>
+                <input asp-for="StockQuantity"
+                       class="w-full bg-gray-800 border border-gray-700 text-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" />
+                <span asp-validation-for="StockQuantity" class="text-red-400 text-sm"></span>
+            </div>
+
+            <!-- Price -->
+            <div>
+                <label asp-for="Price" class="block text-gray-300 font-medium mb-1"></label>
+                <input asp-for="Price"
+                       class="w-full bg-gray-800 border border-gray-700 text-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" />
+                <span asp-validation-for="Price" class="text-red-400 text-sm"></span>
+            </div>
+
+            <!-- Image URL -->
+            <div>
+                <label asp-for="ImageUrl" class="block text-gray-300 font-medium mb-1"></label>
+                <input asp-for="ImageUrl"
+                       class="w-full bg-gray-800 border border-gray-700 text-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" />
+                <span asp-validation-for="ImageUrl" class="text-red-400 text-sm"></span>
+            </div>
+
+            <!-- Category -->
+            <div>
+                <label asp-for="CategoryId" class="block text-gray-300 font-medium mb-1"></label>
+                <select asp-for="CategoryId"
+                        asp-items="ViewBag.CategoryId"
+                        class="w-full bg-gray-800 border border-gray-700 text-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                </select>
+            </div>
+
+            <!-- Submit -->
+            <div class="pt-4">
+                <button type="submit"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">
+                    Create Product
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- Back Link -->
+    <div class="mt-6">
+        <a asp-action="Index"
+           class="text-gray-400 hover:text-white transition">
+            ← Back to List
+        </a>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

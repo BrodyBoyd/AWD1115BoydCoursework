@@ -1,0 +1,81 @@
+﻿@model HOT3.Models.Product
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<div class="max-w-5xl mx-auto px-6 py-12">
+
+    <!-- Back Button -->
+    <a asp-action="Index"
+       class="inline-flex items-center text-gray-400 hover:text-white mb-8 transition">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             fill="none" viewBox="0 0 24 24"
+             stroke-width="1.5" stroke="currentColor"
+             class="w-5 h-5 mr-2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+        </svg>
+        Back to Products
+    </a>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+        <!-- Product Image -->
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 flex items-center justify-center">
+            <img src="@Model.ImageUrl"
+                 alt="@Model.Name"
+                 class="max-h-[450px] object-contain rounded-xl" />
+        </div>
+
+        <!-- Product Info -->
+        <div class="flex flex-col justify-between text-gray-200">
+
+            <div class="space-y-4">
+
+                <h1 class="text-4xl font-bold text-white">@Model.Name</h1>
+
+                <p class="text-gray-400 text-lg leading-relaxed">
+                    @Model.Description
+                </p>
+
+                <p class="text-3xl font-bold text-blue-400">
+                    @Model.Price.ToString("C")
+                </p>
+
+                <p class="text-sm text-gray-400">
+                    <span class="font-semibold text-gray-200">Stock:</span> @Model.StockQuantity
+                </p>
+
+                <p class="text-sm text-gray-400">
+                    <span class="font-semibold text-gray-200">Category:</span> @Model.Category?.Name
+                </p>
+
+                <p class="text-sm text-gray-500 italic">
+                    Slug: @Model.Slug
+                </p>
+
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex gap-4 mt-8">
+
+                <a asp-action="Edit"
+                   asp-route-id="@Model.ProductId"
+                   class="flex-1 text-center bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-3 rounded-lg transition">
+                    Edit Product
+                </a>
+
+                <a asp-action="Delete"
+                   asp-route-id="@Model.ProductId"
+                   class="flex-1 text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-lg transition">
+                    Delete
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

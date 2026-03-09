@@ -1,0 +1,102 @@
+﻿@model IEnumerable<HOT3.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="max-w-7xl mx-auto px-6 py-10">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-6">
+        <h1 class="text-3xl font-bold text-white">Products</h1>
+
+        <a asp-action="Create"
+           class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition">
+            + Create New
+        </a>
+    </div>
+
+    <!-- Table Container -->
+    <div class="overflow-x-auto rounded-xl border border-gray-800 shadow-lg">
+
+        <table class="min-w-full divide-y divide-gray-800 bg-gray-900">
+
+            <!-- Table Header -->
+            <thead class="bg-gray-800 sticky top-0 z-10">
+                <tr>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-300">Name</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-300">Description</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-300">Stock</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-300">Price</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-300">Image</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-300">Category</th>
+                    <th class="px-6 py-4 text-right text-sm font-semibold text-gray-300">Actions</th>
+                </tr>
+            </thead>
+
+            <!-- Table Body -->
+            <tbody class="divide-y divide-gray-800">
+
+                @foreach (var item in Model)
+                {
+                    <tr class="hover:bg-gray-800 transition">
+
+                        <!-- Name -->
+                        <td class="px-6 py-4 text-gray-200 font-medium">
+                            @item.Name
+                        </td>
+
+                        <!-- Description -->
+                        <td class="px-6 py-4 text-gray-400 text-sm max-w-xs truncate">
+                            @item.Description
+                        </td>
+
+                        <!-- Stock -->
+                        <td class="px-6 py-4 text-gray-300">
+                            @item.StockQuantity
+                        </td>
+
+                        <!-- Price -->
+                        <td class="px-6 py-4 text-blue-400 font-semibold">
+                            @item.Price.ToString("C")
+                        </td>
+
+                        <!-- Image Preview -->
+                        <td class="px-6 py-4">
+                            <img src="@item.ImageUrl"
+                                 alt="@item.Name"
+                                 class="w-14 h-14 object-cover rounded-lg border border-gray-700 shadow" />
+                        </td>
+
+                        <!-- Category -->
+                        <td class="px-6 py-4 text-gray-300">
+                            @item.Category?.Name
+                        </td>
+
+                        <!-- Actions -->
+                        <td class="flex justify-end gap-2 align-center">
+
+                            <a asp-action="Edit" asp-route-id="@item.ProductId" asp-route-slug="@item.Slug"
+                               class="px-3 py-1.5 text-sm border border-yellow-600 text-yellow-400 hover:bg-yellow-600 hover:text-black rounded-md transition">
+                                Edit
+                            </a>
+
+                            <a asp-action="Details" asp-route-id="@item.ProductId" asp-route-slug="@item.Slug"
+                               class="px-3 py-1.5 text-sm border border-gray-500 text-gray-300 hover:bg-gray-700 rounded-md transition">
+                                Details
+                            </a>
+
+                            <a asp-action="Delete" asp-route-id="@item.ProductId"
+                               class="px-3 py-1.5 text-sm border border-red-600 text-red-400 hover:bg-red-600 hover:text-black rounded-md transition">
+                                Delete
+                            </a>
+
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
