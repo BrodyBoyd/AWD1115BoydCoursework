@@ -208,6 +208,7 @@ namespace HOT3.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ImageUrl")
+                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -219,10 +220,8 @@ namespace HOT3.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("StockQuantity")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<int>("StockQuantity")
+                        .HasColumnType("int");
 
                     b.HasKey("ProductId");
 
@@ -239,7 +238,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://plus.unsplash.com/premium_photo-1678099940967-73fe30680949?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d2lyZWxlc3MlMjBoZWFkcGhvbmVzfGVufDB8fDB8fHww",
                             Name = "Wireless Bluetooth Headphones",
                             Price = 89.99m,
-                            StockQuantity = "42"
+                            StockQuantity = 42
                         },
                         new
                         {
@@ -249,7 +248,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://images.unsplash.com/photo-1551645120-d70bfe84c826?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bW9uaXRvcnxlbnwwfHwwfHx8MA%3D%3D",
                             Name = "4K Ultra HD Monitor",
                             Price = 279.99m,
-                            StockQuantity = "15"
+                            StockQuantity = 15
                         },
                         new
                         {
@@ -259,7 +258,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://plus.unsplash.com/premium_photo-1664194583917-b0ba07c4ce2a?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Z2FtaW5nJTIwa2V5Ym9hcmR8ZW58MHx8MHx8fDA%3D",
                             Name = "Mechanical Gaming Keyboard",
                             Price = 74.50m,
-                            StockQuantity = "60"
+                            StockQuantity = 60
                         },
                         new
                         {
@@ -269,7 +268,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://images.unsplash.com/photo-1688578735427-994ecdea3ea4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8b2ZmaWNlJTIwY2hhaXJ8ZW58MHx8MHx8fDA%3D",
                             Name = "Ergonomic Office Chair",
                             Price = 159.00m,
-                            StockQuantity = "22"
+                            StockQuantity = 22
                         },
                         new
                         {
@@ -279,7 +278,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://plus.unsplash.com/premium_photo-1669262667978-5d4aafe29dd5?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dXNiLWMlMjBjaGFyZ2VyfGVufDB8fDB8fHww",
                             Name = "USB-C Fast Charger",
                             Price = 24.99m,
-                            StockQuantity = "120"
+                            StockQuantity = 120
                         },
                         new
                         {
@@ -289,7 +288,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://media.istockphoto.com/id/1215074546/photo/controlling-light-bulb-with-mobile-device.webp?a=1&b=1&s=612x612&w=0&k=20&c=n-PD48Q5qUJKY8dVCSU-7OVBiquG557pf7iCwMNGa7M=",
                             Name = "Smart LED Light Bulb",
                             Price = 14.99m,
-                            StockQuantity = "85"
+                            StockQuantity = 85
                         },
                         new
                         {
@@ -299,7 +298,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://images.unsplash.com/photo-1589256469067-ea99122bbdc4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Ymx1ZXRvb3RoJTIwc3BlYWtlcnxlbnwwfHwwfHx8MA%3D%3D",
                             Name = "Portable Bluetooth Speaker",
                             Price = 49.99m,
-                            StockQuantity = "33"
+                            StockQuantity = 33
                         },
                         new
                         {
@@ -309,7 +308,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://images.unsplash.com/photo-1667411424771-cadd97150827?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwYmFja3BhY2t8ZW58MHx8MHx8fDA%3D",
                             Name = "Laptop Backpack",
                             Price = 39.99m,
-                            StockQuantity = "50"
+                            StockQuantity = 50
                         },
                         new
                         {
@@ -319,7 +318,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://plus.unsplash.com/premium_photo-1681284938505-62efa3494bf2?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c3RhaW5sZXNzJTIwc3RlZWwlMjB3YXRlciUyMGJvdHRsZXxlbnwwfHwwfHx8MA%3D%3D",
                             Name = "Stainless Steel Water Bottle",
                             Price = 19.99m,
-                            StockQuantity = "75"
+                            StockQuantity = 75
                         },
                         new
                         {
@@ -329,7 +328,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://images.unsplash.com/photo-1707592691247-5c3a1c7ba0e3?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8d2lyZWxlc3MlMjBtb3VzZXxlbnwwfHwwfHx8MA%3D%3D",
                             Name = "Wireless Mouse",
                             Price = 17.99m,
-                            StockQuantity = "95"
+                            StockQuantity = 95
                         },
                         new
                         {
@@ -339,7 +338,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://images.unsplash.com/photo-1678356717973-f2177782388a?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zml0dG5lc3MlMjB3YXRjaHxlbnwwfHwwfHx8MA%3D%3D",
                             Name = "Smart Fitness Watch",
                             Price = 129.99m,
-                            StockQuantity = "28"
+                            StockQuantity = 28
                         },
                         new
                         {
@@ -349,7 +348,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://images.unsplash.com/photo-1704364610940-52b509d3951f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGQlMjB3ZWJjYW18ZW58MHx8MHx8fDA%3D",
                             Name = "HD Webcam",
                             Price = 59.99m,
-                            StockQuantity = "40"
+                            StockQuantity = 40
                         },
                         new
                         {
@@ -359,7 +358,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://media.istockphoto.com/id/1364094222/photo/backup-your-software.webp?a=1&b=1&s=612x612&w=0&k=20&c=JKeYdUxEBpP8tCI80CQXg59Yc0zbmEm_tSI3bQcdGp0=",
                             Name = "External Hard Drive 2TB",
                             Price = 69.99m,
-                            StockQuantity = "34"
+                            StockQuantity = 34
                         },
                         new
                         {
@@ -369,7 +368,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://images.unsplash.com/photo-1621177555452-bedbe4c28879?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZGVzayUyMGxhbXB8ZW58MHx8MHx8fDA%3D",
                             Name = "LED Desk Lamp",
                             Price = 22.99m,
-                            StockQuantity = "48"
+                            StockQuantity = 48
                         },
                         new
                         {
@@ -379,7 +378,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://images.unsplash.com/photo-1733641839465-f9de0c9b9bde?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bm9pc2UlMjBjYW5jZWxsaW5nJTIwZWFyYnVkc3xlbnwwfHwwfHx8MA%3D%3D",
                             Name = "Noise-Isolating Earbuds",
                             Price = 12.99m,
-                            StockQuantity = "110"
+                            StockQuantity = 110
                         },
                         new
                         {
@@ -389,7 +388,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://images.unsplash.com/photo-1594843665794-446ce915d840?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cG93ZXIlMjBiYW5rfGVufDB8fDB8fHww",
                             Name = "Portable Power Bank",
                             Price = 29.99m,
-                            StockQuantity = "70"
+                            StockQuantity = 70
                         },
                         new
                         {
@@ -399,7 +398,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://plus.unsplash.com/premium_photo-1679177183775-75c2e0d0d209?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Z2FtaW5nJTIwbW91c2UlMjBwYWR8ZW58MHx8MHx8fDA%3D",
                             Name = "Gaming Mouse Pad",
                             Price = 15.99m,
-                            StockQuantity = "55"
+                            StockQuantity = 55
                         },
                         new
                         {
@@ -409,7 +408,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://plus.unsplash.com/premium_photo-1688686804638-fadb460edc4a?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c21hcnQlMjBob21lfGVufDB8fDB8fHww",
                             Name = "Smart Home Hub",
                             Price = 89.00m,
-                            StockQuantity = "18"
+                            StockQuantity = 18
                         },
                         new
                         {
@@ -419,7 +418,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://m.media-amazon.com/images/I/61kv7aTqB0L.jpg",
                             Name = "USB-C to HDMI Adapter",
                             Price = 16.99m,
-                            StockQuantity = "90"
+                            StockQuantity = 90
                         },
                         new
                         {
@@ -429,7 +428,7 @@ namespace HOT3.Migrations
                             ImageUrl = "https://images.unsplash.com/photo-1622126755582-16754165dce8?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c3RhbmRpbmclMjBkZXNrfGVufDB8fDB8fHww",
                             Name = "Electric Standing Desk",
                             Price = 349.99m,
-                            StockQuantity = "10"
+                            StockQuantity = 10
                         });
                 });
 

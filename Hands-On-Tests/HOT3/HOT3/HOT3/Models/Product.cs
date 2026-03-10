@@ -18,8 +18,8 @@ namespace HOT3.Models
         public string Description { get; set; }
 
         [Required]
-        [StringLength(100)]
-        public string StockQuantity { get; set; }
+        [Range(0, int.MaxValue)]
+        public int StockQuantity { get; set; }
 
 
         [Required]

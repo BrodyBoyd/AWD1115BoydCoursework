@@ -1,28 +1,53 @@
 ﻿@page
 @model IndexModel
+
 @{
     ViewData["Title"] = "Profile";
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
 
-<h3>@ViewData["Title"]</h3>
-<partial name="_StatusMessage" for="StatusMessage" />
-<div class="row">
-    <div class="col-md-6">
-        <form id="profile-form" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Username" class="form-control" placeholder="Please choose your username." disabled />
-                <label asp-for="Username" class="form-label"></label>
+<div class="max-w-3xl mx-auto px-6 py-12">
+
+    <h1 class="text-4xl font-bold text-white mb-6">Your Profile</h1>
+
+    <!-- Status Message -->
+    <partial name="_StatusMessage" for="StatusMessage" />
+
+    <div class="bg-gray-900 border border-gray-800 rounded-2xl shadow-xl p-8 mt-6">
+
+        <form id="profile-form" method="post" class="space-y-6">
+
+            <div asp-validation-summary="ModelOnly" class="text-red-400 mb-4"></div>
+
+            <!-- Username (disabled) -->
+            <div>
+                <label asp-for="Username" class="block text-gray-300 font-medium mb-1"></label>
+                <input asp-for="Username"
+                       disabled
+                       class="w-full bg-gray-800 border border-gray-700 text-gray-500 rounded-lg px-4 py-2 cursor-not-allowed" />
             </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number."/>
-                <label asp-for="Input.PhoneNumber" class="form-label"></label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+
+            <!-- Phone Number -->
+            <div>
+                <label asp-for="Input.PhoneNumber" class="block text-gray-300 font-medium mb-1"></label>
+                <input asp-for="Input.PhoneNumber"
+                       class="w-full bg-gray-800 border border-gray-700 text-gray-200 rounded-lg px-4 py-2
+                              focus:outline-none focus:ring-2 focus:ring-blue-600"
+                       placeholder="Enter your phone number" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-red-400 text-sm"></span>
             </div>
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+
+            <!-- Save Button -->
+            <button id="update-profile-button"
+                    type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">
+                Save Changes
+            </button>
+
         </form>
+
     </div>
+
 </div>
 
 @section Scripts {

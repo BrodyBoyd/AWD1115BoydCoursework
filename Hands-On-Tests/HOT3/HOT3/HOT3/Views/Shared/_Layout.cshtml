@@ -6,6 +6,30 @@
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/css/output.css" asp-append-version="true"/>
 </head>
+
+@functions {
+            string ActiveClass(string controller, string action = "Index", string area = "")
+            {
+                    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+                    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+                    var currentArea = ViewContext.RouteData.Values["area"]?.ToString() ?? "";
+
+                    if (currentController == controller &&
+                    currentAction == action &&
+                    currentArea == area)
+                    {
+                            return "bg-slate-800/30 text-gray-300 p-2";
+                    }
+
+                    return "";
+            }
+    }
+    @{
+            string currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+            string currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+            string currentArea = ViewContext.RouteData.Values["area"]?.ToString();
+    }
+
 <body>
     <!-- navbar goes here -->
     <nav class="bg-gray-100">
@@ -15,7 +39,7 @@
                 <div class="flex space-x-4">
                     <!-- logo -->
                     <div>
-                        <a href="#" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
                             <svg class="h-6 w-6 mr-1 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                             </svg>
@@ -25,8 +49,8 @@
 
                     <!-- primary nav -->
                     <div class="hidden md:flex items-center space-x-1">
-                        <a href="#" class="py-5 px-3 text-gray-700 hover:text-gray-900">Products</a>
-                        <a href="#" class="py-5 px-3 text-gray-700 hover:text-gray-900">My Orders</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="py-5 px-3 text-gray-700 hover:text-gray-900 @ActiveClass("Home", "Index")">Products</a>
+                        <a asp-area="" asp-controller="Order" asp-action="Index" class="py-5 px-3 text-gray-700 hover:text-gray-900 @ActiveClass("Order", "Index")">My Orders</a>
                     </div>
                 </div>
 
@@ -49,8 +73,8 @@
 
         <!-- mobile menu -->
         <div class="mobile-menu hidden md:hidden">
-            <a href="#" class="block py-2 px-4 text-sm hover:bg-gray-200">Products</a>
-            <a href="#" class="block py-2 px-4 text-sm hover:bg-gray-200">My Orders</a>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="block py-2 px-4 text-sm hover:bg-gray-200 @ActiveClass("Home", "Index")">Products</a>
+            <a asp-area="" asp-controller="Order" asp-action="Index" class="block py-2 px-4 text-sm hover:bg-gray-200 @ActiveClass("Order", "Index")">My Orders</a>
         </div>
     </nav>
 

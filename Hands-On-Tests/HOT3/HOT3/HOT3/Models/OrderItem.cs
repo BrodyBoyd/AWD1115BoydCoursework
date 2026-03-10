@@ -14,7 +14,7 @@ namespace HOT3.Models
 
         [Required]
         [Column(TypeName = "decimal(18,2)")]
-        public int UnitPrice { get; set; }
+        public decimal UnitPrice { get; set; }
 
         public int OrderId { get; set; }
         public int ProductId { get; set; }
