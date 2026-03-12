@@ -1,0 +1,142 @@
+﻿@model Employee
+
+<div class="max-w-3xl mx-auto px-6 py-12">
+
+    <h1 class="text-4xl font-bold text-white mb-8">Add Employee</h1>
+
+    <div class="bg-gray-900 border border-gray-800 rounded-2xl shadow-xl p-8">
+
+        <form asp-action="AddEmployee" method="post" class="space-y-6">
+            @Html.AntiForgeryToken()
+
+            <!-- First Name -->
+            <div>
+                <label asp-for="FirstName" class="block text-gray-300 font-medium mb-1"></label>
+                <input asp-for="FirstName"
+                       class="w-full bg-gray-800 border border-gray-700 text-gray-200 rounded-lg px-4 py-2
+                focus:outline-none focus:ring-2 focus:ring-blue-600" />
+                <span asp-validation-for="FirstName" class="text-red-400 text-sm"></span>
+            </div>
+
+            <!-- Last Name -->
+            <div>
+                <label asp-for="LastName" class="block text-gray-300 font-medium mb-1"></label>
+                <input asp-for="LastName"
+                       class="w-full bg-gray-800 border border-gray-700 text-gray-200 rounded-lg px-4 py-2
+                focus:outline-none focus:ring-2 focus:ring-blue-600" />
+                <span asp-validation-for="LastName" class="text-red-400 text-sm"></span>
+            </div>
+
+            <!-- Birthday -->
+            <div>
+                <label asp-for="Birthday" class="block text-gray-300 font-medium mb-1"></label>
+                <input asp-for="Birthday" type="date"
+                       class="w-full bg-gray-800 border border-gray-700 text-gray-200 rounded-lg px-4 py-2
+                focus:outline-none focus:ring-2 focus:ring-blue-600" />
+                <span asp-validation-for="Birthday" class="text-red-400 text-sm"></span>
+            </div>
+
+            <!-- Hire Date -->
+            <div>
+                <label asp-for="HireDate" class="block text-gray-300 font-medium mb-1"></label>
+                <input asp-for="HireDate" type="date"
+                       class="w-full bg-gray-800 border border-gray-700 text-gray-200 rounded-lg px-4 py-2
+                focus:outline-none focus:ring-2 focus:ring-blue-600" />
+                <span asp-validation-for="HireDate" class="text-red-400 text-sm"></span>
+            </div>
+
+            <!-- Is Manager -->
+            <div class="flex items-center gap-3">
+                <input asp-for="IsManager"
+                       type="checkbox"
+                       class="h-5 w-5 rounded bg-gray-800 border-gray-600 text-blue-600 focus:ring-blue-600" />
+                <label asp-for="IsManager" class="text-gray-300 font-medium"></label>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">
+                Add Employee
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+
+            // Fields that require server-side validation on blur
+            const fieldsToValidate = ['FirstName', 'LastName', 'Birthday', 'HireDate'];
+
+            /**
+             * Updates the visual state of a form field based on validation result.
+             * @@param {HTMLElement} field - The input element to style
+             * @@param {HTMLElement} errorSpan - The span element for error messages
+             * @@param {boolean} isValid - Whether the field passed validation
+             * @@param {string[]} errors - Array of error messages to display
+             */
+            const setFieldState = (field, errorSpan, isValid, errors = []) => {
+                // Toggle border color: red for invalid, gray for valid
+                field.classList.toggle('border-red-500', !isValid);
+                field.classList.toggle('border-gray-300', isValid);
+
+                if (errorSpan) {
+                    // Show error messages or clear them
+                    errorSpan.textContent = isValid ? '' : errors.join(', ');
+                    errorSpan.classList.toggle('hidden', isValid);
+                }
+            };
+
+            // Use event delegation with capture phase to handle blur on all form fields
+            //Event travels down from form → target element
+            form.addEventListener('blur', async (e) => {
+                const fieldName = e.target.id;
+
+                // Only validate fields in our allowlist
+                if (!fieldsToValidate.includes(fieldName)) return;
+
+                // Build payload with current form values for server-side validation
+                const data = {
+                    fieldName,
+                    productId: parseInt(form.querySelector('[name="ProductId"]')?.value) || 0,
+                    FirstName: form.querySelector('[name="FirstName"]')?.value || '',
+                    LastName: form.querySelector('[name="LastName"]')?.value || '',
+                    Birthday: form.querySelector('[name="Birthday"]')?.value || null,
+                    HireDate: form.querySelector('[name="HireDate"]')?.value || null
+                };
+
+                try {
+                    // Send validation request to server
+                    const response = await fetch('@Url.Action("ValidateEmployeeField", "Home")', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            // Include anti-forgery token for security
+                            'RequestVerificationToken': form.querySelector('[name="__RequestVerificationToken"]')?.value
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (!response.ok) {
+                        console.error('Validation request failed', response.status, await response.text());
+                        return;
+                    }
+
+                    // Destructure response and update field styling
+                    const { isValid, errors } = await response.json();
+                    setFieldState(e.target, document.querySelector(`[data-valmsg-for="${fieldName}"]`), isValid, errors);
+                } catch (error) {
+                    console.error('Validation error:', error);
+                }
+            }, true); // 'true' allows blur event from child elements to be captured at the form level
+        });
+    </script>
+}

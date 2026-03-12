@@ -1,10 +1,11 @@
-﻿using HOT3.Models;
+﻿using HOT3.Extensions;
+using HOT3.Models;
 using HOT3.ViewModels;
-using Microsoft.AspNetCore.Mvc;
-using HOT3.Extensions;
 using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
+using System.Security.Claims;
 
 namespace HOT3.Controllers
 {
@@ -20,13 +21,17 @@ namespace HOT3.Controllers
 
         private CartViewModel GetCart()
         {
-            return HttpContext.Session.GetObject<CartViewModel>(CartSessionKey) ?? new CartViewModel();
+            if (HttpContext.Session.GetObject<CartViewModel>(CartSessionKey) is CartViewModel cart)
+            {
+                return cart;
+            }
+            return new CartViewModel();
         }
 
         public IActionResult Index()
         {
             var cart = GetCart();
-            return View();
+            return View(cart);
         }
 
         [HttpPost]
@@ -111,15 +116,15 @@ namespace HOT3.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> PlaceOrder(string shippingAddress)
+        public async Task<IActionResult> PlaceOrder(string Address)
         {
             var cart = GetCart();
-            if (!cart.Items.Any())
+            if (cart.IsEmpty)
             {
                 TempData["Error"] = "Your cart is empty.";
                 return RedirectToAction(nameof(Index));
             }
-            var userId = User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userId))
             {
                 return Unauthorized();
@@ -128,8 +133,8 @@ namespace HOT3.Controllers
             var order = new Order
             {
                 UserId = userId,
-                OrderDate = DateTime.UtcNow,
-                ShippingAddress = shippingAddress,
+                OrderDate = DateTime.Now,
+                ShippingAddress = Address,
                 TotalAmount = cart.Total
             };
 

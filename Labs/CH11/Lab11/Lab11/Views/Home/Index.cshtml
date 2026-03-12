@@ -1,0 +1,80 @@
+﻿@model QuarterlySalesViewModel
+
+<div class="max-w-6xl mx-auto px-6 py-12">
+
+    <h1 class="text-4xl font-bold text-white mb-10">Quarterly Sales</h1>
+
+    <!-- Filter Form -->
+    <form method="get" class="bg-gray-900 border border-gray-800 rounded-2xl p-6 mb-10 shadow-lg space-y-4">
+
+        <label class="block text-gray-300 font-medium">Employee</label>
+
+        <select name="SelectedEmployeeId"
+                class="w-full bg-gray-800 border border-gray-700 text-gray-200 rounded-lg px-4 py-2
+            focus:outline-none focus:ring-2 focus:ring-blue-600">
+            <option value="">All Employees</option>
+
+            @foreach (var emp in Model.Employees)
+            {
+                <option value="@emp.EmployeeId"
+                        selected="@(Model.SelectedEmployeeId == emp.EmployeeId)">
+                    @emp.FirstName @emp.LastName
+                </option>
+            }
+        </select>
+
+        <button type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">
+            Filter
+        </button>
+
+    </form>
+
+    <!-- Sales Table -->
+    <div class="bg-gray-900 border border-gray-800 rounded-2xl shadow-xl overflow-hidden">
+
+        <table class="w-full text-left">
+            <thead class="bg-gray-800 text-gray-300 uppercase text-sm">
+                <tr>
+                    <th class="px-6 py-3">Employee</th>
+                    <th class="px-6 py-3">Quarter</th>
+                    <th class="px-6 py-3">Year</th>
+                    <th class="px-6 py-3">Amount</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-gray-200 divide-y divide-gray-800">
+
+                @if (!Model.Sales.Any())
+                {
+                    <tr>
+                        <td colspan="4" class="px-6 py-6 text-center text-gray-400">
+                            No sales found for this filter.
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var sale in Model.Sales)
+                    {
+                        <tr class="hover:bg-gray-800 transition">
+                            <td class="px-6 py-4">@sale.Employee</td>
+                            <td class="px-6 py-4">Quarter @sale.Quarter</td>
+                            <td class="px-6 py-4">@sale.Year</td>
+                            <td class="px-6 py-4 text-blue-400 font-semibold">@sale.Amount.ToString("C")</td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <!-- Total Sales Summary -->
+    <div class="mt-8 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-lg text-right">
+        <p class="text-gray-300 text-lg">Total Sales:</p>
+        <p class="text-3xl font-bold text-white">@Model.TotalSales.ToString("C")</p>
+    </div>
+
+</div>

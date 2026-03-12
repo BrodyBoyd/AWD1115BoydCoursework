@@ -1,5 +1,125 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model HOT3.ViewModels.CartViewModel
+
+<div class="max-w-6xl mx-auto px-6 py-12">
+
+    <h1 class="text-4xl font-bold text-white mb-10">Your Cart</h1>
+
+    @if (Model.IsEmpty)
+    {
+        <p class="text-center text-xl py-2 bg-slate-800 text-mauve-300 mb-3">@TempData["Message"]</p>
+
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl p-10 text-center shadow-xl">
+            <h2 class="text-2xl font-semibold text-gray-200 mb-4">Your cart is empty</h2>
+            <p class="text-gray-400 mb-6">Looks like you haven’t added anything yet.</p>
+
+            <a asp-controller="Home" asp-action="Index"
+               class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition">
+                Browse Products
+            </a>
+        </div>
+    }
+    else
+    {
+        <p class="text-center text-xl py-2 bg-slate-800 text-mauve-300 mb-3">@TempData["Message"]</p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <!-- Cart Items -->
+            <div class="lg:col-span-2 space-y-6">
+
+                @foreach (var item in Model.Items)
+                {
+                    <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 flex gap-6 shadow-lg">
+
+                        <!-- Image -->
+                        <div class="w-32 h-32 bg-gray-800 rounded-xl flex items-center justify-center overflow-hidden">
+                            <img src="@item.ImageUrl"
+                                 alt="@item.ProductName"
+                                 class="max-h-full max-w-full object-contain" />
+                        </div>
+
+                        <!-- Info -->
+                        <div class="flex-1 text-gray-200 space-y-2">
+
+                            <h2 class="text-xl font-semibold text-white">@item.ProductName</h2>
+
+                            <p class="text-blue-400 font-bold text-lg">
+                                @item.Price.ToString("C") /Item
+                            </p>
+
+                            <form asp-action="UpdateQuantity" method="post">
+                                <input type="hidden" name="productId" value="@item.ProductId" />
+                                <input type="number" name="quantity" value="@item.Quantity" min="1" class="text-gray-300 text-sm"/>
+                                <button type="submit" class="">
+                                    Update
+                                </button>
+
+                            </form>
+                            
+
+                            <p class="text-gray-300 text-sm">
+                                Item Total:
+                                <span class="font-semibold">@item.TotalPrice.ToString("C")</span>
+                            </p>
+                        </div>
+
+                        <!-- Remove -->
+                        <form asp-action="RemoveFromCart"
+                              method="post"
+                              class="flex items-start">
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+
+                            <button type="submit" class="text-red-400 hover:text-red-500 font-semibold transition">
+                                Remove
+                            </button>
+                        </form>
+
+                    </div>
+                }
+
+            </div>
+
+            <!-- Order Summary -->
+            <div class="bg-gray-900 border border-gray-800 rounded-2xl p-8 shadow-xl h-fit">
+
+                <h2 class="text-2xl font-bold text-white mb-6">Order Summary</h2>
+
+                <div class="space-y-4 text-gray-300">
+
+                    <div class="flex justify-between">
+                        <span>Subtotal</span>
+                        <span>@Model.SubTotal.ToString("C")</span>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <span>Tax (7%)</span>
+                        <span>@Model.Tax.ToString("C")</span>
+                    </div>
+
+                    <div class="flex justify-between text-xl font-bold text-white pt-4 border-t border-gray-700">
+                        <span>Total</span>
+                        <span>@Model.Total.ToString("C")</span>
+                    </div>
+
+                </div>
+
+                <a asp-action="Checkout"
+                   class="block w-full mt-8 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">
+                    Proceed to Checkout
+                </a>
+
+                <a asp-controller="Products" asp-action="Index"
+                   class="block w-full mt-3 text-center bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold py-3 rounded-lg transition">
+                    Continue Shopping
+                </a>
+
+                <form asp-action="ClearCart" method="post"
+                   class="block w-full mt-3 text-center bg-red-800 hover:bg-red-700 text-gray-200 font-semibold py-3 rounded-lg transition">
+                    <button type="submit">Clear Cart</button>
+                </form>
+
+            </div>
+
+        </div>
+    }
+
+</div>

@@ -1,5 +1,88 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model HOT3.Models.Order
+
+<div class="max-w-5xl mx-auto px-6 py-12">
+
+    <h1 class="text-4xl font-bold text-white mb-6">Order Confirmed</h1>
+
+    <div class="bg-gray-900 border border-gray-800 rounded-2xl p-8 shadow-xl">
+
+        <!-- Order Header -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold text-white mb-2">Thank you for your order!</h2>
+
+            <p class="text-gray-300">
+                <span class="font-semibold text-gray-200">Order ID:</span> @Model.OrderId
+            </p>
+
+            <p class="text-gray-300">
+                <span class="font-semibold text-gray-200">Order Date:</span> @Model.OrderDate.ToShortDateString()
+            </p>
+
+            <p class="text-gray-300">
+                <span class="font-semibold text-gray-200">Shipping Address:</span> @Model.ShippingAddress
+            </p>
+        </div>
+
+        <!-- Items -->
+        <h3 class="text-xl font-semibold text-white mb-4">Items Ordered</h3>
+
+        <div class="space-y-4">
+
+            @foreach (var item in Model.OrderItems)
+            {
+                <div class="bg-gray-800 border border-gray-700 rounded-xl p-4 flex justify-between items-center">
+
+                    <!-- Left: Product Info -->
+                    <div class="flex items-center gap-4">
+
+                        <!-- Image -->
+                        <div class="w-20 h-20 bg-gray-700 rounded-lg overflow-hidden flex items-center justify-center">
+                            <img src="@item.Product.ImageUrl"
+                                 alt="@item.Product.Name"
+                                 class="max-h-full max-w-full object-contain" />
+                        </div>
+
+                        <!-- Text Info -->
+                        <div class="text-gray-200">
+                            <p class="text-lg font-semibold">@item.Product.Name</p>
+
+                            <p class="text-gray-400 text-sm">
+                                Quantity:
+                                <span class="font-medium text-gray-200">@item.Quantity</span>
+                            </p>
+
+                            <p class="text-gray-400 text-sm">
+                                Unit Price:
+                                <span class="font-medium text-gray-200">@item.UnitPrice.ToString("C")</span>
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <!-- Right: Line Total -->
+                    <div class="text-right text-gray-200 font-semibold text-lg">
+                        @item.TotalPrice.ToString("C")
+                    </div>
+
+                </div>
+            }
+
+        </div>
+
+        <!-- Total -->
+        <div class="mt-8 pt-6 border-t border-gray-700 flex justify-between text-xl font-bold text-white">
+            <span>Total Amount</span>
+            <span>@Model.TotalAmount.ToString("C")</span>
+        </div>
+
+        <!-- Back Button -->
+        <div class="mt-10">
+            <a asp-controller="Home" asp-action="Index"
+               class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition">
+                Return to Home
+            </a>
+        </div>
+
+    </div>
+
+</div>
