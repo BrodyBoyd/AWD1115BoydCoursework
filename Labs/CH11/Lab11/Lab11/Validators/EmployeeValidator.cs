@@ -22,7 +22,17 @@ namespace Lab11.Validators
                 .LessThan(DateTime.Now).WithMessage("Birthday must be in the past.");
             RuleFor(e => e.HireDate)
                 .LessThanOrEqualTo(DateTime.Now).WithMessage("Hire date cannot be in the future.")
-                .GreaterThanOrEqualTo(e => e.Birthday).GreaterThanOrEqualTo(new DateTime(1995, 1, 1)).WithMessage("Hire date cannot be before birthday.");
+                .GreaterThanOrEqualTo(e => e.Birthday).WithMessage("Hire date cannot be before birthday.")
+                .GreaterThanOrEqualTo(new DateTime(1995, 1, 1)).WithMessage("Hire date cannot be before January 1, 1995.");
+            RuleFor(e => e.ManagerId)
+                .MustAsync(async (managerId, cancellation) =>
+                {
+
+                    if (managerId == null)
+                        return false; 
+                    var managerExists = await _context.Employees.AnyAsync(e => e.EmployeeId == managerId && e.IsManager, cancellation);
+                    return managerExists;
+                }).WithMessage("Selected manager does not exist or is not a manager.");
 
             RuleFor(p => p.FirstName).MustAsync(async (employee, firstName, cancellation) =>
             {

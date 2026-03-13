@@ -63,6 +63,12 @@ namespace Lab11.Controllers
         [HttpGet]
         public async Task<IActionResult> AddEmployee()
         {
+            var managers = await _context.Employees
+                .Where(e => e.IsManager == true)
+                .Select(e => new { e.EmployeeId, Name = e.FirstName + " " + e.LastName })
+                .ToListAsync();
+
+            ViewBag.Managers = new SelectList(managers, "EmployeeId", "Name");
             return View();
         }
 
@@ -70,7 +76,12 @@ namespace Lab11.Controllers
         public async Task<IActionResult> AddEmployee(Employee employee)
         {
             var result = await _employeeValidator.ValidateAsync(employee);
+            var managers = await _context.Employees
+                .Where(e => e.IsManager == true)
+                .Select(e => new { e.EmployeeId, Name = e.FirstName + " " + e.LastName })
+                .ToListAsync();
 
+            ViewBag.Managers = new SelectList(managers, "EmployeeId", "Name");
             if (!result.IsValid)
             {
                 foreach (var e in result.Errors)
