@@ -1,0 +1,67 @@
+﻿@model ListingVM
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
+<div class="min-h-screen bg-[#F7F4EF] py-12 px-6">
+    <div class="max-w-3xl mx-auto bg-white shadow-lg rounded-xl border border-[#E5E1DA] p-10">
+
+        <h1 class="text-3xl font-bold text-[#1A1A1A] mb-6 tracking-tight">
+            Create New Listing
+        </h1>
+
+        <form asp-action="Create" enctype="multipart/form-data" class="space-y-6">
+            <div asp-validation-summary="ModelOnly" class="text-red-600 text-sm"></div>
+
+            <!-- Title -->
+            <div>
+                <label asp-for="Title" class="block text-sm font-semibold text-[#1A1A1A] mb-1"></label>
+                <input asp-for="Title"
+                       class="w-full px-4 py-2 border border-[#D9D4CC] rounded-md bg-white focus:ring-2 focus:ring-[#C6A667] focus:outline-none" />
+                <span asp-validation-for="Title" class="text-red-600 text-sm"></span>
+            </div>
+
+            <!-- Description -->
+            <div>
+                <label asp-for="Description" class="block text-sm font-semibold text-[#1A1A1A] mb-1"></label>
+                <textarea asp-for="Description"
+                          rows="4"
+                          class="w-full px-4 py-2 border border-[#D9D4CC] rounded-md bg-white focus:ring-2 focus:ring-[#C6A667] focus:outline-none"></textarea>
+                <span asp-validation-for="Description" class="text-red-600 text-sm"></span>
+            </div>
+
+            <!-- Price -->
+            <div>
+                <label asp-for="Price" class="block text-sm font-semibold text-[#1A1A1A] mb-1"></label>
+                <input asp-for="Price"
+                       class="w-full px-4 py-2 border border-[#D9D4CC] rounded-md bg-white focus:ring-2 focus:ring-[#C6A667] focus:outline-none" />
+                <span asp-validation-for="Price" class="text-red-600 text-sm"></span>
+            </div>
+
+            <!-- Image URL -->
+            <div>
+                <label asp-for="ImageUrl" class="block text-sm font-semibold text-[#1A1A1A] mb-1"></label>
+                <input asp-for="ImageUrl"
+                       class="w-full px-4 py-2 border border-[#D9D4CC] rounded-md bg-white focus:ring-2 focus:ring-[#C6A667] focus:outline-none" />
+                <span asp-validation-for="ImageUrl" class="text-red-600 text-sm"></span>
+            </div>
+
+            <!-- Hidden User -->
+            <input type="hidden" asp-for="UserId" value="@UserManager.GetUserId(User)" />
+
+            <!-- Submit -->
+            <div>
+                <button type="submit"
+                        class="w-full py-3 bg-[#1A1A1A] text-white font-semibold rounded-md hover:bg-black transition">
+                    Create Listing
+                </button>
+            </div>
+        </form>
+
+        <div class="mt-6">
+            <a asp-action="Index"
+                   class="text-[#C6A667] font-semibold hover:underline">
+                ← Back to Listings
+            </a>
+        </div>
+    </div>
+</div>

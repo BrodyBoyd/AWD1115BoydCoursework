@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
+
+</head>
+
+@functions {
+    string ActiveClass(string controller, string action = "Index", string area = "")
+    {
+        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+        var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+        var currentArea = ViewContext.RouteData.Values["area"]?.ToString() ?? "";
+
+        if (currentController == controller &&
+        currentAction == action &&
+        currentArea == area)
+        {
+            return "border-b-2 border-blue-500";
+        }
+
+        return "";
+    }
+}
+@{
+    string currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    string currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+    string currentArea = ViewContext.RouteData.Values["area"]?.ToString();
+}
+<body>
+    <nav class="bg-white shadow dark:bg-gray-800">
+        <div class="container flex items-center justify-center p-6 mx-auto text-gray-600 capitalize dark:text-gray-300">
+            <a asp-action="Index" class="text-gray-900 dark:text-gray-200 text-xl font-bold border-blue-500 mx-1.5 sm:mx-6">Local Common Goods</a>
+
+            <a asp-action="Index" class="text-gray-800 dark:text-gray-200 mx-1.5 sm:mx-6 @ActiveClass("Listings", "Index")">All Listings</a>
+
+            <a href="#" class="hover:text-gray-800 dark:hover:text-gray-200 mx-1.5 sm:mx-6 @ActiveClass("Listings", "MyAuctions")">My Auctions</a>
+
+            <a href="#" class="hover:text-gray-800 dark:hover:text-gray-200 mx-1.5 sm:mx-6 @ActiveClass("Listings", "MyBids")">My Bids</a>
+
+            <a asp-action="Create" class="hover:text-gray-800 dark:hover:text-gray-200 mx-1.5 sm:mx-6 @ActiveClass("Listings", "Create")">Create Listing</a>
+        </div>
+    </nav>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

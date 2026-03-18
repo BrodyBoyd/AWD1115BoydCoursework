@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Listing>
+
+<div class="min-h-screen bg-[#F7F4EF]">
+    <!-- Page Header -->
+    <div class="border-b border-[#D9D4CC] bg-white">
+        <div class="max-w-7xl mx-auto px-6 py-10">
+            <h1 class="text-4xl font-bold text-[#1A1A1A] tracking-tight">
+                All Auction Listings
+            </h1>
+            <p class="mt-2 text-lg text-[#4A4A4A]">
+                Explore all available items currently open for bidding.
+            </p>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="max-w-7xl mx-auto px-6 py-6">
+        <div class="flex flex-wrap gap-4 items-center">
+            <input type="text"
+                   placeholder="Search listings…"
+                   class="w-full md:w-80 px-4 py-2 border border-[#D9D4CC] rounded-md bg-white focus:ring-2 focus:ring-[#C6A667]" />
+
+            <select class="px-4 py-2 border border-[#D9D4CC] rounded-md bg-white focus:ring-2 focus:ring-[#C6A667]">
+                <option>All Categories</option>
+                <option>Jewelry</option>
+                <option>Coins</option>
+                <option>Collectibles</option>
+                <option>Fine Art</option>
+            </select>
+
+            <select class="px-4 py-2 border border-[#D9D4CC] rounded-md bg-white focus:ring-2 focus:ring-[#C6A667]">
+                <option>Sort by</option>
+                <option>Ending Soon</option>
+                <option>Newest</option>
+                <option>Highest Bid</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Listings Grid -->
+    <div class="max-w-7xl mx-auto px-6 pb-20">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            @foreach (var item in Model)
+            {
+                <div class="bg-white rounded-xl shadow-sm border border-[#E5E1DA] hover:shadow-md transition overflow-hidden">
+                    <div class="relative">
+                        <img src="@item.ImageUrl" class="w-full h-56 object-cover" />
+
+                        <!-- Badge -->
+                        <div class="absolute top-3 left-3 bg-[#C6A667] text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
+                            @item.Category
+                        </div>
+                    </div>
+
+                    <div class="p-5">
+                        <h2 class="text-xl font-semibold text-[#1A1A1A]">
+                            @item.Title
+                        </h2>
+
+                        <p class="mt-2 text-sm text-[#4A4A4A] line-clamp-2">
+                            @item.Description
+                        </p>
+
+                        <div class="mt-4 flex justify-between items-center">
+                            <div>
+                                <p class="text-sm text-[#4A4A4A]">Current Bid</p>
+                                <p class="text-lg font-bold text-[#1A1A1A]">
+                                    $15
+                                </p>
+                            </div>
+
+                            <a href="/Listings/Details/@item.ListingId"
+                                   class="px-4 py-2 bg-[#1A1A1A] text-white rounded-md hover:bg-black transition">
+                                View
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
