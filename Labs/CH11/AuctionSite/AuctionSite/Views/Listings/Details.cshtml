@@ -1,0 +1,148 @@
+﻿@model Listing
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Listing Details";
+}
+
+<div class="min-h-screen bg-[#F7F4EF] py-12 px-6">
+    <div class="max-w-5xl mx-auto bg-white shadow-lg rounded-xl border border-[#E5E1DA] p-10">
+
+        <!-- Winner / Status Messages -->
+        @if (User.Identity.IsAuthenticated)
+        {
+            if (Model.AuctionEnded == true)
+            {
+                foreach (var bid in Model.Bids)
+                {
+                    if (bid.UserId == UserManager.GetUserId(User))
+                    {
+                        <div class="mb-6 p-4 bg-green-100 border border-green-300 text-green-800 rounded-md">
+                            <h4 class="font-semibold text-lg">🎉 Congrats, you are the winner!</h4>
+                        </div>
+                    }
+                    else if (UserManager.GetUserId(User) == Model.User.Id)
+                    {
+                        <div class="mb-6 p-4 bg-blue-100 border border-blue-300 text-blue-800 rounded-md">
+                            <h4 class="font-semibold text-lg">@bid.User.UserName is the winner!</h4>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mb-6 p-4 bg-gray-100 border border-gray-300 text-gray-700 rounded-md">
+                            <h5 class="font-semibold">Bidding is closed.</h5>
+                        </div>
+                    }
+                }
+            }
+        }
+
+        <!-- Title -->
+        <h1 class="text-3xl font-bold text-[#1A1A1A] mb-8 tracking-tight">
+            @Model.Title
+        </h1>
+
+        <!-- Main Layout -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+            <!-- Image -->
+            <div>
+                <img src="~/Images/@Model.ImageUrl"
+                     alt="@Model.Title"
+                     class="w-full rounded-lg shadow-md border border-[#E5E1DA] object-cover" />
+            </div>
+
+            <!-- Details -->
+            <div class="space-y-6">
+
+                <p class="text-[#4A4A4A] leading-relaxed">
+                    @Model.Description
+                </p>
+
+                <!-- Bid List (Only for owner) -->
+                @if (User.Identity.IsAuthenticated && UserManager.GetUserId(User) == Model.User.Id)
+                {
+                    <div class="bg-[#F7F4EF] border border-[#D9D4CC] rounded-md p-4">
+                        <h3 class="font-semibold text-[#1A1A1A] mb-2">Bid History</h3>
+                        <ul class="space-y-1 text-sm text-[#4A4A4A]">
+                            @foreach (var bid in Model.Bids)
+                            {
+                                <li>
+                                    <span class="font-medium">@bid.User.UserName</span>
+                                    bid
+                                    <span class="font-semibold text-[#1A1A1A]">$@bid.Price.ToString("N2")</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+
+                <!-- Bid Form -->
+                @if (User.Identity.IsAuthenticated && Model.AuctionEnded == false)
+                {
+                    <form asp-action="AddBid" method="post" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-[#1A1A1A] mb-1">Place a Bid</label>
+                            <div class="flex items-center gap-3">
+                                <span class="text-[#1A1A1A] font-medium">$</span>
+                                <input type="number"
+                                       min="@Model.Price"
+                                       step="0.01"
+                                       name="Price"
+                                       placeholder="@Model.Price.ToString("C")"
+                                       class="w-40 px-3 py-2 border border-[#D9D4CC] rounded-md bg-white focus:ring-2 focus:ring-[#C6A667] focus:outline-none" />
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="UserId" value="@UserManager.GetUserId(User)" />
+                        <input type="hidden" name="ListingId" value="@Model.ListingId" />
+
+                        <button type="submit"
+                                class="px-6 py-2 bg-[#1A1A1A] text-white rounded-md font-semibold hover:bg-black transition">
+                            Submit Bid
+                        </button>
+                    </form>
+
+                    <p class="text-sm text-[#4A4A4A]">Total Bids: @Model.Bids.Count</p>
+                }
+
+                <p class="text-sm text-[#4A4A4A]">
+                    Listed By:
+                    <span class="font-semibold text-[#1A1A1A]">@Model.User.UserName</span>
+                </p>
+
+                <!-- Close Bidding -->
+                @if (User.Identity.IsAuthenticated &&
+                                     UserManager.GetUserId(User) == Model.User.Id &&
+                                     Model.AuctionEnded == false)
+                {
+                    <a asp-action="EndAuction"
+                           asp-route-id="@Model.ListingId"
+                           class="inline-block px-5 py-2 bg-[#C6A667] text-white rounded-md font-semibold hover:bg-[#b09055] transition">
+                        Close Bidding
+                    </a>
+                }
+
+            </div>
+        </div>
+
+        <!-- Comments -->
+        <div class="mt-12">
+            <h3 class="text-xl font-semibold text-[#1A1A1A] mb-4">Comments</h3>
+
+            <div class="space-y-4">
+                @foreach (var comment in Model.Comments)
+                {
+                    <div class="bg-[#F7F4EF] border border-[#D9D4CC] rounded-md p-4">
+                        <p class="text-sm">
+                            <span class="font-semibold text-[#1A1A1A]">@comment.User.UserName:</span>
+                            <span class="text-[#4A4A4A]">@comment.Text</span>
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

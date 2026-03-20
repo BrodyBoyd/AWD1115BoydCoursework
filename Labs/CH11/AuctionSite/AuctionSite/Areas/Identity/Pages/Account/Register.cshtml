@@ -1,0 +1,123 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="min-h-screen bg-[#F7F4EF] flex items-center justify-center py-16 px-6">
+    <div class="w-full max-w-4xl bg-white shadow-lg rounded-xl border border-[#E5E1DA] p-10 grid grid-cols-1 md:grid-cols-2 gap-12">
+
+        <!-- Local Registration -->
+        <section>
+            <h1 class="text-3xl font-bold text-[#1A1A1A] mb-6 tracking-tight">
+                Create an Account
+            </h1>
+
+            <form id="registerForm"
+                  asp-route-returnUrl="@Model.ReturnUrl"
+                  method="post"
+                  class="space-y-6">
+
+                <div asp-validation-summary="ModelOnly" class="text-red-600 text-sm"></div>
+
+                <!-- Email -->
+                <div>
+                    <label asp-for="Input.Email" class="block text-sm font-semibold text-[#1A1A1A] mb-1"></label>
+                    <input asp-for="Input.Email"
+                           autocomplete="username"
+                           placeholder="name@example.com"
+                           class="w-full px-4 py-2 border border-[#D9D4CC] rounded-md bg-white
+                    focus:ring-2 focus:ring-[#C6A667] focus:outline-none" />
+                    <span asp-validation-for="Input.Email" class="text-red-600 text-sm"></span>
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <label asp-for="Input.Password" class="block text-sm font-semibold text-[#1A1A1A] mb-1"></label>
+                    <input asp-for="Input.Password"
+                           autocomplete="new-password"
+                           placeholder="password"
+                           class="w-full px-4 py-2 border border-[#D9D4CC] rounded-md bg-white
+                    focus:ring-2 focus:ring-[#C6A667] focus:outline-none" />
+                    <span asp-validation-for="Input.Password" class="text-red-600 text-sm"></span>
+                </div>
+
+                <!-- Confirm Password -->
+                <div>
+                    <label asp-for="Input.ConfirmPassword" class="block text-sm font-semibold text-[#1A1A1A] mb-1"></label>
+                    <input asp-for="Input.ConfirmPassword"
+                           autocomplete="new-password"
+                           placeholder="confirm password"
+                           class="w-full px-4 py-2 border border-[#D9D4CC] rounded-md bg-white
+                    focus:ring-2 focus:ring-[#C6A667] focus:outline-none" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-red-600 text-sm"></span>
+                </div>
+
+                <!-- Submit -->
+                <button id="registerSubmit"
+                        type="submit"
+                        class="w-full py-3 bg-[#1A1A1A] text-white font-semibold rounded-md hover:bg-black transition">
+                    Register
+                </button>
+
+                <!-- Links -->
+                <div class="space-y-2 text-sm">
+                    <p>
+                        <a asp-page="./Login"
+                               asp-route-returnUrl="@Model.ReturnUrl"
+                               class="text-[#C6A667] hover:underline">
+                            Already have an account? Log in
+                        </a>
+                    </p>
+                </div>
+            </form>
+        </section>
+
+        <!-- External Providers -->
+        <section>
+            <h2 class="text-2xl font-semibold text-[#1A1A1A] mb-4">
+                Use another service
+            </h2>
+
+            <hr class="border-[#D9D4CC] mb-6" />
+
+            @if ((Model.ExternalLogins?.Count ?? 0) == 0)
+            {
+                <p class="text-sm text-[#4A4A4A]">
+                    No external authentication services are configured.
+                    See this
+                    <a href="https://go.microsoft.com/fwlink/?LinkID=532715"
+                           class="text-[#C6A667] hover:underline">
+                        article
+                    </a>
+                    for setup instructions.
+                </p>
+            }
+            else
+            {
+                <form id="external-account"
+                      asp-page="./ExternalLogin"
+                      asp-route-returnUrl="@Model.ReturnUrl"
+                      method="post"
+                      class="space-y-4">
+
+                    @foreach (var provider in Model.ExternalLogins!)
+                    {
+                        <button type="submit"
+                                name="provider"
+                                value="@provider.Name"
+                                class="w-full py-3 bg-[#C6A667] text-white font-semibold rounded-md hover:bg-[#b09055] transition"
+                                title="Register using your @provider.DisplayName account">
+                            @provider.DisplayName
+                        </button>
+                    }
+                </form>
+            }
+        </section>
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

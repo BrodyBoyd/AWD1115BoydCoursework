@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="flex items-center gap-6">
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <!-- Greeting -->
+        <li>
+            <a id="manage"
+                   asp-area="Identity"
+                   asp-page="/Account/Manage/Index"
+                   class="text-[#1A1A1A] font-medium hover:text-[#C6A667] transition">
+                Hello @UserManager.GetUserName(User)!
+            </a>
+        </li>
+
+        <!-- Logout -->
+        <li>
+            <form id="logoutForm"
+                  asp-area="Identity"
+                  asp-page="/Account/Logout"
+                  asp-route-returnUrl="@Url.Action("Index", "Listings", new { area = "" })">
+
+                <button id="logout"
+                        type="submit"
+                        class="px-4 py-2 bg-[#1A1A1A] text-white rounded-md font-medium hover:bg-black transition">
+                    Logout
+                </button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <!-- Register -->
+        <li>
+            <a id="register"
+                   asp-area="Identity"
+                   asp-page="/Account/Register"
+                   class="px-4 py-2 bg-[#C6A667] text-white rounded-md font-medium hover:bg-[#b09055] transition">
+                Register
+            </a>
+        </li>
+
+        <!-- Login -->
+        <li>
+            <a id="login"
+                   asp-area="Identity"
+                   asp-page="/Account/Login"
+                   class="px-4 py-2 bg-[#1A1A1A] text-white rounded-md font-medium hover:bg-black transition">
+                Login
+            </a>
+        </li>
+    }
+</ul>

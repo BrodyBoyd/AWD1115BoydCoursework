@@ -11,7 +11,7 @@ namespace AuctionSite.Models
         public double Price { get; set; }
         public string ImageUrl { get; set; }
         public bool AuctionEnded { get; set; } = false;
-        public CategoryName Category { get; set; }
+        public string Category { get; set; }
 
         [Required]
         public string? UserId { get; set; }

@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Bid>
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
+
+
+<div class="min-h-screen bg-[#F7F4EF] py-12 px-6">
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Page Header -->
+        <div class="mb-10">
+            <h1 class="text-4xl font-bold text-[#1A1A1A] tracking-tight">
+                My Bids
+            </h1>
+            <p class="mt-2 text-lg text-[#4A4A4A]">
+                View all auctions you’ve placed bids on.
+            </p>
+        </div>
+
+        <!-- Empty State -->
+        @if (!Model.Any())
+        {
+            <div class="bg-white border border-[#E5E1DA] rounded-xl p-10 shadow-sm text-center">
+                <p class="text-[#4A4A4A] text-lg">You haven’t placed any bids yet.</p>
+                <a asp-action="Index" asp-controller="Listings"
+                   class="inline-block mt-4 px-6 py-3 bg-[#1A1A1A] text-white rounded-md font-semibold hover:bg-black transition">
+                    Browse Listings
+                </a>
+            </div>
+        }
+        else
+        {
+            <!-- Group bids by listing -->
+            
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                @foreach (var bid in Model)
+                {
+                    <div class="bg-white rounded-xl shadow-sm border border-[#E5E1DA] hover:shadow-md transition overflow-hidden">
+
+                        <!-- Image -->
+                        <div class="relative">
+                            <img src="~/Images/@bid.Listing.ImageUrl" class="w-full h-56 object-cover" />
+
+                            <!-- Auction Status -->
+                            @if (bid.Listing.AuctionEnded)
+                            {
+                                <div class="absolute top-3 left-3 bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
+                                    Closed
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="absolute top-3 left-3 bg-[#C6A667] text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
+                                    Active
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Content -->
+                        <div class="p-5">
+                            <h2 class="text-xl font-semibold text-[#1A1A1A]">
+                                @bid.Listing.Title
+                            </h2>
+
+                            <p class="mt-2 text-sm text-[#4A4A4A] line-clamp-2">
+                                @bid.Listing.Description
+                            </p>
+
+                            <div class="mt-4 flex justify-between items-center">
+                                <a asp-action="Details"
+                                   asp-controller="Listings"
+                                       asp-route-id="@bid.Listing.ListingId"
+                                   class="px-4 py-2 bg-[#1A1A1A] text-white rounded-md hover:bg-black transition">
+                                    View
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

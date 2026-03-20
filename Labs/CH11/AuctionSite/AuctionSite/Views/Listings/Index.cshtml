@@ -1,6 +1,16 @@
 ﻿@model IEnumerable<Listing>
 
+@{
+    var currentPage = Context.Request.Query["page"].ToString() ?? "1";
+    var currentSort = Context.Request.Query["sortby"].ToString() ?? "title";
+    var currentSearch = Context.Request.Query["search"].ToString();
+    var currentCategory = ViewBag.CurrentCategory as string;
+    int pageNum = int.TryParse(currentPage, out var p) ? p : 1;
+    var categories = ViewBag.Categories as List<string>;
+}
+
 <div class="min-h-screen bg-[#F7F4EF]">
+
     <!-- Page Header -->
     <div class="border-b border-[#D9D4CC] bg-white">
         <div class="max-w-7xl mx-auto px-6 py-10">
@@ -16,24 +26,72 @@
     <!-- Filters -->
     <div class="max-w-7xl mx-auto px-6 py-6">
         <div class="flex flex-wrap gap-4 items-center">
-            <input type="text"
-                   placeholder="Search listings…"
-                   class="w-full md:w-80 px-4 py-2 border border-[#D9D4CC] rounded-md bg-white focus:ring-2 focus:ring-[#C6A667]" />
 
-            <select class="px-4 py-2 border border-[#D9D4CC] rounded-md bg-white focus:ring-2 focus:ring-[#C6A667]">
-                <option>All Categories</option>
-                <option>Jewelry</option>
-                <option>Coins</option>
-                <option>Collectibles</option>
-                <option>Fine Art</option>
-            </select>
+            <form method="get" class="flex flex-wrap gap-4 items-center">
 
-            <select class="px-4 py-2 border border-[#D9D4CC] rounded-md bg-white focus:ring-2 focus:ring-[#C6A667]">
-                <option>Sort by</option>
-                <option>Ending Soon</option>
-                <option>Newest</option>
-                <option>Highest Bid</option>
-            </select>
+                <!-- Search -->
+                <input type="text"
+                       name="search"
+                       value="@currentSearch"
+                       placeholder="Search listings…"
+                       class="w-full md:w-80 px-4 py-2 border border-[#D9D4CC] rounded-md bg-white focus:ring-2 focus:ring-[#C6A667]" />
+
+                <button type="submit"
+                        class="px-4 py-2 bg-[#1A1A1A] text-white rounded-md hover:bg-black transition">
+                    Search
+                </button>
+
+                <!-- Category -->
+                <select name="category"
+                        onchange="this.form.submit()"
+                        class="px-4 py-2 border border-[#D9D4CC] rounded-md bg-white focus:ring-2 focus:ring-[#C6A667]">
+                    <option value="">All Categories</option>
+
+                    @if (categories != null)
+                    {
+                        foreach (var category in categories)
+                        {
+                            <option value="@category" selected="@(currentCategory == category)">
+                                @category
+                            </option>
+                        }
+                    }
+                </select>
+            </form>
+
+            <!-- Sort Buttons -->
+            <div class="flex gap-3">
+                <a class="px-4 py-2 bg-[#C6A667] text-white rounded-md hover:bg-[#b09055] transition"
+                   href="@Url.Action("Index", new {
+                       category = currentCategory,
+                       search = currentSearch,
+                       sortby = "price",
+                       page = 1
+                   })">
+                    Price ↓
+                </a>
+
+                <a class="px-4 py-2 bg-[#C6A667] text-white rounded-md hover:bg-[#b09055] transition"
+                   href="@Url.Action("Index", new {
+                       category = currentCategory,
+                       search = currentSearch,
+                       sortby = "title",
+                       page = 1
+                   })">
+                    Title ↓
+                </a>
+
+                <a class="px-4 py-2 bg-[#C6A667] text-white rounded-md hover:bg-[#b09055] transition"
+                   href="@Url.Action("Index", new {
+                       category = currentCategory,
+                       search = currentSearch,
+                       sortby = "description",
+                       page = 1
+                   })">
+                    Description ↓
+                </a>
+            </div>
+
         </div>
     </div>
 
@@ -44,15 +102,17 @@
             @foreach (var item in Model)
             {
                 <div class="bg-white rounded-xl shadow-sm border border-[#E5E1DA] hover:shadow-md transition overflow-hidden">
-                    <div class="relative">
-                        <img src="@item.ImageUrl" class="w-full h-56 object-cover" />
 
-                        <!-- Badge -->
+                    <!-- Image -->
+                    <div class="relative">
+                        <img src="~/images/@item.ImageUrl" class="w-full h-56 object-cover" />
+
                         <div class="absolute top-3 left-3 bg-[#C6A667] text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
                             @item.Category
                         </div>
                     </div>
 
+                    <!-- Content -->
                     <div class="p-5">
                         <h2 class="text-xl font-semibold text-[#1A1A1A]">
                             @item.Title
@@ -66,18 +126,50 @@
                             <div>
                                 <p class="text-sm text-[#4A4A4A]">Current Bid</p>
                                 <p class="text-lg font-bold text-[#1A1A1A]">
-                                    $15
+                                    @item.Price.ToString("C")
                                 </p>
                             </div>
 
-                            <a href="/Listings/Details/@item.ListingId"
-                                   class="px-4 py-2 bg-[#1A1A1A] text-white rounded-md hover:bg-black transition">
+                            <a asp-action="Details"
+                               asp-route-id="@item.ListingId"
+                               class="px-4 py-2 bg-[#1A1A1A] text-white rounded-md hover:bg-black transition">
                                 View
                             </a>
                         </div>
                     </div>
                 </div>
             }
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex justify-center gap-4 mt-10">
+
+            @if (pageNum > 1)
+            {
+                <a class="px-5 py-2 bg-[#1A1A1A] text-white rounded-md hover:bg-black transition"
+                   href="@Url.Action("Index", new {
+                       category = currentCategory,
+                       search = currentSearch,
+                       sortby = currentSort,
+                       page = pageNum - 1
+                   })">
+                    Previous
+                </a>
+            }
+
+            @if (pageNum < ViewBag.TotalPages)
+            {
+                <a class="px-5 py-2 bg-[#1A1A1A] text-white rounded-md hover:bg-black transition"
+                   href="@Url.Action("Index", new {
+                       category = currentCategory,
+                       search = currentSearch,
+                       sortby = currentSort,
+                       page = pageNum + 1
+                   })">
+                    Next
+                </a>
+            }
+
         </div>
     </div>
 </div>

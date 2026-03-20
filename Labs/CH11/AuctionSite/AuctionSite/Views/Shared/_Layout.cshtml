@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -30,22 +33,53 @@
     string currentAction = ViewContext.RouteData.Values["action"]?.ToString();
     string currentArea = ViewContext.RouteData.Values["area"]?.ToString();
 }
-<body>
-    <nav class="bg-white shadow dark:bg-gray-800">
-        <div class="container flex items-center justify-center p-6 mx-auto text-gray-600 capitalize dark:text-gray-300">
-            <a asp-action="Index" class="text-gray-900 dark:text-gray-200 text-xl font-bold border-blue-500 mx-1.5 sm:mx-6">Local Common Goods</a>
+<nav class="bg-white border-b border-[#D9D4CC] shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
-            <a asp-action="Index" class="text-gray-800 dark:text-gray-200 mx-1.5 sm:mx-6 @ActiveClass("Listings", "Index")">All Listings</a>
+        <!-- Left: Logo + Nav Links -->
+        <div class="flex items-center gap-10">
 
-            <a href="#" class="hover:text-gray-800 dark:hover:text-gray-200 mx-1.5 sm:mx-6 @ActiveClass("Listings", "MyAuctions")">My Auctions</a>
+            <!-- Logo / Brand -->
+            <a asp-action="Index"
+                   class="text-2xl font-bold text-[#1A1A1A] tracking-tight hover:text-[#C6A667] transition">
+                Local Common Goods
+            </a>
 
-            <a href="#" class="hover:text-gray-800 dark:hover:text-gray-200 mx-1.5 sm:mx-6 @ActiveClass("Listings", "MyBids")">My Bids</a>
+            <!-- Nav Links -->
+            <div class="flex items-center gap-6 text-[#1A1A1A] font-medium">
 
-            <a asp-action="Create" class="hover:text-gray-800 dark:hover:text-gray-200 mx-1.5 sm:mx-6 @ActiveClass("Listings", "Create")">Create Listing</a>
+                <a asp-action="Index"
+                       class="hover:text-[#C6A667] transition @ActiveClass("Listings", "Index")">
+                    All Listings
+                </a>
+
+                <a asp-action="MyAuctions" asp-route-userId="@UserManager.GetUserId(User)"
+                       class="hover:text-[#C6A667] transition @ActiveClass("Listings", "MyAuctions")">
+                    My Auctions
+                </a>
+
+                <a asp-action="MyBids"
+                       class="hover:text-[#C6A667] transition @ActiveClass("Listings", "MyBids")">
+                    My Bids
+                </a>
+
+                <a asp-action="Create"
+                       class="hover:text-[#C6A667] transition @ActiveClass("Listings", "Create")">
+                    Create Listing
+                </a>
+            </div>
         </div>
-    </nav>
-    <div>
-        @RenderBody()
+
+        <!-- Right: Login Partial -->
+        <div class="flex items-center">
+            <partial name="_LoginPartial" />
+        </div>
+
     </div>
+</nav>
+<body>
+    @RenderBody()
 </body>
+@RenderSection("Scripts", required: false)
+
 </html>

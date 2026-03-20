@@ -10,9 +10,9 @@ namespace AuctionSite.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
-        public IFormFile ImageUrl { get; set; }
+        public IFormFile Image { get; set; }
         public bool AuctionEnded { get; set; } = false;
-        public CategoryName Category { get; set; }
+        public string Category { get; set; }
 
         [Required]
         public string? UserId { get; set; }
