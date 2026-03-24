@@ -7,15 +7,15 @@ namespace PeePal.Models
     public class Review
     {
         public int ReviewId { get; set; }
-        
-        public int Smell { get; set; }
-        public int Cleanliness { get; set; }
-        public int Privacy { get; set; }
-        public int Comfort { get; set; }
-        public int Availability { get; set; }
-        public string Likes { get; set; }
-        public string Dislikes { get; set; }
-        public string Notes { get; set; }
+
+        public int? Smell { get; set; } 
+        public int? Cleanliness { get; set; }
+        public int? Privacy { get; set; } 
+        public int? Comfort { get; set; } 
+        public int? Availability { get; set; } 
+        public string? Likes { get; set; }
+        public string? Dislikes { get; set; }
+        public string? Notes { get; set; }
         public DateTime DateSubmitted { get; set; } = DateTime.Today;
         
 
@@ -31,7 +31,7 @@ namespace PeePal.Models
 
         public double getAverageScore()
         {
-            double total = Smell + Cleanliness + Privacy + Comfort + Availability;
+            double total = Convert.ToDouble(Smell + Cleanliness + Privacy + Comfort + Availability);
             return total / 5;
         }
 

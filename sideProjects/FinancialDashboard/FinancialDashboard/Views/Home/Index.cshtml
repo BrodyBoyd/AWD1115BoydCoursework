@@ -1,0 +1,39 @@
+﻿@model HomeViewModel
+
+<div class="min-h-screen bg-gray-900 text-white px-6 py-12">
+
+    <h1 class="text-4xl font-extrabold tracking-tight mb-10 text-center">
+        Your Investment Options
+    </h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+        @foreach (var method in Model.EarningMethods)
+        {
+            <div class="bg-gray-800/40 border border-gray-700 rounded-2xl p-6 shadow-lg
+                hover:shadow-2xl hover:scale-[1.02] transition-all duration-300
+                backdrop-blur-sm">
+
+                <h2 class="text-2xl font-semibold mb-3">
+                    @method.Name
+                </h2>
+
+                <p class="text-gray-300 mb-4 leading-relaxed">
+                    Expected Return:
+                    <span class="text-green-400 font-semibold">
+                        @(method.PercentageReturn * 100)%
+                    </span>
+                </p>
+
+                <p class="text-gray-300 mb-6">
+                    Volatility:
+                    <span class="text-yellow-400 font-semibold">
+                        @method.Volatility / 7
+                    </span>
+                </p>
+            </div>
+        }
+
+    </div>
+
+</div>

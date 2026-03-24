@@ -1,3 +1,4 @@
+using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PeePal.Models;
@@ -21,6 +22,7 @@ builder.Services.AddRouting(options =>
     options.LowercaseUrls = true;
     options.AppendTrailingSlash = true;
 });
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
 var app = builder.Build();
 app.UseHttpsRedirection();

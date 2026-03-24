@@ -1,0 +1,40 @@
+﻿@model DepositViewModel
+
+<div class="min-h-screen bg-gray-900 text-white px-6 py-12 flex justify-center">
+
+    <div class="w-full max-w-xl bg-gray-800/40 border border-gray-700 rounded-2xl p-10 shadow-xl backdrop-blur-sm">
+
+        <h1 class="text-3xl font-extrabold tracking-tight mb-6 text-center">
+            Deposit Funds
+        </h1>
+
+        <p class="text-gray-300 text-center mb-10">
+            Add money to your balance to use in future simulations or investments.
+        </p>
+
+        <form asp-action="Deposit" method="post" class="space-y-8">
+
+            <!-- Amount Input -->
+            <div>
+                <label class="block text-lg font-medium mb-2">Deposit Amount</label>
+
+                <input type="number"
+                       name="Amount"
+                       step="0.01"
+                       min="0"
+                       class="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
+                focus:ring-2 focus:ring-blue-500"
+                       placeholder="Enter amount (e.g., 250)" />
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit"
+                    class="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-lg font-semibold transition">
+                Deposit
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

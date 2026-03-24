@@ -1,16 +1,17 @@
 ﻿using AuctionSite.Data;
 using AuctionSite.Models;
 using AuctionSite.Services;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace AuctionSite.Controllers
 {
-    public class ListingsController(IWebHostEnvironment _webHostEnvironment, IListingsService _listingsService, IBidsService _bidsService) : Controller
+    public class ListingsController(IWebHostEnvironment _webHostEnvironment, IListingsService _listingsService, IBidsService _bidsService, IValidator<Bid> _bidValidator, ICommentsService _commentsService) : Controller
     {
         private const int PageSize = 3;
-        public async Task<IActionResult> Index(string? search, int page = 1, string sortby = "title", string category = "All")
+        public async Task<IActionResult> Index(string? search, int page = 1, string sortby = "title", string category = "All", string type = "all")
         {
             ViewBag.Categories = new List<string> { "All", "Watch", "Necklace", "Bracelet", "Other"};
             ViewBag.CurrentCategory = category;
@@ -33,6 +34,14 @@ namespace AuctionSite.Controllers
                 "price" => query.OrderBy(l => l.Price),
                 _ => query.OrderBy(l => l.Title)
             };
+            if (type.ToLower() == "active")
+            {
+                query = query.Where(l => !l.AuctionEnded);
+            }
+            else if (type.ToLower() == "ended")
+            {
+                query = query.Where(l => l.AuctionEnded);
+            }
 
             var totalItems = await query.CountAsync();
             var totalPages = (int)Math.Ceiling(totalItems / (double)PageSize);
@@ -103,11 +112,20 @@ namespace AuctionSite.Controllers
         [HttpPost]
         public async Task<ActionResult> AddBid([Bind("Price, ListingId, UserId")] Bid bid)
         {
-            if (ModelState.IsValid)
-            {
-                await _bidsService.AddBid(bid);
-            }
             var listing = await _listingsService.GetById(bid.ListingId);
+
+            var validationResult = await _bidValidator.ValidateAsync(bid);
+
+            if (!validationResult.IsValid)
+            {
+                foreach (var error in validationResult.Errors)
+                {
+                    ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                }
+                return View("Details", listing);
+            }
+
+            await _bidsService.AddBid(bid);
             listing.Price = bid.Price;
             await _listingsService.SaveChanges();
 
@@ -138,5 +156,16 @@ namespace AuctionSite.Controllers
                 .AsNoTracking();
             return View(await myBids.ToListAsync());
         }
+
+        [HttpPost]
+        public async Task<ActionResult> AddComment([Bind("CommentId, Text, ListingId, UserId")] Comment comment)
+        {
+            if (ModelState.IsValid)
+            {
+                await _commentsService.Add(comment);
+            }
+            var listing = await _listingsService.GetById(comment.ListingId);
+            return View("Details", listing);
+        } 
     }
 }

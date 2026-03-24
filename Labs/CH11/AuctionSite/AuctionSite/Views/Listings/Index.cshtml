@@ -4,6 +4,7 @@
     var currentPage = Context.Request.Query["page"].ToString() ?? "1";
     var currentSort = Context.Request.Query["sortby"].ToString() ?? "title";
     var currentSearch = Context.Request.Query["search"].ToString();
+    var currentType = Context.Request.Query["type"].ToString() ?? "all";
     var currentCategory = ViewBag.CurrentCategory as string;
     int pageNum = int.TryParse(currentPage, out var p) ? p : 1;
     var categories = ViewBag.Categories as List<string>;
@@ -66,7 +67,8 @@
                        category = currentCategory,
                        search = currentSearch,
                        sortby = "price",
-                       page = 1
+                       page = 1,
+                       type = currentType
                    })">
                     Price ↓
                 </a>
@@ -76,7 +78,8 @@
                        category = currentCategory,
                        search = currentSearch,
                        sortby = "title",
-                       page = 1
+                       page = 1,
+                       type = currentType
                    })">
                     Title ↓
                 </a>
@@ -86,9 +89,35 @@
                        category = currentCategory,
                        search = currentSearch,
                        sortby = "description",
-                       page = 1
+                       page = 1,
+                       type = currentType  
                    })">
                     Description ↓
+                </a>
+            </div>
+
+
+            <div class="flex gap-3 ml-4">
+                <a class="px-4 py-2 bg-[#C6A667] text-white rounded-md hover:bg-[#b09055] transition"
+                   href="@Url.Action("Index", new {
+                       category = currentCategory,
+                       search = currentSearch,
+                       sortby = "title",
+                       page = 1,
+                       type = "active"
+                   })">
+                    All Active Listings 
+                </a>
+
+                <a class="px-4 py-2 bg-[#C6A667] text-white rounded-md hover:bg-[#b09055] transition"
+                   href="@Url.Action("Index", new {
+                       category = currentCategory,
+                       search = currentSearch,
+                       sortby = "title",
+                       page = 1,
+                       type = "all"   
+                   })">
+                    All Listings
                 </a>
             </div>
 

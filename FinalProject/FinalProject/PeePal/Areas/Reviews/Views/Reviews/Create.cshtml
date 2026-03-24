@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Create Review";
-}
+} 
 
 <section class="py-16 px-6 bg-muted/50">
     <div class="max-w-4xl mx-auto bg-card rounded-2xl p-8 shadow-md">
@@ -55,15 +55,25 @@
                         <label asp-for="Likes" class="block text-sm font-medium text-card-foreground">Likes</label>
                         <input asp-for="Likes"
                                class="w-full mt-2 rounded-lg border border-border px-4 py-2" />
-                        <span asp-validation-for="Likes" class="text-red-500 text-sm"></span>
-                    </div>
+                    @if (ViewData.ModelState["Likes"]?.Errors.Count > 0)
+                    {
+                        <p class="text-sm text-red-600 mt-1">
+                            @ViewData.ModelState["Likes"].Errors[0].ErrorMessage
+                        </p>
+                    }
+                </div>
 
                     <!-- Dislikes -->
                     <div>
                         <label asp-for="Dislikes" class="block text-sm font-medium text-card-foreground">Dislikes</label>
                         <input asp-for="Dislikes"
                                class="w-full mt-2 rounded-lg border border-border px-4 py-2" />
-                        <span asp-validation-for="Dislikes" class="text-red-500 text-sm"></span>
+                    @if (ViewData.ModelState["Dislikes"]?.Errors.Count > 0)
+                    {
+                        <p class="text-sm text-red-600 mt-1">
+                            @ViewData.ModelState["Dislikes"].Errors[0].ErrorMessage
+                        </p>
+                    }
                     </div>
 
                     <!-- Notes -->
@@ -71,7 +81,12 @@
                         <label asp-for="Notes" class="block text-sm font-medium text-card-foreground">Other Notes</label>
                         <input asp-for="Notes"
                                class="w-full mt-2 rounded-lg border border-border px-4 py-2" />
-                        <span asp-validation-for="Notes" class="text-red-500 text-sm"></span>
+                    @if (ViewData.ModelState["Notes"]?.Errors.Count > 0)
+                    {
+                        <p class="text-sm text-red-600 mt-1">
+                            @ViewData.ModelState["Notes"].Errors[0].ErrorMessage
+                        </p>
+                    }
                     </div>
                 </div>
 
@@ -90,6 +105,12 @@
                                 }
                             </div>
                             <input type="hidden" name="@cat" />
+                        @if (ViewData.ModelState[cat]?.Errors.Count > 0)
+                        {
+                        <p class="text-sm text-red-600 mt-1">
+                            @ViewData.ModelState[cat].Errors[0].ErrorMessage
+                        </p>
+                        }
                         </div>
                     }
 

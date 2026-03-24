@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,20 +10,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using PeePal.Validation;
 
 namespace PeePal.Areas.Reviews.Controllers
 {
     [Authorize]
     [Area("Reviews")]
     [Route("[controller]/[action]/{id?}/{slug?}")]
-    public class ReviewsController : Controller
+    public class ReviewsController(ApplicationDbContext context, IValidator<Bathroom> _BathroomValidator, IValidator<Review> _ReviewValidator) : Controller
     {
-        private readonly ApplicationDbContext _context;
-
-        public ReviewsController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        private readonly ApplicationDbContext _context = context;
 
         // GET: Reviews
 
@@ -115,8 +112,7 @@ namespace PeePal.Areas.Reviews.Controllers
             review.DateSubmitted = DateTime.Today;
             // ensure the review is associated with the currently logged in user
             review.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (ModelState.IsValid)
-            {
+            
                 // If the user did not pick an existing bathroom, create a new Bathroom
                 // from the provided address fields and associate it with the review.
                 if (review.BathroomId == null || review.BathroomId == 0)
@@ -145,21 +141,46 @@ namespace PeePal.Areas.Reviews.Controllers
                         {
                             // Geocoding failures should not block creating the bathroom; leave coords null
                         }
+                    var validationResult = await _BathroomValidator.ValidateAsync(bathroom);
 
-                        _context.Bathrooms.Add(bathroom);
+                    if (!validationResult.IsValid)
+                    {
+                        foreach (var error in validationResult.Errors)
+                        {
+                            ModelState.AddModelError(error.PropertyName, $"Bathroom: {error.ErrorMessage}");
+                        }
+                        ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", review.UserId);
+                        ViewData["BathroomId"] = new SelectList(_context.Bathrooms, "BathroomId", "Name", review.BathroomId);
+                        TempData["Message"] = "Failed to create review. Please check your input and try again.";
+                        return View(review);
+                    }
+
+                    _context.Bathrooms.Add(bathroom);
                         await _context.SaveChangesAsync();
 
                         review.BathroomId = bathroom.BathroomId;
                     }
                 }
 
-                _context.Add(review);
-                await _context.SaveChangesAsync();
-                TempData["Message"] = "Review Created.";
-                return RedirectToAction(nameof(Index));
+            var reviewValidationResult = await _ReviewValidator.ValidateAsync(review);
+
+            if (!reviewValidationResult.IsValid)
+            {
+                foreach (var error in reviewValidationResult.Errors)
+                {
+                    ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                }
+                ViewData["BathroomId"] = new SelectList(_context.Bathrooms, "BathroomId", "Name", review.BathroomId);
+                return View(review);
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", review.UserId);
+            
+            _context.Add(review);
+                await _context.SaveChangesAsync();
             ViewData["BathroomId"] = new SelectList(_context.Bathrooms, "BathroomId", "Name", review.BathroomId);
+
+            TempData["Message"] = "Review Created.";
+                return RedirectToAction(nameof(Index));
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", review.UserId);
             return View(review);
         }
 

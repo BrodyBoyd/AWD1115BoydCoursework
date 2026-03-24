@@ -81,6 +81,7 @@
                 <!-- Bid Form -->
                 @if (User.Identity.IsAuthenticated && Model.AuctionEnded == false)
                 {
+                    
                     <form asp-action="AddBid" method="post" class="space-y-4">
                         <div>
                             <label class="block text-sm font-semibold text-[#1A1A1A] mb-1">Place a Bid</label>
@@ -103,7 +104,18 @@
                             Submit Bid
                         </button>
                     </form>
-
+                    if (ViewData.ModelState["Price"]?.Errors.Count > 0)
+                    {
+                        <p class="text-sm text-red-600 mt-1">
+                            @ViewData.ModelState["Price"].Errors[0].ErrorMessage
+                        </p>
+                    }
+                    if (ViewData.ModelState[""]?.Errors.Count > 0)
+                    {
+                        <p class="text-sm text-red-600 mt-1">
+                            @ViewData.ModelState[""].Errors[0].ErrorMessage
+                        </p>
+                    }
                     <p class="text-sm text-[#4A4A4A]">Total Bids: @Model.Bids.Count</p>
                 }
 
@@ -128,6 +140,28 @@
         </div>
 
         <!-- Comments -->
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="mt-10">
+                <h2 class="text-2xl font-bold text-[#1A1A1A] mb-4">Add a Comment</h2>
+                <form asp-action="AddComment" method="post" class="space-y-4">
+                    <div>
+                        <textarea name="Text"
+                                  rows="3"
+                                  placeholder="Write your comment here..."
+                                  class="w-full px-3 py-2 border border-[#D9D4CC] rounded-md bg-white focus:ring-2 focus:ring-[#C6A667] focus:outline-none"></textarea>
+                    </div>
+                    <input type="hidden" name="UserId" value="@UserManager.GetUserId(User)" />
+                    <input type="hidden" name="ListingId" value="@Model.ListingId" />
+                    <button type="submit"
+                            class="px-6 py-2 bg-[#1A1A1A] text-white rounded-md font-semibold hover:bg-black transition">
+                        Post Comment
+                    </button>
+                </form>
+            </div>
+        }
+        
         <div class="mt-12">
             <h3 class="text-xl font-semibold text-[#1A1A1A] mb-4">Comments</h3>
 

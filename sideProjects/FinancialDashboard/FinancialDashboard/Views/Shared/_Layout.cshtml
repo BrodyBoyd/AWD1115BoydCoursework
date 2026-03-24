@@ -1,0 +1,64 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
+</head>
+<body>
+    <nav class="w-full bg-gray-900 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+            <!-- Left: Logo + Links -->
+            <div class="flex items-center space-x-10">
+
+                <!-- Logo -->
+                <a href="/" class="text-2xl font-bold text-white tracking-tight">
+                    FinSim
+                </a>
+
+                <!-- Nav Links -->
+                <div class="flex items-center space-x-6">
+                    <a asp-controller="Home" asp-action="PlaceInvestment"
+                           class="text-gray-300 hover:text-white transition">
+                        Place Investment
+                    </a>
+
+                    <a asp-controller="Investments" asp-action="Index"
+                           class="text-gray-300 hover:text-white transition">
+                        Current & Prior Investments
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Balance + Login Partial -->
+            <div class="flex items-center space-x-8">
+
+                <!-- Balance -->
+                @if (User.Identity.IsAuthenticated)
+                {
+                    var balance = ViewBag.Balance as decimal? ?? 0;
+
+                    <a asp-action="Deposit" class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition">Deposit Funds</a>
+                    <div class="text-gray-300 text-lg font-semibold">
+                        @($"Balance: {balance:C}")
+                    </div>
+                }
+                <!-- Login Partial -->
+                <partial name="_LoginPartial" />
+            </div>
+
+        </div>
+    </nav>
+    <div>
+        @RenderBody()
+    </div>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

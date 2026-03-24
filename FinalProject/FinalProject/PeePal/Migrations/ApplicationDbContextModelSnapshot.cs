@@ -242,7 +242,6 @@ namespace PeePal.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("Latitude")
@@ -252,19 +251,15 @@ namespace PeePal.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Street")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Zip")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BathroomId");
@@ -282,37 +277,34 @@ namespace PeePal.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReviewId"));
 
-                    b.Property<int>("Availability")
+                    b.Property<int?>("Availability")
                         .HasColumnType("int");
 
                     b.Property<int?>("BathroomId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Cleanliness")
+                    b.Property<int?>("Cleanliness")
                         .HasColumnType("int");
 
-                    b.Property<int>("Comfort")
+                    b.Property<int?>("Comfort")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateSubmitted")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Dislikes")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Likes")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Notes")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Privacy")
+                    b.Property<int?>("Privacy")
                         .HasColumnType("int");
 
-                    b.Property<int>("Smell")
+                    b.Property<int?>("Smell")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
@@ -388,7 +380,7 @@ namespace PeePal.Migrations
 
             modelBuilder.Entity("PeePal.Models.Review", b =>
                 {
-                    b.HasOne("PeePal.Models.Bathroom", null)
+                    b.HasOne("PeePal.Models.Bathroom", "Bathroom")
                         .WithMany("Reviews")
                         .HasForeignKey("BathroomId");
 
@@ -397,6 +389,8 @@ namespace PeePal.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Bathroom");
 
                     b.Navigation("User");
                 });

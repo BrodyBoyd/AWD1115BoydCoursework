@@ -21,8 +21,11 @@ builder.Services.AddRouting(options =>
     options.AppendTrailingSlash = true;
 });
 builder.Services.AddControllersWithViews();
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 builder.Services.AddScoped<IListingsService, ListingsService>();
 builder.Services.AddScoped<IBidsService, BidsService>();
+builder.Services.AddScoped<ICommentsService, CommentsService>();
+
 
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
