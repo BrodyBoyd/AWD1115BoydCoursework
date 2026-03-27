@@ -18,57 +18,66 @@ namespace FinancialDashboard.Models
                     EarningMethodId = 1,
                     Name = "High-Yield-Savings",
                     PercentageReturn = .043m,
-                    Volatility = 0
+                    Volatility = 0,
+                    ChanceOfProfit = 100
                 },
                 new EarningMethod
                 {
                     EarningMethodId = 2,
                     Name = "Safe-Investments",
                     PercentageReturn = .055m,
-                    Volatility = 1
+                    Volatility = 1,
+                    ChanceOfProfit = 99
                 },
                 new EarningMethod
                 {
                     EarningMethodId = 3,
                     Name = "Index-Funds",
                     PercentageReturn = .098m,
-                    Volatility = 1.5m
+                    Volatility = 1.5m,
+                    ChanceOfProfit = 94
                 }, new EarningMethod
                 {
                     EarningMethodId = 4,
                     Name = "Individual-Stocks",
                     PercentageReturn = .11m,
-                    Volatility = 3
+                    Volatility = 3,
+                    ChanceOfProfit = 89
                 }, new EarningMethod
                 {
                     EarningMethodId = 5,
                     Name = "Day-Trading",
                     PercentageReturn = .12m,
-                    Volatility = 5
+                    Volatility = 5,
+                    ChanceOfProfit = 4
                 }, new EarningMethod
                 {
                     EarningMethodId = 6,
                     Name = "Sports-Betting",
                     PercentageReturn = .078m,
-                    Volatility = 5
+                    Volatility = 5,
+                    ChanceOfProfit = 4
                 }, new EarningMethod
                 {
                     EarningMethodId = 7,
                     Name = "Collecting",
                     PercentageReturn = .09m,
-                    Volatility = 4
+                    Volatility = 4,
+                    ChanceOfProfit = 83
                 }, new EarningMethod
                 {
                     EarningMethodId = 8,
                     Name = "Crypto",
                     PercentageReturn = .35m,
-                    Volatility = 7
+                    Volatility = 7,
+                    ChanceOfProfit = 46
                 }, new EarningMethod
                 {
                     EarningMethodId = 9,
                     Name = "RealEstate",
                     PercentageReturn = .108m,
-                    Volatility = 1.5m
+                    Volatility = 1.5m,
+                    ChanceOfProfit = 94
                 });
         }
     }

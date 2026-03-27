@@ -7,5 +7,9 @@
         public string Name { get; set; }
         public decimal PercentageReturn { get; set; }
         public decimal? Volatility { get; set; }
+
+        public int ChanceOfProfit { get; set; }
+
+        
     }
 }

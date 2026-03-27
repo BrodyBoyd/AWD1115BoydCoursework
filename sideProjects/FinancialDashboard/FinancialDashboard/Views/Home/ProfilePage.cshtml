@@ -1,0 +1,177 @@
+﻿@model ProfileViewModel
+
+@{
+    ViewData["Title"] = "Profile";
+    var profitColor = Model.TotalProfit >= 0 ? "return" : "fin-metric-loss";
+    var profitSign = Model.TotalProfit >= 0 ? "+" : "";
+}
+
+<div class="fin-page">
+
+    <div class="fin-header">
+        <span class="fin-eyebrow">Account</span>
+        <h1 class="fin-title">Your <span>Profile</span></h1>
+        <div class="fin-divider"></div>
+    </div>
+
+    <div class="fin-profile-layout">
+
+        <!-- LEFT COLUMN -->
+        <div class="fin-profile-left">
+
+            <!-- Identity Card -->
+            <div class="fin-card fin-identity-card">
+                <div class="fin-card-ticker">account holder</div>
+                <h2 class="fin-card-name">@Model.UserName</h2>
+                <div class="fin-separator"></div>
+                <div class="fin-metrics">
+                    <div class="fin-metric">
+                        <span class="fin-metric-label">Email</span>
+                        <span class="fin-metric-value fin-metric-neutral" style="font-size:0.75rem;">@Model.Email</span>
+                    </div>
+                    <div class="fin-metric">
+                        <span class="fin-metric-label">Account Balance</span>
+                        <span class="fin-metric-value fin-metric-neutral">@Model.Balance.ToString("C")</span>
+                    </div>
+                    <div class="fin-metric">
+                        <span class="fin-metric-label">Yearly Income</span>
+                        <span class="fin-metric-value profit">@Model.YearlyIncome.ToString("C")</span>
+                    </div>
+                    <div class="fin-metric">
+                        <span class="fin-metric-label">Years Progressed</span>
+                        <span class="fin-metric-value profit">@Model.YearsProgressed.ToString("0.00")</span>
+                    </div>
+                    <div class="fin-metric">
+                        <span class="fin-metric-label">Active Positions</span>
+                        <span class="fin-metric-value fin-metric-neutral">@Model.ActiveInvestmentCount</span>
+                    </div>
+                    <div class="fin-metric">
+                        <a asp-action="ResetAccount" class="fin-withdraw-btn">
+                            Reset Account
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Income Form -->
+            <div class="fin-card fin-income-card">
+                <div class="fin-card-ticker">update</div>
+                <h3 class="fin-card-name" style="font-size:1.1rem; margin-bottom:1.25rem;">Yearly Income</h3>
+                <div class="fin-separator"></div>
+                <form asp-action="UpdateIncome" method="post" class="fin-income-form">
+                    <div class="fin-form-field" style="margin-top:1.25rem;">
+                        <label class="fin-form-label">Income per Year</label>
+                        <div class="fin-amount-input-wrap">
+                            <span class="fin-currency-symbol">$</span>
+                            <input type="number"
+                                   name="yearlyIncome"
+                                   step="0.01"
+                                   min="0"
+                                   value="@Model.YearlyIncome"
+                                   class="fin-amount-input fin-income-input"
+                                   placeholder="0.00" />
+                        </div>
+                    </div>
+                    <button type="submit" class="fin-income-btn">Save Income →</button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="fin-profile-right">
+
+            <!-- Portfolio Stats -->
+            <div class="fin-profile-stats">
+
+                <div class="fin-stat-card fin-stat-primary">
+                    <span class="fin-stat-label">Total Portfolio Value</span>
+                    <span class="fin-stat-value">@Model.TotalPortfolioValue.ToString("C")</span>
+                </div>
+
+                <div class="fin-stat-card">
+                    <span class="fin-stat-label">Total Profit / Loss</span>
+                    <span class="fin-stat-value @(Model.TotalProfit >= 0 ? "fin-pos" : "fin-neg")">
+                        @profitSign@Model.TotalProfit.ToString("C")
+                    </span>
+                </div>
+
+                <div class="fin-stat-card">
+                    <span class="fin-stat-label">Weighted Avg. Return</span>
+                    <span class="fin-stat-value fin-blue">@Math.Round(Model.WeightedAvgReturn, 2)%</span>
+                </div>
+
+                <div class="fin-stat-card">
+                    <span class="fin-stat-label">Total Ever Invested</span>
+                    <span class="fin-stat-value fin-dim">@Model.AmountInvested.ToString("C")</span>
+                </div>
+
+                <div class="fin-stat-card">
+                    <span class="fin-stat-label">Total Withdrawn</span>
+                    <span class="fin-stat-value fin-dim">@Model.AmountWithdrawn.ToString("C")</span>
+                </div>
+
+                <div class="fin-stat-card">
+                    <span class="fin-stat-label">Net Cash Flow</span>
+                    @{
+                        var netFlow = Model.AmountWithdrawn - Model.AmountInvested;
+                    }
+                    <span class="fin-stat-value @(netFlow >= 0 ? "fin-pos" : "fin-neg")">
+                        @(netFlow >= 0 ? "+" : "")@netFlow.ToString("C")
+                    </span>
+                </div>
+
+            </div>
+
+            <!-- Most Profitable Investment -->
+            @if (Model.MostProfitableInvestment != null)
+            {
+                var mp = Model.MostProfitableInvestment;
+                var mpProfit = mp.InvestmentValue - mp.InvestmentAmount;
+                var mpReturn = mp.InvestmentAmount > 0
+                    ? (mpProfit / mp.InvestmentAmount) * 100 : 0;
+
+                <div class="fin-section-label" style="margin-top: 2rem;">
+                    <span class="fin-eyebrow">Top Performer</span>
+                    <div class="fin-section-rule"></div>
+                </div>
+
+                <div class="fin-card fin-top-card">
+                    <div class="fin-top-badge">★ Best Position</div>
+                    <div class="fin-card-ticker">holding</div>
+                    <h3 class="fin-card-name">@mp.EarningMethod.Name</h3>
+                    <div class="fin-separator"></div>
+                    <div class="fin-metrics">
+                        <div class="fin-metric">
+                            <span class="fin-metric-label">Amount Invested</span>
+                            <span class="fin-metric-value fin-metric-neutral">@mp.InvestmentAmount.ToString("C")</span>
+                        </div>
+                        <div class="fin-metric">
+                            <span class="fin-metric-label">Current Value</span>
+                            <span class="fin-metric-value fin-metric-neutral">@mp.InvestmentValue.ToString("C")</span>
+                        </div>
+                        <div class="fin-metric">
+                            <span class="fin-metric-label">Profit</span>
+                            <span class="fin-metric-value @(mpProfit >= 0 ? "return" : "fin-metric-loss")">
+                                @(mpProfit >= 0 ? "+" : "")@mpProfit.ToString("C")
+                            </span>
+                        </div>
+                        <div class="fin-metric">
+                            <span class="fin-metric-label">Return</span>
+                            <span class="fin-metric-value @(mpReturn >= 0 ? "return" : "fin-metric-loss")">
+                                @(mpReturn >= 0 ? "+" : "")@Math.Round(mpReturn, 2)%
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fin-vol-bar-wrap">
+                        <div class="fin-vol-bar-label">Risk Level</div>
+                        <div class="fin-vol-track">
+                            <div class="fin-vol-fill" style="width: calc(@mp.EarningMethod.Volatility / 7 * 100%)"></div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

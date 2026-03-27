@@ -1,0 +1,227 @@
+﻿@model InvestmentsViewModel
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    // Portfolio calculations
+    var activeInvestments = Model.Investments.Where(i => i.InvestmentValue > 0).ToList();
+
+    decimal totalInvested = activeInvestments.Sum(i => i.InvestmentAmount);
+    decimal totalValue = activeInvestments.Sum(i => i.InvestmentValue);
+    decimal totalProfit = totalValue - totalInvested;
+    var profitColor = totalProfit >= 0 ? "text-green-400" : "text-red-400";
+
+    // Weighted average yearly return
+    decimal weightedReturn = 0;
+    if (totalInvested > 0)
+    {
+        weightedReturn = activeInvestments.Sum(i =>
+            i.InvestmentAmount * (i.EarningMethod.PercentageReturn * 100)
+        ) / totalInvested;
+    }
+
+    var avgVolatility = activeInvestments.Any()
+        ? activeInvestments.Average(i => i.EarningMethod.Volatility)
+        : 0;
+}
+
+<div class="fin-page">
+
+    <!-- Page Header -->
+    <div class="fin-header">
+        <span class="fin-eyebrow">Portfolio Overview</span>
+        <h1 class="fin-title">Your <span>Investments</span></h1>
+        <div class="fin-divider"></div>
+    </div>
+
+    <!-- Progress Month Form -->
+    @if (UserManager.GetUserId(User) != null)
+    {
+        <form asp-action="ProgressMonth" method="post" class="fin-form-wrap">
+
+            <div class="fin-eyebrow" style="text-align:center; margin-bottom: 1rem;">Simulate Growth</div>
+            <h2 class="fin-form-title">Progress Your Investments</h2>
+
+             <div class="fin-form-field">
+                <label asp-for="Years" class="fin-form-label">
+                    Years to progress
+                </label>
+                <input asp-for="Years"
+                       type="number"
+                       min="1"
+                       value=""
+                       class="fin-form-input"
+                       placeholder="e.g. 12" />
+            </div>
+
+            <div class="">
+                <div class="fin-eyebrow" style="text-align:center; margin-bottom: 1rem;">------------- OR -------------</div>
+            </div>
+
+            <div class="fin-form-field mt-0">
+                <label asp-for="Months" class="fin-form-label">
+                    Months to progress
+                </label>
+                <input asp-for="Months"
+                       type="number"
+                       min="1"
+                       value=""
+                       class="fin-form-input"
+                       placeholder="e.g. 12" />
+            </div>
+
+           
+
+            <input type="hidden" asp-for="UserId" value="@UserManager.GetUserId(User)" />
+
+            <button type="submit" class="fin-form-btn">
+                Progress Time →
+            </button>
+
+        </form>
+    }
+
+    <!-- Portfolio Summary Stats -->
+    <div class="fin-summary-grid">
+
+        <div class="fin-stat-card fin-stat-primary">
+            <span class="fin-stat-label">Total Portfolio Value</span>
+            <span class="fin-stat-value">@totalValue.ToString("C")</span>
+        </div>
+
+        <div class="fin-stat-card">
+            <span class="fin-stat-label">Profit / Loss</span>
+            <span class="fin-stat-value @(totalProfit >= 0 ? "fin-pos" : "fin-neg")">
+                @(totalProfit >= 0 ? "+" : "")@totalProfit.ToString("C")
+            </span>
+        </div>
+
+        <div class="fin-stat-card">
+            <span class="fin-stat-label">Weighted Avg. Yearly Return</span>
+            <span class="fin-stat-value fin-blue">@Math.Round(weightedReturn, 2)%</span>
+        </div>
+
+        <div class="fin-stat-card">
+            <span class="fin-stat-label">Total Amount Invested</span>
+            <span class="fin-stat-value fin-dim">@totalInvested.ToString("C")</span>
+        </div>
+
+        <div class="fin-stat-card">
+            <span class="fin-stat-label">Average Volatility</span>
+            <span class="fin-stat-value fin-amber">@Math.Round(Convert.ToDecimal(avgVolatility), 2) / 7</span>
+        </div>
+
+    </div>
+
+    <!-- Section Label -->
+    <div class="fin-section-label">
+        <span class="fin-eyebrow">Holdings</span>
+        <div class="fin-section-rule"></div>
+    </div>
+
+    <!-- Investment Cards -->
+    <div class="fin-grid">
+
+        @foreach (var investment in Model.Investments)
+        {
+            bool fullyInProfit = false;
+            var yearlyReturn = investment.EarningMethod.PercentageReturn * 100;
+            var profit = investment.InvestmentValue - investment.InvestmentAmount;
+            var profitColorCard = profit >= 0 ? "fin-pos" : "fin-neg";
+            var emptyInvestment = investment.InvestmentValue == 0 ? "hidden" : "";
+            var returnPercent = investment.InvestmentAmount > 0
+                ? (profit / investment.InvestmentAmount) * 100
+                : 0;
+
+            if (returnPercent == 0 && investment.InvestmentAmount == 0)
+            {
+                fullyInProfit = true;
+            }
+
+            <div class="fin-card @emptyInvestment">
+
+                <!-- Card Header -->
+                <div class="fin-card-header">
+                    <div>
+                        <div class="fin-card-ticker">holding</div>
+                        <h2 class="fin-card-name">@investment.EarningMethod.Name</h2>
+                    </div>
+                    <span class="fin-duration-badge">@investment.InvestmentLengthInMonths mo</span>
+                </div>
+
+                <div class="fin-separator"></div>
+
+                <!-- Amounts -->
+                <div class="fin-metrics">
+                    <div class="fin-metric">
+                        <span class="fin-metric-label">Amount Invested</span>
+                        <span class="fin-metric-value fin-metric-neutral">@investment.InvestmentAmount.ToString("C")</span>
+                    </div>
+                    <div class="fin-metric">
+                        <span class="fin-metric-label">Current Value</span>
+                        <span class="fin-metric-value fin-metric-neutral">@investment.InvestmentValue.ToString("C")</span>
+                    </div>
+                    <div class="fin-metric">
+                        <span class="fin-metric-label">Purchasing Power in Initial Year</span>
+                        <span class="fin-metric-value fin-metric-neutral">@investment.ValueInInitialYear.ToString("C")</span>
+                    </div>
+                    <div class="fin-metric">
+                        <span class="fin-metric-label">Profit / Loss</span>
+                        <span class="fin-metric-value @(profit >= 0 ? "return" : "fin-metric-loss")">
+                            @(profit >= 0 ? "+" : "")@profit.ToString("C")
+                        </span>
+                    </div>
+                    <div class="fin-metric">
+                        <span class="fin-metric-label">Percent Return</span>
+                        @if (fullyInProfit)
+                        {
+                            <span class="fin-metric-value return">Fully in profit</span>
+                        }
+                        else
+                        {
+                            <span class="fin-metric-value @(returnPercent >= 0 ? "return" : "fin-metric-loss")">
+                                @(returnPercent >= 0 ? "+" : "")@Math.Round(returnPercent, 2)%
+                            </span>
+                        }
+                    </div>
+                </div>
+
+                <!-- Method Info Panel -->
+                <div class="fin-inner-panel">
+                    <div class="fin-metric">
+                        <span class="fin-metric-label">Avg Yearly Return</span>
+                        <span class="fin-metric-value profit">@Math.Round(yearlyReturn, 2)%</span>
+                    </div>
+                    <div class="fin-metric">
+                        <span class="fin-metric-label">Chance of Profit</span>
+                        <span class="fin-metric-value profit">@(investment.EarningMethod.ChanceOfProfit)%</span>
+                    </div>
+                    <div class="fin-metric">
+                        <span class="fin-metric-label">Volatility Index</span>
+                        <span class="fin-metric-value volatility">@investment.EarningMethod.Volatility / 7</span>
+                    </div>
+                </div>
+
+                <!-- Volatility Bar -->
+                <div class="fin-vol-bar-wrap">
+                    <div class="fin-vol-bar-label">Risk Level</div>
+                    <div class="fin-vol-track">
+                        <div class="fin-vol-fill" style="width: calc(@investment.EarningMethod.Volatility / 7 * 100%)"></div>
+                    </div>
+                </div>
+
+                <a asp-action="IncreaseInvestment" asp-route-id="@investment.InvestmentId" class="fin-increase-btn">
+                    Increase Investment
+                </a>
+                <!-- Withdraw -->
+                <a asp-action="WithdrawInvestment" asp-route-id="@investment.InvestmentId" class="fin-withdraw-btn">
+                    Withdraw Investment
+                </a>
+
+
+            </div>
+        }
+
+    </div>
+
+</div>

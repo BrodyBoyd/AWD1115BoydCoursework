@@ -1,0 +1,91 @@
+﻿@model Investment
+
+@{
+    var profit = Model.InvestmentValue - Model.InvestmentAmount;
+    var profitColor = profit >= 0 ? "fin-pos" : "fin-neg";
+    var returnPercent = Model.InvestmentAmount > 0
+        ? (profit / Model.InvestmentAmount) * 100
+        : 0;
+}
+
+<div class="fin-page">
+
+    <!-- Page Header -->
+    <div class="fin-header">
+        <span class="fin-eyebrow">Position Management</span>
+        <h1 class="fin-title">Increase <span>Investment</span></h1>
+        <div class="fin-divider"></div>
+    </div>
+
+    <div class="fin-withdraw-wrap">
+
+        <!-- Investment Summary Card -->
+        <div class="fin-card fin-withdraw-summary">
+
+            <div class="fin-card-ticker">current holding</div>
+            <h2 class="fin-card-name">@Model.EarningMethod.Name</h2>
+
+            <div class="fin-separator"></div>
+
+            <div class="fin-metrics">
+                <div class="fin-metric">
+                    <span class="fin-metric-label">Initial Amount</span>
+                    <span class="fin-metric-value fin-metric-neutral">@Model.InvestmentAmount.ToString("C")</span>
+                </div>
+                <div class="fin-metric">
+                    <span class="fin-metric-label">Current Value</span>
+                    <span class="fin-metric-value fin-metric-neutral">@Model.InvestmentValue.ToString("C")</span>
+                </div>
+                <div class="fin-metric">
+                    <span class="fin-metric-label">Profit / Loss</span>
+                    <span class="fin-metric-value @(profit >= 0 ? "return" : "fin-metric-loss")">
+                        @(profit >= 0 ? "+" : "")@profit.ToString("C")
+                    </span>
+                </div>
+                <div class="fin-metric">
+                    <span class="fin-metric-label">Total Return</span>
+                    <span class="fin-metric-value @(returnPercent >= 0 ? "return" : "fin-metric-loss")">
+                        @(returnPercent >= 0 ? "+" : "")@Math.Round(returnPercent, 2)%
+                    </span>
+                </div>
+            </div>
+
+            <div class="fin-vol-bar-wrap">
+                <div class="fin-vol-bar-label">Risk Level</div>
+                <div class="fin-vol-track">
+                    <div class="fin-vol-fill" style="width: calc(@Model.EarningMethod.Volatility / 7 * 100%)"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Withdraw Form -->
+        <div class="fin-withdraw-form-panel">
+
+            <div class="fin-eyebrow" style="margin-bottom: 0.75rem;">Increase Investment</div>
+            <form asp-action="IncreaseInvestment" method="post" class="fin-withdraw-form">
+
+                <input type="hidden" asp-for="InvestmentId" />
+
+                <div class="fin-form-field">
+                    <label class="fin-form-label">Amount to Withdraw</label>
+                    <div class="fin-amount-input-wrap">
+                        <span class="fin-currency-symbol">$</span>
+                        <input type="number"
+                               name="IncreaseAmount"
+                               step="0.01"
+                               min="0"
+                               class="fin-amount-input fin-withdraw-input"
+                               placeholder="0.00" />
+                    </div>
+                </div>
+
+                <button type="submit" class="fin-increase-btn">
+                    Confirm Increase →
+                </button>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>

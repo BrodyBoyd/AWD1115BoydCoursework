@@ -4,6 +4,7 @@ using FinancialDashboard.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinancialDashboard.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260325191204_ChangedToMonthsfromYears")]
+    partial class ChangedToMonthsfromYears
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,12 +32,6 @@ namespace FinancialDashboard.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("AmountInvested")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("AmountWithdrawn")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Balance")
                         .HasColumnType("decimal(18,2)");
@@ -76,18 +73,12 @@ namespace FinancialDashboard.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TimeProgressedInMonths")
-                        .HasColumnType("int");
-
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<decimal>("YearlyIncome")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -110,9 +101,6 @@ namespace FinancialDashboard.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EarningMethodId"));
 
-                    b.Property<int>("ChanceOfProfit")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -131,7 +119,6 @@ namespace FinancialDashboard.Migrations
                         new
                         {
                             EarningMethodId = 1,
-                            ChanceOfProfit = 100,
                             Name = "High-Yield-Savings",
                             PercentageReturn = 0.043m,
                             Volatility = 0m
@@ -139,7 +126,6 @@ namespace FinancialDashboard.Migrations
                         new
                         {
                             EarningMethodId = 2,
-                            ChanceOfProfit = 99,
                             Name = "Safe-Investments",
                             PercentageReturn = 0.055m,
                             Volatility = 1m
@@ -147,7 +133,6 @@ namespace FinancialDashboard.Migrations
                         new
                         {
                             EarningMethodId = 3,
-                            ChanceOfProfit = 94,
                             Name = "Index-Funds",
                             PercentageReturn = 0.098m,
                             Volatility = 1.5m
@@ -155,7 +140,6 @@ namespace FinancialDashboard.Migrations
                         new
                         {
                             EarningMethodId = 4,
-                            ChanceOfProfit = 89,
                             Name = "Individual-Stocks",
                             PercentageReturn = 0.11m,
                             Volatility = 3m
@@ -163,7 +147,6 @@ namespace FinancialDashboard.Migrations
                         new
                         {
                             EarningMethodId = 5,
-                            ChanceOfProfit = 4,
                             Name = "Day-Trading",
                             PercentageReturn = 0.12m,
                             Volatility = 5m
@@ -171,7 +154,6 @@ namespace FinancialDashboard.Migrations
                         new
                         {
                             EarningMethodId = 6,
-                            ChanceOfProfit = 4,
                             Name = "Sports-Betting",
                             PercentageReturn = 0.078m,
                             Volatility = 5m
@@ -179,7 +161,6 @@ namespace FinancialDashboard.Migrations
                         new
                         {
                             EarningMethodId = 7,
-                            ChanceOfProfit = 83,
                             Name = "Collecting",
                             PercentageReturn = 0.09m,
                             Volatility = 4m
@@ -187,7 +168,6 @@ namespace FinancialDashboard.Migrations
                         new
                         {
                             EarningMethodId = 8,
-                            ChanceOfProfit = 46,
                             Name = "Crypto",
                             PercentageReturn = 0.35m,
                             Volatility = 7m
@@ -195,7 +175,6 @@ namespace FinancialDashboard.Migrations
                         new
                         {
                             EarningMethodId = 9,
-                            ChanceOfProfit = 94,
                             Name = "RealEstate",
                             PercentageReturn = 0.108m,
                             Volatility = 1.5m
@@ -225,15 +204,9 @@ namespace FinancialDashboard.Migrations
                     b.Property<decimal>("InvestmentValue")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal?>("MonthlyContribution")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("ValueInInitialYear")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("InvestmentId");
 

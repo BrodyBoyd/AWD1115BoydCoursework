@@ -1,36 +1,46 @@
 ﻿@model HomeViewModel
 
-<div class="min-h-screen bg-gray-900 text-white px-6 py-12">
+<div class="fin-page">
 
-    <h1 class="text-4xl font-extrabold tracking-tight mb-10 text-center">
-        Your Investment Options
-    </h1>
+    <div class="fin-header">
+        <span class="fin-eyebrow">Portfolio Analysis</span>
+        <h1 class="fin-title">Your Investment <span>Options</span></h1>
+        <div class="fin-divider"></div>
+    </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    <div class="fin-grid">
 
         @foreach (var method in Model.EarningMethods)
         {
-            <div class="bg-gray-800/40 border border-gray-700 rounded-2xl p-6 shadow-lg
-                hover:shadow-2xl hover:scale-[1.02] transition-all duration-300
-                backdrop-blur-sm">
+            <div class="fin-card">
 
-                <h2 class="text-2xl font-semibold mb-3">
-                    @method.Name
-                </h2>
+                <div class="fin-card-ticker">instrument</div>
+                <h2 class="fin-card-name">@method.Name</h2>
 
-                <p class="text-gray-300 mb-4 leading-relaxed">
-                    Expected Return:
-                    <span class="text-green-400 font-semibold">
-                        @(method.PercentageReturn * 100)%
-                    </span>
-                </p>
+                <div class="fin-separator"></div>
 
-                <p class="text-gray-300 mb-6">
-                    Volatility:
-                    <span class="text-yellow-400 font-semibold">
-                        @method.Volatility / 7
-                    </span>
-                </p>
+                <div class="fin-metrics">
+                    <div class="fin-metric">
+                        <span class="fin-metric-label">Expected Return</span>
+                        <span class="fin-metric-value return">+@(method.PercentageReturn * 100)%</span>
+                    </div>
+                    <div class="fin-metric">
+                        <span class="fin-metric-label">Chance of Profit</span>
+                        <span class="fin-metric-value profit">@(method.ChanceOfProfit)%</span>
+                    </div>
+                    <div class="fin-metric">
+                        <span class="fin-metric-label">Volatility Index</span>
+                        <span class="fin-metric-value volatility">@method.Volatility / 7</span>
+                    </div>
+                </div>
+
+                <div class="fin-vol-bar-wrap">
+                    <div class="fin-vol-bar-label">Risk Level</div>
+                    <div class="fin-vol-track">
+                        <div class="fin-vol-fill" style="width: calc(@method.Volatility / 7 * 100%)"></div>
+                    </div>
+                </div>
+
             </div>
         }
 

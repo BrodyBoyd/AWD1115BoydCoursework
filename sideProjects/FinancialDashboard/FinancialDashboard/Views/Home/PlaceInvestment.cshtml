@@ -1,76 +1,208 @@
-﻿@model PlaceInvestmentViewModel
+﻿@model Investment
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
 
-<div class="min-h-screen bg-gray-900 text-white px-6 py-12">
+<div class="fin-page">
 
-    <h1 class="text-4xl font-extrabold tracking-tight mb-10 text-center">
-        Place an Investment
-    </h1>
+    <!-- Page Header -->
+    <div class="fin-header">
+        <span class="fin-eyebrow">New Position</span>
+        <h1 class="fin-title">Place an <span>Investment</span></h1>
+        <div class="fin-divider"></div>
+    </div>
 
-    <form asp-action="PlaceInvestment" method="post" class="max-w-5xl mx-auto space-y-12">
+    <div asp-validation-summary="All" class="fin-validation-summary"></div>
+
+    <form asp-action="PlaceInvestment" method="post" class="fin-place-form">
+
+        <input type="hidden" asp-for="UserId" value="@UserManager.GetUserId(User)" />
 
         <!-- Amount Input -->
-        <div class="bg-gray-800/40 border border-gray-700 rounded-2xl p-8 backdrop-blur-sm shadow-xl">
-            <label class="block text-xl font-semibold mb-4">Amount to Invest</label>
-
-            <input type="number"
-                   name="Amount"
-                   step="0.01"
-                   min="0"
-                   class="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
-            focus:ring-2 focus:ring-blue-500"
-                   placeholder="Enter amount (e.g., 500)" />
+        <div class="fin-amount-panel">
+            <div class="fin-amount-inner">
+                <label asp-for="InvestmentAmount" class="fin-form-label">Capital to Deploy</label>
+                <div class="fin-amount-input-wrap">
+                    <span class="fin-currency-symbol">$</span>
+                    <input asp-for="InvestmentAmount"
+                           type="number"
+                           step="0.01"
+                           min="0"
+                           class="fin-amount-input"
+                           placeholder="0.00" />
+                </div>
+            </div>
         </div>
 
         <!-- Investment Type Selection -->
-        <div>
-            <h2 class="text-2xl font-semibold mb-6 text-center">Choose an Investment Type</h2>
+        <!-- Investment Type Selection -->
+        <div class="fin-type-section">
+            <div class="fin-section-label" style="max-width:100%; margin-bottom: 2rem;">
+                <span class="fin-eyebrow">Select Instrument</span>
+                <div class="fin-section-rule"></div>
+            </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                @foreach (var method in Model.EarningMethods)
+            <div class="fin-grid">
+                @foreach (var method in ViewBag.EarningMethods)
                 {
-                    <label class="cursor-pointer">
+                    <label class="fin-radio-label">
                         <input type="radio"
-                               name="SelectedMethod"
-                               value="@method.Name"
-                               class="peer hidden" />
+                               asp-for="EarningMethodId"
+                               value="@method.EarningMethodId"
+                               class="fin-radio-input"
+                               data-name="@method.Name.ToLower().Replace(" ", "-")" />
 
-                        <div class="bg-gray-800/40 border border-gray-700 rounded-2xl p-6 shadow-lg
-                            peer-checked:border-blue-500 peer-checked:shadow-blue-500/30
-                            hover:shadow-2xl hover:scale-[1.02] transition-all duration-300
-                            backdrop-blur-sm">
+                        <div class="fin-card fin-selectable-card">
+                            <div class="fin-card-ticker">instrument</div>
+                            <h3 class="fin-card-name">@method.Name</h3>
 
-                            <h3 class="text-2xl font-semibold mb-3">
-                                @method.Name
-                            </h3>
+                            <div class="fin-separator"></div>
 
-                            <p class="text-gray-300 mb-4">
-                                Expected Return:
-                                <span class="text-green-400 font-semibold">
-                                    @(method.PercentageReturn * 100)%
-                                </span>
-                            </p>
+                            <div class="fin-metrics">
+                                <div class="fin-metric">
+                                    <span class="fin-metric-label">Expected Return</span>
+                                    <span class="fin-metric-value return">+@(method.PercentageReturn * 100)%</span>
+                                </div>
+                                <div class="fin-metric">
+                                    <span class="fin-metric-label">Chance of Profit</span>
+                                    <span class="fin-metric-value profit">@(method.ChanceOfProfit)%</span>
+                                </div>
+                                <div class="fin-metric">
+                                    <span class="fin-metric-label">Volatility Index</span>
+                                    <span class="fin-metric-value volatility">@method.Volatility / 7</span>
+                                </div>
+                            </div>
 
-                            <p class="text-gray-300">
-                                Volatility:
-                                <span class="text-yellow-400 font-semibold">
-                                    @method.Volatility / 7
-                                </span>
-                            </p>
+                            <div class="fin-vol-bar-wrap">
+                                <div class="fin-vol-bar-label">Risk Level</div>
+                                <div class="fin-vol-track">
+                                    <div class="fin-vol-fill" style="width: calc(@method.Volatility / 7 * 100%)"></div>
+                                </div>
+                            </div>
+
+                            <div class="fin-selected-indicator">
+                                <span>✓ Selected</span>
+                            </div>
                         </div>
                     </label>
                 }
             </div>
         </div>
 
-        <!-- Submit Button -->
-        <div class="text-center">
-            <button type="submit"
-                    class="px-10 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-lg font-semibold transition">
-                Continue
+        <!-- Monthly Deposit Panel (hidden by default) -->
+        <div id="monthly-deposit-panel" class="fin-monthly-panel" style="display:none;">
+            <div class="fin-section-label" style="max-width:100%; margin-bottom: 1.5rem;">
+                <span class="fin-eyebrow">Recurring Contribution</span>
+                <div class="fin-section-rule"></div>
+            </div>
+
+            <div class="fin-monthly-inner">
+                <div class="fin-monthly-desc">
+                    <p class="fin-monthly-text">
+                        This investment type supports <span class="fin-monthly-highlight">monthly deposits</span>.
+                        Optionally set a recurring contribution that will be added to your position each month when you progress time.
+                    </p>
+                </div>
+
+                <div class="fin-form-field">
+                    <label class="fin-form-label">Monthly Deposit Amount <span class="fin-optional">(optional)</span></label>
+                    <div class="fin-amount-input-wrap">
+                        <span class="fin-currency-symbol">$</span>
+                        <input type="number"
+                               name="MonthlyContribution"
+                               step="0.01"
+                               min="0"
+                               id="monthly-deposit-input"
+                               class="fin-amount-input fin-monthly-input"
+                               placeholder="0.00" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Submit -->
+        <div class="fin-submit-row">
+            <button type="submit" class="fin-submit-btn">
+                Confirm Position →
             </button>
         </div>
 
     </form>
 
 </div>
+
+<style>
+    .fin-monthly-panel {
+        max-width: 1100px;
+        margin: 0 auto;
+        background: var(--navy-card);
+        border: 1px solid var(--navy-border);
+        border-top: 2px solid var(--blue);
+        border-radius: 4px;
+        padding: 2rem 2.5rem;
+        animation: fin-slide-in 0.3s ease;
+    }
+
+    @@keyframes fin-slide-in {
+        from { opacity: 0; transform: translateY(-10px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fin-monthly-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        max-width: 480px;
+    }
+
+    .fin-monthly-text {
+        font-size: 0.82rem;
+        color: var(--text-secondary);
+        font-family: 'DM Sans', sans-serif;
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    .fin-monthly-highlight {
+        color: var(--blue);
+        font-family: 'DM Mono', monospace;
+        font-size: 0.78rem;
+    }
+
+    .fin-optional {
+        color: var(--text-muted);
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-left: 0.4rem;
+    }
+
+    .fin-monthly-input {
+        font-size: 1.5rem !important;
+    }
+</style>
+
+<script>
+    const MONTHLY_DEPOSIT_SLUGS = [
+        'high-yield-savings',
+        'safe-investments',
+        'index-funds',
+        'individual-stocks'
+    ];
+
+    const panel = document.getElementById('monthly-deposit-panel');
+    const monthlyInput = document.getElementById('monthly-deposit-input');
+    const radios = document.querySelectorAll('.fin-radio-input');
+
+    radios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            const slug = radio.dataset.name;
+            const show = MONTHLY_DEPOSIT_SLUGS.includes(slug);
+
+            if (show) {
+                panel.style.display = 'block';
+            } else {
+                panel.style.display = 'none';
+                monthlyInput.value = '';
+            }
+        });
+    });
+</script>

@@ -7,8 +7,9 @@ namespace FinancialDashboard.Models
         public int InvestmentId { get; set; }
         public decimal InvestmentAmount { get; set; }
         public decimal InvestmentValue { get; set; }
-        public int InvestmentLengthInYears { get; set; } = 0;
-
+        public int InvestmentLengthInMonths { get; set; } = 0;
+        public decimal? MonthlyContribution { get; set; } = 0;
+        public decimal ValueInInitialYear { get; set; }
 
         [ValidateNever]
         public ApplicationUser User { get; set; }
