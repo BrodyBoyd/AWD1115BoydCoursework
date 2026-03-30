@@ -219,6 +219,18 @@ namespace PeePal.Areas.Reviews.Controllers
 
             if (ModelState.IsValid)
             {
+                var reviewValidationResult = await _ReviewValidator.ValidateAsync(review);
+
+                if (!reviewValidationResult.IsValid)
+                {
+                    foreach (var error in reviewValidationResult.Errors)
+                    {
+                        ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                    }
+                    ViewBag.BathroomId = new SelectList(_context.Bathrooms, "BathroomId", "Name", review.BathroomId);
+
+                    return View(review);
+                }
                 try
                 {
                     _context.Update(review);
