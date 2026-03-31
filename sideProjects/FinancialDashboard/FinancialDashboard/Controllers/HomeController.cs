@@ -199,6 +199,18 @@ namespace FinancialDashboard.Controllers
                     context.Users.Update(user);
                     context.SaveChanges();
                 }
+                decimal portfolioValue = context.Investments
+                    .Where(l => l.UserId == UserId)
+                    .Sum(l => l.InvestmentValue) + user.Balance;
+
+
+                context.InvestmentSnapshots.Add(new InvestmentSnapshot
+                {
+                    UserId = UserId,
+                    TotalPortfolioValue = portfolioValue,
+                    MonthNumber = user.TimeProgressedInMonths
+                });
+
                 user.TimeProgressedInMonths += 1;
                 context.Users.Update(user);
                 context.SaveChanges();
@@ -387,6 +399,14 @@ namespace FinancialDashboard.Controllers
                 MostProfitableInvestment = mostProfitable,
                 ActiveInvestments = active
             };
+            var snapshots = await context.InvestmentSnapshots
+                .Where(s => s.UserId == user.Id)
+                .OrderBy(s => s.MonthNumber)
+                .ToListAsync();
+
+            vm.MonthlyPortfolioValues = snapshots.Select(s => s.TotalPortfolioValue).ToList();
+            vm.MonthLabels = snapshots.Select(s => $"Month {s.MonthNumber}").ToList();
+
 
             return View(vm);
         }
@@ -444,6 +464,36 @@ namespace FinancialDashboard.Controllers
             return RedirectToAction("Investments", "Home");
         }
 
-        
+        public IActionResult ResetAccount()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ConfirmReset()
+        {
+            var user = context.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
+            var usersInvestments = context.Investments.Where(i => i.UserId == user.Id).ToList();
+            var usersSnapshots = context.InvestmentSnapshots.Where(i => i.UserId == user.Id).ToList();
+
+            foreach (var investment in  usersInvestments)
+            {
+                context.Investments.Remove(investment);
+            }
+
+            foreach (var snapshot in usersSnapshots)
+            {
+                context.InvestmentSnapshots.Remove(snapshot);
+            }
+
+            user.AmountInvested = 0;
+            user.Balance = 0;
+            user.AmountWithdrawn = 0;
+            user.TimeProgressedInMonths = 0;
+            user.YearlyIncome = 0;
+            context.SaveChanges();
+            return RedirectToAction("ProfilePage", "Home");
+        }
+
     }
 }

@@ -7,6 +7,8 @@ namespace FinancialDashboard.Models
     {
         public DbSet<EarningMethod> EarningMethods { get; set; }
         public DbSet<Investment> Investments { get; set; }
+        public DbSet<InvestmentSnapshot> InvestmentSnapshots { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

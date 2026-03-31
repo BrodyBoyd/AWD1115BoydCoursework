@@ -1,0 +1,106 @@
+﻿@model TripViewModel
+
+<div class="min-h-screen flex items-center justify-center">
+    <div class="max-w-2xl w-full bg-neutral-900 p-10 shadow-[6px_6px_0px_0px_#000]
+        border-4 border-lime-400 rotate-[0.6deg] space-y-10">
+
+        <h1 class="text-4xl font-black text-lime-400 mb-4 tracking-tight
+            shadow-[4px_4px_0px_0px_#000] inline-block px-4 py-2 bg-neutral-900
+            rotate-[-0.8deg]">
+            Add Trip Destination and Dates
+        </h1>
+
+        <form asp-action="AddTrip" method="post" class="space-y-8">
+
+            <!-- Destination -->
+            <div>
+                <label class="block text-lime-300 font-bold uppercase tracking-wide mb-2">
+                    Select Destination
+                </label>
+
+                <select asp-for="DestinationId" asp-items="ViewBag.Destinations"
+                        class="w-full px-4 py-3 bg-black text-lime-200 font-mono border-4 border-lime-400
+                    shadow-[3px_3px_0px_0px_#000] focus:outline-none focus:border-lime-300
+                    focus:shadow-[2px_2px_0px_0px_#000] transition-all">
+                    <option value="">-- Select Destination --</option>
+                </select>
+
+                <span asp-validation-for="DestinationId" class="text-red-500 text-sm"></span>
+            </div>
+
+            <!-- Accommodation -->
+            <div>
+                <label class="block text-lime-300 font-bold uppercase tracking-wide mb-2">
+                    Select Accommodation
+                </label>
+
+                <select asp-for="AccommodationId" asp-items="ViewBag.Accommodations"
+                        class="w-full px-4 py-3 bg-black text-lime-200 font-mono border-4 border-lime-400
+                    shadow-[3px_3px_0px_0px_#000] focus:outline-none focus:border-lime-300
+                    focus:shadow-[2px_2px_0px_0px_#000] transition-all">
+                    <option value="">-- Select Accommodation --</option>
+                </select>
+
+                <span asp-validation-for="AccommodationId" class="text-red-500 text-sm"></span>
+            </div>
+
+            <!-- Start Date -->
+            <div>
+                <label class="block text-lime-300 font-bold uppercase tracking-wide mb-2">
+                    Start Date
+                </label>
+
+                <input type="date" asp-for="StartDate"
+                       class="w-full px-4 py-3 bg-black text-lime-200 font-mono border-4 border-lime-400
+                shadow-[3px_3px_0px_0px_#000] focus:outline-none focus:border-lime-300
+                focus:shadow-[2px_2px_0px_0px_#000] transition-all" />
+            </div>
+
+            <!-- End Date -->
+            <div>
+                <label class="block text-lime-300 font-bold uppercase tracking-wide mb-2">
+                    End Date
+                </label>
+
+                <input type="date" asp-for="EndDate"
+                       class="w-full px-4 py-3 bg-black text-lime-200 font-mono border-4 border-lime-400
+                shadow-[3px_3px_0px_0px_#000] focus:outline-none focus:border-lime-300
+                focus:shadow-[2px_2px_0px_0px_#000] transition-all" />
+            </div>
+
+            <!-- Activities (MULTIPLE SELECT) -->
+            <div>
+                <label class="block text-lime-300 font-bold uppercase tracking-wide mb-2">
+                    Select Activities
+                </label>
+
+                <select asp-for="SelectedActivityIds" asp-items="ViewBag.Activities" multiple
+                        class="w-full h-48 px-4 py-3 bg-black text-lime-200 font-mono border-4 border-lime-400
+                    shadow-[3px_3px_0px_0px_#000] focus:outline-none focus:border-lime-300
+                    focus:shadow-[2px_2px_0px_0px_#000] transition-all">
+                </select>
+
+                <span asp-validation-for="SelectedActivityIds" class="text-red-500 text-sm"></span>
+            </div>
+
+            <!-- Buttons -->
+            <div class="pt-4">
+                <button class="px-6 py-3 bg-lime-600 text-black font-bold uppercase tracking-wide
+                    shadow-[4px_4px_0px_0px_#000] border-2 border-black
+                    hover:translate-x-[2px] hover:translate-y-[2px]
+                    hover:shadow-[2px_2px_0px_0px_#000] transition-all cursor-pointer">
+                    Save Trip
+                </button>
+
+                <a asp-action="Index"
+                       class="inline-block ml-4 px-5 py-3 bg-neutral-800 text-lime-300 font-bold uppercase tracking-wide
+                    shadow-[4px_4px_0px_0px_#000] border-2 border-black
+                    hover:translate-x-[2px] hover:translate-y-[2px]
+                    hover:shadow-[2px_2px_0px_0px_#000] transition-all cursor-pointer">
+                    Cancel
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>

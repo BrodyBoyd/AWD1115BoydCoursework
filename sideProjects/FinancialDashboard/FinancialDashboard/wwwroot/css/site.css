@@ -1541,3 +1541,133 @@
     padding: 0.2rem 0.55rem;
     border-radius: 2px;
 }
+.fin-chart-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 4px;
+    padding: 1.5rem;
+    position: relative;
+}
+
+    .fin-chart-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--gold), transparent 70%);
+        border-radius: 4px 4px 0 0;
+    }
+
+.fin-reset-wrap {
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.fin-reset-warning {
+    background: rgba(248, 113, 113, 0.06);
+    border: 1px solid rgba(248, 113, 113, 0.3);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.fin-warning-icon {
+    font-size: 1.2rem;
+    color: #f87171;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+.fin-warning-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #f87171;
+    margin: 0 0 0.4rem;
+}
+
+.fin-warning-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.fin-reset-summary {
+    border-top: 2px solid rgba(248, 113, 113, 0.5);
+}
+
+.fin-reset-form-panel {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-top: 2px solid rgba(248, 113, 113, 0.5);
+    border-radius: 4px;
+    padding: 1.75rem 2rem;
+}
+
+.fin-reset-hint {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.fin-reset-keyword {
+    font-family: 'DM Mono', monospace;
+    color: #f87171;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+}
+
+.fin-reset-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.fin-reset-input {
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+    .fin-reset-input::placeholder {
+        text-transform: none;
+        letter-spacing: normal;
+    }
+
+.fin-reset-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(248, 113, 113, 0.3);
+    color: rgba(248, 113, 113, 0.4);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.85rem;
+    border-radius: 3px;
+    cursor: not-allowed;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+    .fin-reset-btn.fin-btn-ready {
+        border-color: rgba(248, 113, 113, 0.6);
+        color: #f87171;
+        cursor: pointer;
+    }
+
+        .fin-reset-btn.fin-btn-ready:hover {
+            background: rgba(248, 113, 113, 0.08);
+            border-color: #f87171;
+            box-shadow: 0 8px 24px rgba(248, 113, 113, 0.12);
+        }

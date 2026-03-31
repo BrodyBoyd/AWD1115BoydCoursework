@@ -1,0 +1,104 @@
+﻿
+<div class="fin-page">
+
+    <div class="fin-header">
+        <span class="fin-eyebrow">Account Management</span>
+        <h1 class="fin-title">Reset <span>Account</span></h1>
+        <div class="fin-divider"></div>
+    </div>
+
+    <div class="fin-reset-wrap">
+
+        <!-- Warning Card -->
+        <div class="fin-reset-warning">
+            <div class="fin-warning-icon">⚠</div>
+            <div class="fin-warning-text">
+                <p class="fin-warning-title">This action is irreversible</p>
+                <p class="fin-warning-desc">
+                    Resetting your account will permanently delete all investments, clear your balance,
+                    and reset all statistics. Your login credentials will remain intact.
+                </p>
+            </div>
+        </div>
+
+        <!-- What will be lost -->
+        <div class="fin-card fin-reset-summary">
+            <div class="fin-card-ticker">to be cleared</div>
+            <h3 class="fin-card-name" style="font-size: 1.1rem; margin-bottom: 1.25rem;">What will be reset</h3>
+            <div class="fin-separator"></div>
+            <div class="fin-metrics" style="margin-top: 1.25rem;">
+                <div class="fin-metric">
+                    <span class="fin-metric-label">Account Balance</span>
+                    <span class="fin-metric-value fin-metric-loss">Will be zeroed</span>
+                </div>
+                <div class="fin-metric">
+                    <span class="fin-metric-label">All Investments</span>
+                    <span class="fin-metric-value fin-metric-loss">Permanently deleted</span>
+                </div>
+                <div class="fin-metric">
+                    <span class="fin-metric-label">Total Invested</span>
+                    <span class="fin-metric-value fin-metric-loss">Will be zeroed</span>
+                </div>
+                <div class="fin-metric">
+                    <span class="fin-metric-label">Total Withdrawn</span>
+                    <span class="fin-metric-value fin-metric-loss">Will be zeroed</span>
+                </div>
+                <div class="fin-metric">
+                    <span class="fin-metric-label">Monthly Income</span>
+                    <span class="fin-metric-value fin-metric-loss">Will be zeroed</span>
+                </div>
+                <div class="fin-metric">
+                    <span class="fin-metric-label">Login Credentials</span>
+                    <span class="fin-metric-value return">Kept intact</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirm Form -->
+        <div class="fin-reset-form-panel">
+            <div class="fin-eyebrow" style="margin-bottom: 0.75rem;">Confirm Reset</div>
+            <p class="fin-reset-hint">
+                Type <span class="fin-reset-keyword">RESET</span> below to confirm you understand this cannot be undone.
+            </p>
+
+            <form asp-action="ConfirmReset" method="post" class="fin-reset-form">
+
+                <div class="fin-form-field">
+                    <label class="fin-form-label">Confirmation</label>
+                    <input type="text"
+                           id="reset-confirm-input"
+                           name="confirmation"
+                           class="fin-login-input fin-reset-input"
+                           placeholder="Type RESET to confirm"
+                           autocomplete="off" />
+                </div>
+
+                <button type="submit" id="reset-submit-btn" class="fin-reset-btn" disabled>
+                    Reset Account
+                </button>
+            </form>
+        </div>
+
+        <!-- Cancel -->
+        <div style="text-align: center;">
+            <a asp-action="Profile" class="fin-link">← Back to Profile</a>
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    
+</style>
+
+<script>
+    const input = document.getElementById('reset-confirm-input');
+    const btn   = document.getElementById('reset-submit-btn');
+
+    input.addEventListener('input', () => {
+        const ready = input.value.trim().toUpperCase() === 'RESET';
+        btn.disabled = !ready;
+        btn.classList.toggle('fin-btn-ready', ready);
+    });
+</script>

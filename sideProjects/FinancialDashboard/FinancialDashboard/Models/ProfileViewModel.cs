@@ -15,5 +15,8 @@
         public int ActiveInvestmentCount { get; set; }
         public Investment MostProfitableInvestment { get; set; }
         public List<Investment> ActiveInvestments { get; set; }
+
+        public List<decimal> MonthlyPortfolioValues { get; set; } = new();
+        public List<string> MonthLabels { get; set; } = new();
     }
 }

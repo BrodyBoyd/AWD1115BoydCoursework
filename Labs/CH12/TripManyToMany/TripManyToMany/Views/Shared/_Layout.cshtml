@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
+
+</head>
+<body class="bg-slate-900 px-2">
+    <nav class="flex gap-4 mb-8 p-3">
+        <a class="px-5 py-3 bg-black text-lime-300 font-bold uppercase tracking-wide
+            shadow-[4px_4px_0px_0px_#000] border-2 border-lime-300
+            hover:bg-neutral-900 hover:translate-x-[2px] hover:translate-y-[2px]
+            hover:shadow-[2px_2px_0px_0px_#000] transition-all cursor-pointer" asp-action="Index">
+            View Trips
+        </a>
+
+        <a class="px-5 py-3 bg-black text-lime-300 font-bold uppercase tracking-wide
+            shadow-[4px_4px_0px_0px_#000] border-2 border-lime-300
+            hover:bg-neutral-900 hover:translate-x-[2px] hover:translate-y-[2px]
+            hover:shadow-[2px_2px_0px_0px_#000] transition-all cursor-pointer" asp-action="Destinations">
+            Manage Destinations
+        </a>
+
+        <a class="px-5 py-3 bg-black text-lime-300 font-bold uppercase tracking-wide
+            shadow-[4px_4px_0px_0px_#000] border-2 border-lime-300
+            hover:bg-neutral-900 hover:translate-x-[2px] hover:translate-y-[2px]
+            hover:shadow-[2px_2px_0px_0px_#000] transition-all cursor-pointer" asp-action="Accommodations">
+            Manage Accommodations
+        </a>
+
+        <a class="px-5 py-3 bg-black text-lime-300 font-bold uppercase tracking-wide
+            shadow-[4px_4px_0px_0px_#000] border-2 border-lime-300
+            hover:bg-neutral-900 hover:translate-x-[2px] hover:translate-y-[2px]
+            hover:shadow-[2px_2px_0px_0px_#000] transition-all cursor-pointer" asp-action="Activities">
+            Manage Activities
+        </a>
+    </nav>
+
+    <div class="text-4xl font-black text-lime-400 mb-6 tracking-tight
+        shadow-[4px_4px_0px_0px_#000] inline-block px-4 py-2 bg-neutral-900
+        rotate-[-0.8deg]">
+        My Trip Log
+    </div>
+
+    <div class="mt-4">
+        @RenderBody()
+    </div>
+</body>
+</html>

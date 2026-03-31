@@ -173,5 +173,90 @@
             }
 
         </div>
+        <!-- Earnings Chart -->
+        <div class="fin-section-label" style="margin-top: 1rem;">
+            <span class="fin-eyebrow">Portfolio Growth</span>
+            <div class="fin-section-rule"></div>
+        </div>
+
+        <div class="fin-chart-card">
+            <canvas id="earningsChart"></canvas>
+        </div>
+
+        @section Scripts {
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+            <script>
+                const labels = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.MonthLabels));
+                const values = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.MonthlyPortfolioValues));
+
+                const ctx = document.getElementById('earningsChart').getContext('2d');
+
+                new Chart(ctx, {
+                type: 'line',
+                data: {
+                labels: labels,
+                datasets: [{
+                label: 'Portfolio Value',
+                data: values,
+                borderColor: '#c9a84c',
+                backgroundColor: 'rgba(201, 168, 76, 0.08)',
+                borderWidth: 2,
+                pointRadius: values.length > 60 ? 0 : 3,
+                pointBackgroundColor: '#c9a84c',
+                pointBorderColor: '#0a0e1a',
+                pointBorderWidth: 2,
+                tension: 0.4,
+                fill: true,
+                }]
+                },
+                options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                interaction: {
+                intersect: false,
+                mode: 'index'
+                },
+                plugins: {
+                legend: { display: false },
+                tooltip: {
+                backgroundColor: '#131c2e',
+                borderColor: '#1e2d45',
+                borderWidth: 1,
+                titleColor: '#8a9ab5',
+                bodyColor: '#f0ead6',
+                titleFont: { family: 'DM Mono', size: 11 },
+                bodyFont: { family: 'DM Mono', size: 13 },
+                padding: 12,
+                callbacks: {
+                label: ctx => ' ' + new Intl.NumberFormat('en-US', {
+                style: 'currency', currency: 'USD'
+                }).format(ctx.parsed.y)
+                }
+                }
+                },
+                scales: {
+                x: {
+                grid: { color: 'rgba(30, 45, 69, 0.6)' },
+                ticks: {
+                color: '#4a5a72',
+                font: { family: 'DM Mono', size: 10 },
+                maxTicksLimit: 12
+                },
+                border: { color: '#1e2d45' }
+                },
+                y: {
+                grid: { color: 'rgba(30, 45, 69, 0.6)' },
+                ticks: {
+                color: '#4a5a72',
+                font: { family: 'DM Mono', size: 10 },
+                callback: val => '$' + val.toLocaleString()
+                },
+                border: { color: '#1e2d45' }
+                }
+                }
+                }
+                });
+            </script>
+        }
     </div>
 </div>
