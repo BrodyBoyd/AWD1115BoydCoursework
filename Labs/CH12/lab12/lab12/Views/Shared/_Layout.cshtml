@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
+
+</head>
+<body>
+    <nav class="bg-white border-b border-gray-200 shadow-sm">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-center gap-8">
+
+            <a asp-controller="Courses" asp-action="Index"
+                   class="text-gray-700 font-medium hover:text-blue-600 transition">
+                Courses
+            </a>
+
+            <a asp-controller="Home" asp-action="Index"
+                   class="text-gray-700 font-medium hover:text-blue-600 transition">
+                Students
+            </a>
+
+        </div>
+    </nav>
+    <div>
+        @RenderBody()
+    </div>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

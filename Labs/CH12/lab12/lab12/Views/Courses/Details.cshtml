@@ -1,0 +1,68 @@
+﻿@model lab12.Models.Course
+
+@{
+    ViewData["Title"] = "Course Details";
+}
+
+<div class="max-w-xl mx-auto mt-10 space-y-8">
+
+    <!-- Page Header -->
+    <h1 class="text-3xl font-semibold text-gray-800 border-b pb-2">
+        Course Details
+    </h1>
+
+    <!-- Details Card -->
+    <div class="bg-white p-6 rounded-lg shadow border border-gray-200 space-y-6">
+
+        <!-- Course Info -->
+        <div>
+            <h2 class="text-xl font-medium text-gray-800 mb-3">Course Information</h2>
+
+            <div class="space-y-2">
+                <p class="text-sm font-medium text-gray-600">Title</p>
+                <p class="text-gray-800 text-lg">@Model.Title</p>
+            </div>
+        </div>
+
+        <!-- Students Enrolled -->
+        <div class="space-y-3">
+            <h2 class="text-xl font-medium text-gray-800">Students Enrolled</h2>
+
+            <div class="overflow-hidden rounded-lg border border-gray-200">
+                <table class="min-w-full text-left bg-white">
+                    <thead class="bg-gray-100 border-b">
+                        <tr>
+                            <th class="px-4 py-2 text-sm font-medium text-gray-700">Student ID</th>
+                            <th class="px-4 py-2 text-sm font-medium text-gray-700">Student Name</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="divide-y divide-gray-200">
+                        @foreach (var student in Model.Students)
+                        {
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-2 text-gray-800">@student.StudentId</td>
+                                <td class="px-4 py-2 text-gray-800">@student.Name</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-4">
+        <a asp-action="Edit" asp-route-id="@Model?.CourseId"
+               class="bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition">
+            Edit
+        </a>
+
+        <a asp-action="Index"
+               class="text-gray-700 hover:text-blue-600 font-medium transition">
+            Back to List
+        </a>
+    </div>
+
+</div>

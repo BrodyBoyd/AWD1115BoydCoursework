@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Student>
+
+<div class="max-w-4xl mx-auto mt-10 space-y-8">
+    <a asp-action="EnrollNewStudent" class="text-blue-600 hover:text-blue-800 font-medium">Enroll New Student</a>
+    <!-- Page Title -->
+    <h1 class="text-3xl font-semibold text-gray-800 border-b pb-2">
+        Select Students By Course
+    </h1>
+
+    <!-- Course Selection Form -->
+    <form asp-action="ChangeCourse" method="post" id="courseForm" class="bg-white p-5 rounded-lg shadow border border-gray-200">
+        <div class="flex flex-col gap-2">
+            <label for="courseSelect" class="text-sm font-medium text-gray-700">
+                Select a Course
+            </label>
+
+            <select id="courseSelect" name="courseId"
+                    class="border border-gray-300 rounded-md px-3 py-2 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <option value="">Select a Course</option>
+
+                @foreach (Course course in ViewBag.Courses)
+                {
+                    if (ViewBag.SelectedCourse != null && ViewBag.SelectedCourse == course.CourseId)
+                    {
+                        <option value="@course.CourseId" selected>@course.Title</option>
+                    }
+                    else
+                    {
+                        <option value="@course.CourseId">@course.Title</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <script>
+                    document.getElementById("courseSelect").addEventListener("change", function () {
+                        document.getElementById("courseForm").submit();
+                    });
+        </script>
+    </form>
+
+    <!-- Students Table -->
+    <div class="overflow-hidden rounded-lg shadow border border-gray-200 bg-white">
+        <table class="min-w-full text-left">
+            <thead class="bg-gray-100 border-b">
+                <tr>
+                    <th class="px-6 py-3 text-sm font-medium text-gray-700">Name</th>
+                    <th class="px-6 py-3 text-sm font-medium text-gray-700">Financial Aid</th>
+                    <th class="px-6 py-3 text-sm font-medium text-gray-700">Enroll In Class</th>
+                    <th class="px-6 py-3 text-sm font-medium text-gray-700">Delete</th>
+                </tr>
+            </thead>
+
+            <tbody class="divide-y divide-gray-200">
+                @foreach (var student in Model)
+                {
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 text-gray-800">@student.Name</td>
+                        <td class="px-6 py-4 text-gray-600">@student.FinancialAidStatus</td>
+                        <td class="px-6 py-4">
+                            <a asp-action="ChangeEnrollment"
+                                   asp-controller="Home"
+                                   asp-route-id="@student.StudentId"
+                                   class="text-blue-600 hover:text-blue-800 font-medium">
+                                Edit Enrolled Classes
+                            </a>
+                        </td>
+                        <td class="px-6 py-4">
+                            <a asp-action="DeleteStudent"
+                                   asp-controller="Home"
+                                   asp-route-id="@student.StudentId"
+                                   class="text-red-600 hover:text-red-800 font-medium">
+                                Delete Student
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>

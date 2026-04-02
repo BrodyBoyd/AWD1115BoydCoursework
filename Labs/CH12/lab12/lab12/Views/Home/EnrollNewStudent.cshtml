@@ -1,0 +1,66 @@
+﻿@model Student
+
+<div class="max-w-xl mx-auto mt-10 space-y-8">
+
+    <!-- Page Title -->
+    <h1 class="text-3xl font-semibold text-gray-800 border-b pb-2">
+        Enroll New Student
+    </h1>
+
+    <!-- Enrollment Form -->
+    <form asp-action="EnrollNewStudent" method="post"
+          class="bg-white p-6 rounded-lg shadow border border-gray-200 space-y-6">
+
+        <!-- Student Name -->
+        <div class="flex flex-col gap-2">
+            <label asp-for="Name" class="text-sm font-medium text-gray-700">
+                Student Name
+            </label>
+            <input asp-for="Name"
+                   class="border border-gray-300 rounded-md px-3 py-2 text-gray-700
+            focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+
+        <!-- Course Checkboxes -->
+        <div class="space-y-3">
+            <p class="text-sm font-medium text-gray-700">Enroll in Courses</p>
+
+            @foreach (var course in ViewBag.Courses as List<Course>)
+            {
+                <label class="flex items-center gap-3 text-gray-700">
+                    <input type="checkbox"
+                           id="@course.CourseId"
+                           name="enrolledCourses"
+                           value="@course.CourseId"
+                           class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
+                    <span>@course.Title</span>
+                </label>
+            }
+        </div>
+
+        <div class="flex flex-col gap-2">
+            <label asp-for="FinancialAidStatus" class="text-sm font-medium text-gray-700">
+                Financial Aid Status
+            </label>
+
+            <select asp-for="FinancialAidStatus"
+                    class="border border-gray-300 rounded-md px-3 py-2 text-gray-700
+                focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <option value="passed">Accepted</option>
+                <option value="Not Complete">Denied</option>
+            </select>
+        </div>
+
+        <!-- Hidden ID -->
+        <input type="hidden" asp-for="StudentId" />
+
+        <!-- Submit Button -->
+        <button type="submit"
+                class="w-full bg-blue-600 text-white py-2 rounded-md font-medium
+            hover:bg-blue-700 transition">
+            Enroll Student
+        </button>
+
+    </form>
+
+</div>
