@@ -1,209 +1,351 @@
-﻿<body class="bg-gray-950 text-white font-sans">
+﻿
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Brody Boyd</a>
+  <ul class="nav-links">
+    <li><a href="#finals">Capstone</a></li>
+    <li><a href="#personal">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-    <!-- NAVBAR -->
-    <nav class="w-full py-5 px-8 flex justify-between items-center bg-gray-900/60 backdrop-blur-md fixed top-0 z-50">
-        <h1 class="text-2xl font-bold text-purple-400">Brody.dev</h1>
-        <div class="space-x-6 hidden md:flex">
-            <a href="#projects" class="hover:text-purple-300 transition">Projects</a>
-            <a href="#skills" class="hover:text-purple-300 transition">Skills</a>
-            <a href="#about" class="hover:text-purple-300 transition">About</a>
-            <a href="#contact" class="hover:text-purple-300 transition">Contact</a>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow fade-up delay-1">Full-stack Developer</p>
+    <h1 class="fade-up delay-2">Hi, I'm<br><em>Brody</em></h1>
+    <p class="hero-desc fade-up delay-3">
+      I craft clean, modern digital experiences — balancing polished frontend design with
+      thoughtful, efficient backend architecture.  I would love to tell you more about my work!
+    </p>
+    <div class="hero-ctas fade-up delay-4">
+      <a href="#finals" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-visual fade-up delay-3">
+    <div class="hero-photo-wrapper">
+      <div class="hero-photo">
+        <img src="~/images/profile.jpg" alt="Brody Boyd" onerror="this.style.display='none'; this.parentElement.classList.add('hero-photo-placeholder');" />
+      </div>
+      <div class="hero-badge-cluster">
+        <div class="hero-badge">
+          <span class="badge-num">3</span>
+          <span class="badge-label">Live Web-aps</span>
         </div>
-    </nav>
-
-    <section class="hero-noise min-h-screen flex items-center justify-center text-center px-6 fade-in relative overflow-hidden
-    bg-[radial-gradient(circle_at_top,rgba(168,85,247,0.35),rgba(0,0,0,0.6))]
-    before:content-[''] before:absolute before:inset-0
-    before:bg-[radial-gradient(circle_at_30%_40%,rgba(139,92,246,0.45),transparent_60%)]
-    after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-40">
-
-        <div class="relative z-10">
-            <h2 class="text-5xl md:text-6xl font-extrabold mb-4">
-                Hi, I'm <span class="text-purple-400">Brody</span>
-            </h2>
-            <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto">
-                A passionate <span class="text-purple-300">App & Web Developer</span> crafting clean, modern, and user‑focused digital experiences.
-            </p>
-
-            <div class="mt-8 flex justify-center gap-4">
-                <a href="#projects" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg font-semibold transition">
-                    View My Work
-                </a>
-                <a href="#contact" class="px-6 py-3 border border-purple-400 hover:bg-purple-400/20 rounded-lg font-semibold transition">
-                    Contact Me
-                </a>
-            </div>
+        <div class="hero-badge">
+          <span class="badge-num">C#</span>
+          <span class="badge-label">Full-stack</span>
         </div>
-    </section>
+        <div class="hero-badge">
+          <span class="badge-num">JS</span>
+          <span class="badge-label">Full-stack</span>
+        </div>
+        <div class="hero-badge">
+          <span class="badge-num">∞</span>
+          <span class="badge-label">Things to learn</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="py-20 px-8 bg-gray-900 fade-in">
-        <h3 class="text-4xl font-bold text-center mb-12">Featured Projects</h3>
+<div class="section-divider"></div>
 
-        <div class="grid md:grid-cols-3 gap-10">
-            <!-- Project Card -->
-            <div class="bg-gray-800 p-6 rounded-xl card-hover hover:shadow-[0_10px_20px_-10px_black] hover:scale-105 transition-transform">
-                <div class="h-60 bg-gray-700 rounded-lg mb-4 peePal-background"></div>
-                <h4 class="text-xl font-semibold mb-2">PeePal</h4>
-                <div class="flex items-center gap-3">
-                    <img src="~/images/CSharpLogo.png" alt="C#" class="w-12">
-                    <img src="~/images/CSSLogo.png" alt="CSS Logo" class="w-8">
+<!-- SEMESTER FINALS SHOWCASE -->
+<section class="finals-showcase" id="finals">
+    <p class="section-label">Semester Capstone Work</p>
+    <h2 class="section-title">School Projects</h2>
+    <p class="section-subtitle">
+        End-of-semester finals built in academic settings, covering full-stack architecture,
+        collaboration with peers, and deployment.
+    </p>
+
+    <div class="finals-grid">
+
+        <!-- Issue Tracker -->
+        <div class="final-card">
+            <a href="https://issuetracker-service-627308096057.us-central1.run.app" target="_blank">
+                <span class="final-card-tag">Third Semester Final</span>
+                <h3>Issue Tracker</h3>
+                <p>
+                    A lightweight issue-tracking system for logging, organizing, and resolving bugs.
+                    Features a clean JavaScript-powered UI and straightforward workflow management.
+                </p>
+                <div class="final-card-footer">
+                    <div class="tech-stack">
+                        <span class="tech-pill">JavaScript</span>
+                        <span class="tech-pill">CSS</span>
+                        <span class="tech-pill">GCloud</span>
+                    </div>
                 </div>
-                <p class="text-gray-300 text-sm">
-                    A full‑stack restroom‑rating platform featuring real‑time geolocation, category‑based reviews, and a clean, playful interface built for quick, trustworthy bathroom discovery.   (Still In development)
-                </p>
-                <a href="https://github.com/BrodyBoyd/AWD1115BoydCoursework/tree/main/FinalProject" target="_blank">Check out the github repository here!</a>
-            </div>
-
-            <div class="bg-gray-800 p-6 rounded-xl card-hover hover:shadow-[0_10px_20px_-10px_black] hover:scale-105 transition-transform">
-                <div class="h-40 bg-gray-700 rounded-lg mb-4"></div>
-                <h4 class="text-xl font-semibold mb-2">Used Car Finder</h4>
-                <p class="text-gray-300 text-sm">
-                    A responsive used‑car search tool with dynamic filters, smooth UI animations, and a modern Tailwind‑driven layout designed for fast, intuitive browsing.  A class project using Git and working with others to make a comprehensive website.  (Still in development)
-                </p>
-                <a href="https://github.com/EvanGudmestad/UsedAndReliableCars" target="_blank">Check out the github repository here!</a>
-            </div>
-
-            
-            <div class="bg-gray-800 p-6 rounded-xl card-hover transition hover:shadow-[0_10px_20px_-10px_black] hover:scale-105 transition-transform">
-                <a asp-controller="Blackjack" asp-action="Index">
-                    <div class="h-60 bg-gray-700 rounded-lg mb-4 blackjack-background"></div>
-                    <h4 class="text-xl font-semibold mb-2">BlackJack </h4>
-                    <div class="flex items-center gap-3">
-                        <img src="~/images/CSharpLogo.png" alt="C#" class="w-12">
-                        <img src="~/images/CSSLogo.png" alt="CSS Logo" class="w-8">
-                    </div>
-                </a>
-
-                <p class="text-gray-300 text-sm">
-                    A fully interactive Blackjack game built with C#, CSS, and Tailwind — complete with card logic, betting flow, and a polished casino‑style interface.
-                </p>
-                The code for this is imbeded within this site!
-            </div>
-
-            <div class="bg-gray-800 p-6 rounded-xl card-hover hover:shadow-[0_10px_20px_-10px_black] hover:scale-105 transition-transform">
-                <a href="https://issuetracker-service-627308096057.us-central1.run.app" target="_blank">
-                    <div class="h-60 bg-gray-700 rounded-lg mb-4 issueTracker-background"></div>
-                    <h4 class="text-xl font-semibold mb-2">Issue Tracker</h4>
-                    <div class="flex items-center gap-3">
-                        <img src="~/images/JSLogo.png" alt="JS logo" class="w-12">
-                        <img src="~/images/CSSLogo.png" alt="CSS Logo" class="w-8">
-                    </div>
-                </a>
-                <p class="text-gray-300 text-sm">
-                    A lightweight issue‑tracking system for logging, organizing, and resolving bugs, featuring a clean JavaScript‑powered UI and simple workflow management.
-                </p>
-                <a href="https://github.com/RankenTechnicalCollege/all-coursework-BrodyBoyd/tree/master/FinalProject" target="_blank">Check out the github repository here! </a>
-            </div>
-
-            
-             <div class="bg-gray-800 p-6 rounded-xl card-hover hover:shadow-[0_10px_20px_-10px_black] hover:scale-105 transition-transform">
-                <a href="https://binged-101902204590.us-central1.run.app" target="_blank">
-                    <div class="h-60 bg-gray-700 rounded-lg mb-4 binged-background"></div>
-                    <h4 class="text-xl font-semibold mb-2">Binged</h4>
-                    <div class="flex items-center gap-3">
-                        <img src="~/images/JSLogo.png" alt="JS logo" class="w-12">
-                        <img src="~/images/CSSLogo.png" alt="CSS Logo" class="w-8">
-                    </div>
-                </a>
-                <p class="text-gray-300 text-sm">
-                    A media‑tracking app that lets users log shows, track progress, and manage watchlists through a fast, JavaScript‑driven interface.
-                </p>
-                <a href="https://github.com/BrodyBoyd/Binged" target="_blank">Check out the github repository here!</a>
-            </div>
-
-            <div class="bg-gray-800 p-6 rounded-xl card-hover hover:shadow-[0_10px_20px_-10px_black] hover:scale-105 transition-transform">
-                <a href="https://parlayhelperfixed.onrender.com" target="_blank">
-                    <div class="h-60 bg-gray-700 rounded-lg mb-4 parlayHelper-background"></div>
-                    <h4 class="text-xl font-semibold mb-2">Parlay Helper</h4>
-                    <div class="flex items-center gap-3">
-                        <img src="~/images/JSLogo.png" alt="JS logo" class="w-12">
-                        <img src="~/images/CSSLogo.png" alt="CSS Logo" class="w-8">
-                    </div>
-                </a>
-                <p class="text-gray-300 text-sm">
-                    A sports‑betting assistant that pulls live NFL player data from ESPN’s API and calculates projected outcomes to help users evaluate over/under betting lines.
-                </p>
-                <a href="https://github.com/BrodyBoyd/ParlayHelperLive" target="_blank">Check out the github repository here!</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills" class="py-20 px-8 fade-in">
-        <h3 class="text-4xl font-bold text-center mb-12">Skills</h3>
-
-        <div class="grid md:grid-cols-4 gap-8 text-center">
-            <div class="bg-gray-800 p-6 rounded-xl card-hover transition">
-                <h4 class="text-xl font-semibold mb-2">Frontend</h4>
-                <p class="text-gray-300 text-sm">Tailwind, CSS, HTML, React, Fetch/Axios, JSON handling</p>
-            </div>
-
-            <div class="bg-gray-800 p-6 rounded-xl card-hover transition">
-                <h4 class="text-xl font-semibold mb-2">Backend</h4>
-                <p class="text-gray-300 text-sm">ASP.NET MVC, APIs, C#, Vite, Javascript, TypeScript</p>
-            </div>
-
-            <div class="bg-gray-800 p-6 rounded-xl card-hover transition">
-                <h4 class="text-xl font-semibold mb-2">Tools</h4>
-                <p class="text-gray-300 text-sm">Git, SQL, NPM, GCloud, MongoDb, full MERN stack</p>
-            </div>
-
-            <div class="bg-gray-800 p-6 rounded-xl card-hover transition">
-                <h4 class="text-xl font-semibold mb-2">Soft Skills</h4>
-                <p class="text-gray-300 text-sm">Problem‑solving, design thinking</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="py-20 px-8 bg-gray-900 fade-in">
-        <h3 class="text-4xl font-bold text-center mb-12">About Me</h3>
-
-        <div class="max-w-3xl mx-auto text-center text-gray-300 text-lg">
-            <p>
-                I am a full stack developer who loves more than anything to see a full project come together.  I focus on making a clean and well designed front end while also
-                making an efficient and thoughtful backend.  I want any app I create to feel thoughtfully made and polished.
-            </p>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="py-24 px-8 fade-in text-center">
-        <h3 class="text-4xl font-bold my-6">Where to Reach Me</h3>
-        <p class="text-gray-300 max-w-2xl mx-auto mb-12">
-            Whether you want to collaborate, hire me, or just say hello — here are the best ways to get in touch.
-        </p>
-
-        <div class="max-w-3xl mx-auto grid md:grid-cols-3 gap-8">
-
-            <!-- Email -->
-            <div class="p-6 bg-gray-800/60 border border-gray-700 rounded-xl hover:border-purple-400 transition">
-                <h4 class="text-xl font-semibold mb-2 text-purple-300">Email</h4>
-                <p class="text-gray-300">bjb6287@gmail.com</p>
-            </div>
-
-            <!-- LinkedIn -->
-            <div class="p-6 bg-gray-800/60 border border-gray-700 rounded-xl hover:border-purple-400 transition">
-                <h4 class="text-xl font-semibold mb-2 text-purple-300">LinkedIn</h4>
-                <a href="https://www.linkedin.com/in/brody-boyd-757778220/" class="text-purple-400 hover:underline" target="_blank">LinkedIn Account</a>
-            </div>
-
-            <!-- GitHub -->
-            <div class="p-6 bg-gray-800/60 border border-gray-700 rounded-xl hover:border-purple-400 transition">
-                <h4 class="text-xl font-semibold mb-2 text-purple-300">GitHub</h4>
-                <a href="https://github.com/BrodyBoyd" class="text-purple-400 hover:underline" target="_blank">GitHub Account</a>
-            </div>
-
-        </div>
-        <br/>
-
-        <div class="mt-16 p-2 mb-4">
-            <a href="mailto:bjb6287@gmail.com"
-               class="inline-block px-8 py-4 bg-purple-600 hover:bg-purple-700 rounded-lg font-semibold transition">
-                Send Me an Email
             </a>
+            <a class="final-card-link" href="https://github.com/RankenTechnicalCollege/all-coursework-BrodyBoyd/tree/master/FinalProject" target="_blank" onclick="event.stopPropagation()">GitHub</a>
         </div>
-    </section>
 
-</body>
+        <!-- Used Car Finder -->
+        <div class="final-card">
+            <a href="https://github.com/EvanGudmestad/UsedAndReliableCars" target="_blank">
+                <span class="final-card-tag">Group Project</span>
+                <h3>Used Car Finder</h3>
+                <p>
+                    A responsive used-car search tool built collaboratively with classmates using Git.
+                    Features dynamic filters, smooth UI animations, and a Tailwind-driven layout.
+                </p>
+                <div class="final-card-footer">
+                    <div class="tech-stack">
+                        <span class="tech-pill">Tailwind</span>
+                        <span class="tech-pill">JavaScript</span>
+                        <span class="tech-pill">Git</span>
+                    </div>
+                </div>
+            </a>
+            <a class="final-card-link" href="https://github.com/EvanGudmestad/UsedAndReliableCars" target="_blank" onclick="event.stopPropagation()">GitHub</a>
+        </div>
+
+        <!-- PeePal -->
+        <div class="final-card">
+            <a href="https://github.com/BrodyBoyd/AWD1115BoydCoursework/tree/main/FinalProject" target="_blank">
+                <span class="final-card-tag">In Development</span>
+                <h3>PeePal</h3>
+                <p>
+                    A full-stack restroom-rating platform with real-time geolocation, category-based reviews,
+                    and a clean, playful interface built for quick bathroom discovery.
+                </p>
+                <div class="final-card-footer">
+                    <div class="tech-stack">
+                        <span class="tech-pill">C#</span>
+                        <span class="tech-pill">Azure</span>
+                        <span class="tech-pill">ASP.NET</span>
+                        <span class="tech-pill">CSS</span>
+                    </div>
+                </div>
+            </a>
+            <a class="final-card-link" href="https://github.com/BrodyBoyd/AWD1115BoydCoursework/tree/main/FinalProject" target="_blank" onclick="event.stopPropagation()">GitHub</a>
+
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PERSONAL PROJECTS -->
+<section class="projects-personal" id="personal">
+  <p class="section-label">Personal Work</p>
+  <h2 class="section-title">Side Projects</h2>
+  <p class="section-subtitle">
+    Built on my own time — exploring ideas, experimenting with new tech, and shipping things I actually enjoy using.
+  </p>
+
+  <div class="personal-grid">
+
+    <!-- Blackjack -->
+    <a class="project-card" asp-action="Index" asp-controller="Blackjack" target="_self">
+      <div class="card-thumb thumb-blackjack">♠</div>
+      <div class="card-body">
+        <span class="card-type">Game · Embedded</span>
+        <h3 class="card-title">Blackjack</h3>
+        <p class="card-desc">
+          A fully interactive Blackjack game built with C# and Tailwind — complete with card logic,
+          betting flow, and a polished casino-style interface. Embedded directly in this site.
+        </p>
+        <div class="card-footer">
+          <div class="tech-stack" style="gap:0.4rem; display:flex; flex-wrap:wrap;">
+            <span class="tech-pill" style="background:var(--paper-warm); color:var(--ink-soft); font-family:var(--mono); font-size:0.65rem; padding:0.2rem 0.5rem; border-radius:2px;">C#</span>
+            <span class="tech-pill" style="background:var(--paper-warm); color:var(--ink-soft); font-family:var(--mono); font-size:0.65rem; padding:0.2rem 0.5rem; border-radius:2px;">Tailwind</span>
+          </div>
+          <span class="card-link">Play</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Binged -->
+    <a class="project-card" href="https://binged-101902204590.us-central1.run.app" target="_blank">
+      <div class="card-thumb thumb-binged">▶</div>
+      <div class="card-body">
+        <span class="card-type">Web App · Live</span>
+        <h3 class="card-title">Binged</h3>
+        <p class="card-desc">
+          A media-tracking app for logging shows, tracking watch progress, and managing
+          watchlists through a fast JavaScript-driven interface.
+        </p>
+        <div class="card-footer">
+          <div class="tech-stack" style="gap:0.4rem; display:flex; flex-wrap:wrap;">
+            <span class="tech-pill" style="background:var(--paper-warm); color:var(--ink-soft); font-family:var(--mono); font-size:0.65rem; padding:0.2rem 0.5rem; border-radius:2px;">JavaScript</span>
+            <span class="tech-pill" style="background:var(--paper-warm); color:var(--ink-soft); font-family:var(--mono); font-size:0.65rem; padding:0.2rem 0.5rem; border-radius:2px;">CSS</span>
+          </div>
+          <span class="card-link">Live Site</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Parlay Helper -->
+    <a class="project-card" href="https://parlayhelperfixed.onrender.com" target="_blank">
+      <div class="card-thumb thumb-parlay">⚡</div>
+      <div class="card-body">
+        <span class="card-type">Web App · Live</span>
+        <h3 class="card-title">Parlay Helper</h3>
+        <p class="card-desc">
+          A sports-betting assistant that pulls live NFL player data from ESPN's API and
+          calculates projected outcomes to evaluate over/under betting lines.
+        </p>
+        <div class="card-footer">
+          <div class="tech-stack" style="gap:0.4rem; display:flex; flex-wrap:wrap;">
+            <span class="tech-pill" style="background:var(--paper-warm); color:var(--ink-soft); font-family:var(--mono); font-size:0.65rem; padding:0.2rem 0.5rem; border-radius:2px;">JavaScript</span>
+            <span class="tech-pill" style="background:var(--paper-warm); color:var(--ink-soft); font-family:var(--mono); font-size:0.65rem; padding:0.2rem 0.5rem; border-radius:2px;">ESPN API</span>
+          </div>
+          <span class="card-link">Live Site</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <p class="section-label">What I work with</p>
+  <h2 class="section-title">Skills</h2>
+  <p class="section-subtitle">A snapshot of the tech and tools I reach for when building.</p>
+
+  <div class="skills-table">
+    <div class="skill-col">
+      <span class="skill-col-label">01</span>
+      <h4>Frontend</h4>
+      <ul class="skill-list">
+        <li>HTML / CSS</li>
+        <li>Tailwind CSS</li>
+        <li>React</li>
+        <li>Fetch / Axios</li>
+        <li>JSON handling</li>
+      </ul>
+    </div>
+    <div class="skill-col">
+      <span class="skill-col-label">02</span>
+      <h4>Backend</h4>
+      <ul class="skill-list">
+        <li>C# / ASP.NET MVC</li>
+        <li>JavaScript</li>
+        <li>TypeScript</li>
+        <li>REST APIs</li>
+        <li>Vite</li>
+      </ul>
+    </div>
+    <div class="skill-col">
+      <span class="skill-col-label">03</span>
+      <h4>Tools</h4>
+      <ul class="skill-list">
+        <li>Git</li>
+        <li>SQL / MongoDB</li>
+        <li>Google Cloud</li>
+        <li>NPM</li>
+        <li>MERN Stack</li>
+      </ul>
+    </div>
+    <div class="skill-col">
+      <span class="skill-col-label">04</span>
+      <h4>Approach</h4>
+      <ul class="skill-list">
+        <li>Problem-solving</li>
+        <li>Design thinking</li>
+        <li>Attention to detail</li>
+        <li>Clean code</li>
+        <li>Polish & craft</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-label-col">
+    <p class="section-label">Who I am</p>
+    <h2 class="about-big-text">About<br><em style="font-style:italic; color:var(--gold);">me</em></h2>
+    <div class="about-stats">
+      <div>
+        <div class="about-stat-num">6+</div>
+        <div class="about-stat-label">Projects</div>
+      </div>
+      <div>
+        <div class="about-stat-num">Full</div>
+        <div class="about-stat-label">Stack</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="about-body">
+      <p>
+        I'm a full-stack developer who loves nothing more than seeing a project fully come together.
+        My focus is on clean, well-designed frontends paired with efficient and thoughtful backend architecture.
+      </p>
+      <p>
+        I want every app I create to feel intentional and polished — not just something that works,
+        but something that feels like real care went into it. Whether it's a class project or a personal
+        side build, I hold the bar the same.
+      </p>
+      <p>
+        When I'm not coding, I enjoy gaming and organizing group activities with friends — which probably
+        explains why I like building things that other people actually use and enjoy.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <p class="section-label">Let's connect</p>
+  <h2 class="section-title">Get in Touch</h2>
+  <p class="section-subtitle">
+    Open to collaboration, hiring conversations, or just a good chat about dev stuff.
+  </p>
+
+  <div class="contact-grid">
+    <a class="contact-card" href="/cdn-cgi/l/email-protection#1c7e767e2a2e242b5c7b717d7570327f7371">
+      <div class="contact-card-icon">✉</div>
+      <div class="contact-card-label">Direct</div>
+      <h4>Email</h4>
+      <p><span class="__cf_email__" data-cfemail="d8bab2baeeeae0ef98bfb5b9b1b4f6bbb7b5">[email&#160;protected]</span></p>
+    </a>
+
+    <a class="contact-card" href="https://www.linkedin.com/in/brody-boyd-757778220/" target="_blank">
+      <div class="contact-card-icon">in</div>
+      <div class="contact-card-label">Professional</div>
+      <h4>LinkedIn</h4>
+      <p>brody-boyd-757778220</p>
+    </a>
+
+    <a class="contact-card" href="https://github.com/BrodyBoyd" target="_blank">
+      <div class="contact-card-icon" style="font-family:var(--mono); font-size:0.9rem;">gh</div>
+      <div class="contact-card-label">Open Source</div>
+      <h4>GitHub</h4>
+      <p>github.com/BrodyBoyd</p>
+    </a>
+  </div>
+
+  <div style="text-align:center; margin-top:2rem;">
+    <a href="/cdn-cgi/l/email-protection#81e3ebe3b7b3b9b6c1e6ece0e8edafe2eeec" class="btn-primary">Send Me an Email →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Brody Boyd</span>
+  <span>Full-stack Developer · St. Louis, MO</span>
+  <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ff9d959dc9cdc7c8bf98929e9693d19c9092">[email&#160;protected]</a></span>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
