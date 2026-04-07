@@ -78,5 +78,10 @@ namespace Bookstore.Controllers
 
             return View(model);
         }
+
+        public ViewResult AccessDenied()
+        {
+            return View();
+        } 
     }
 }

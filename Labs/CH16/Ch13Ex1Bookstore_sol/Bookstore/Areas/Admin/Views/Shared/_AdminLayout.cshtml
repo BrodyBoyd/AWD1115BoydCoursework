@@ -32,6 +32,12 @@
             Manage Genres
         </a>
     </li>
+    <li class="nav-item">
+        <a asp-action="Index" asp-controller="User"
+            class="nav-link @Nav.Active("User", current)">
+            Manage Users
+        </a>
+    </li>
 </ul>
 
 @RenderBody()

@@ -92,12 +92,16 @@
                             <span class="fas fa-edit"></span>&nbsp;Register
                         </a>
                     </li> *@
-                    <li class="nav-item">
-                        <a class="nav-link @Nav.Active("Admin", current)" 
-                            asp-action="Index" asp-controller="Book" asp-area="Admin">
-                            <span class="fas fa-cog"></span>&nbsp;Admin
-                        </a>
-                    </li>
+                        @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link @Nav.Active("Admin", current)"
+                                       asp-action="Index" asp-controller="Book" asp-area="Admin">
+                                    <span class="fas fa-cog"></span>&nbsp;Admin
+                                </a>
+                            </li>
+                        }
+                        
                 </ul>
             </div>
         </nav>

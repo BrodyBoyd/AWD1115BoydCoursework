@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Bookstore.Models;
+﻿using Bookstore.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Bookstore.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class GenreController : Controller
     {

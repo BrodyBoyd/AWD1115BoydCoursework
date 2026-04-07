@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Bookstore.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Bookstore.Controllers
 {
+    [Authorize]
     public class CartController : Controller
     {
         private Repository<Book> data { get; set; }
