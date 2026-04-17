@@ -1,66 +1,7 @@
-﻿@* @inject SignInManager<ApplicationUser> SignInManager
+﻿@inject SignInManager<ApplicationUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
-
-<!-- Sidebar Navigation -->
-<ul class="space-y-2">
-
-    <li>
-        <a asp-page="./Index"
-           id="profile"
-           class="block px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition
-                  @(ManageNavPages.IndexNavClass(ViewContext) == "active" ? "bg-gray-800 text-white" : "")">
-            Profile
-        </a>
-    </li>
-
-    <li>
-        <a asp-page="./Email"
-           id="email"
-           class="block px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition
-                  @(ManageNavPages.EmailNavClass(ViewContext) == "active" ? "bg-gray-800 text-white" : "")">
-            Email
-        </a>
-    </li>
-
-    <li>
-        <a asp-page="./ChangePassword"
-           id="change-password"
-           class="block px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition
-                  @(ManageNavPages.ChangePasswordNavClass(ViewContext) == "active" ? "bg-gray-800 text-white" : "")">
-            Password
-        </a>
-    </li>
-
-    @if (hasExternalLogins)
-    {
-        <li>
-            <a asp-page="./ExternalLogins"
-               id="external-login"
-               class="block px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition
-                      @(ManageNavPages.ExternalLoginsNavClass(ViewContext) == "active" ? "bg-gray-800 text-white" : "")">
-                External Logins
-            </a>
-        </li>
-    }
-
-    <li>
-        <a asp-page="./TwoFactorAuthentication"
-           id="two-factor"
-           class="block px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition
-                  @(ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext) == "active" ? "bg-gray-800 text-white" : "")">
-            Two-Factor Authentication
-        </a>
-    </li>
-
-    <li>
-        <a asp-page="./PersonalData"
-           id="personal-data"
-           class="block px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition
-                  @(ManageNavPages.PersonalDataNavClass(ViewContext) == "active" ? "bg-gray-800 text-white" : "")">
-            Personal Data
-        </a>
-    </li>
-
-</ul> *@
+<ul class="nav nav-pills flex-column">
+    <li class="block text-gray-900 font-medium mb-1"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Change Password</a></li>
+</ul>

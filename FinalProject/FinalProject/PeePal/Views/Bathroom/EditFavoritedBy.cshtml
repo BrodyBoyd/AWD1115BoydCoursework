@@ -1,0 +1,149 @@
+﻿@model Bathroom 
+<div class="rounded-3xl bg-card border border-border shadow-lg p-8">
+
+    <div class="flex items-center justify-between gap-3 mb-7 mt-16">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </div>
+            <h2 class="font-display text-xl font-bold text-card-foreground">Favorited By Users:</h2>
+        </div>
+
+        @if (Model.FavoritedBy != null && Model.FavoritedBy.Any())
+        {
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-xs font-bold text-accent">
+                @Model.FavoritedBy.Count() saved
+            </span>
+        }
+    </div>
+
+    @* @if (Model.FavoritedBy == null || !Model.FavoritedBy.Any())
+    {
+        <!-- Empty state -->
+        <div class="flex flex-col items-center justify-center py-16 text-center">
+            <div class="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center text-muted-foreground mb-4">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </div>
+            <p class="font-display text-lg font-bold text-muted-foreground mb-1">No favorites yet</p>
+            <p class="text-sm text-muted-foreground max-w-xs">When you favorite a bathroom, it will show up here for quick access.</p>
+            <a href="/#search" class="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground font-bold text-sm hover:opacity-90 transition-opacity shadow-md" style="box-shadow:0 4px 14px rgba(13,150,104,0.2)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                Find Bathrooms
+            </a>
+        </div>
+    }
+    else
+    { *@
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            @foreach (var user in ViewBag.Users)
+            {
+                bool isFavorited = Model.FavoritedBy != null && Model.FavoritedBy.Any(f => f.Id == user.Id);
+
+                <div class="group relative rounded-2xl border transition-all duration-200 overflow-hidden cursor-pointer favorite-user-card @(isFavorited ? "border-accent bg-accent/5 shadow-sm" : "border-border bg-background hover:border-accent/40 hover:shadow-md")"
+                     data-user-id="@user.Id"
+                     data-bathroom-id="@Model.BathroomId"
+                     data-favorited="@isFavorited.ToString().ToLower()"
+                     onclick="toggleFavorite(this)">
+
+                    <!-- Top color bar -->
+                    <div class="h-1.5 w-full bg-gradient-to-r from-accent/60 to-primary/60 transition-opacity duration-200 @(isFavorited ? "opacity-100" : "opacity-40 group-hover:opacity-70")"></div>
+
+                    <div class="p-5">
+                        <div class="flex items-start justify-between gap-2 mb-3">
+                            <h3 class="font-display font-bold text-base leading-snug transition-colors @(isFavorited ? "text-accent" : "text-card-foreground group-hover:text-primary")">
+                                @user.Email
+                            </h3>
+
+                            <!-- Heart button — filled if favorited, outline if not -->
+                            <button title="@(isFavorited ? "Remove from favorites" : "Add to favorites")"
+                                    class="flex-shrink-0 w-8 h-8 rounded-full border flex items-center justify-center transition-all favorite-heart
+                                @(isFavorited ? "bg-accent border-accent text-white" : "bg-accent/10 border-accent/20 text-accent hover:bg-accent hover:text-white")"
+                                    tabindex="-1">
+                                @if (isFavorited)
+                                {
+                                    <!-- Filled heart -->
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                }
+                                else
+                                {
+                                    <!-- Outline heart -->
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                }
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    @* } *@
+    <div class="flex items-center justify-between">
+        <a href="javascript:history.back()"
+               class="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline">
+            Return To Previous Page
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+    </div>
+</div>
+
+<script>
+    async function toggleFavorite(card) {
+        const userId = card.dataset.userId;
+        const bathroomId = card.dataset.bathroomId;
+        const isFavorited = card.dataset.favorited === "true";
+
+        const url = isFavorited
+            ? `/Bathroom/Unfavorite`
+            : `/Bathroom/Favorite`;
+
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "RequestVerificationToken": document.querySelector('input[name="__RequestVerificationToken"]').value
+                },
+                body: JSON.stringify({ userId, bathroomId })
+            });
+
+            if (!response.ok) throw new Error("Request failed");
+
+            // Flip state
+            const nowFavorited = !isFavorited;
+            card.dataset.favorited = nowFavorited.toString();
+
+            const heart = card.querySelector(".favorite-heart");
+            const title = card.querySelector("h3");
+            const bar = card.querySelector(".h-1\\.5");
+
+            if (nowFavorited) {
+                card.classList.replace("border-border", "border-accent");
+                card.classList.add("bg-accent/5", "shadow-sm");
+                card.classList.remove("hover:border-accent/40", "hover:shadow-md");
+                heart.classList.replace("bg-accent/10", "bg-accent");
+                heart.classList.replace("border-accent/20", "border-accent");
+                heart.classList.remove("text-accent");
+                heart.classList.add("text-white");
+                heart.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
+                title.classList.add("text-accent");
+                title.classList.remove("text-card-foreground");
+            } else {
+                card.classList.replace("border-accent", "border-border");
+                card.classList.remove("bg-accent/5", "shadow-sm");
+                card.classList.add("hover:border-accent/40", "hover:shadow-md");
+                heart.classList.replace("bg-accent", "bg-accent/10");
+                heart.classList.replace("border-accent", "border-accent/20");
+                heart.classList.add("text-accent");
+                heart.classList.remove("text-white");
+                heart.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
+                title.classList.remove("text-accent");
+                title.classList.add("text-card-foreground");
+            }
+        } catch (err) {
+            console.error("Failed to toggle favorite:", err);
+        }
+    }
+</script>

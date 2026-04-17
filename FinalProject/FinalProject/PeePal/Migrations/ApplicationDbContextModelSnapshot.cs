@@ -238,9 +238,6 @@ namespace PeePal.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BathroomId"));
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
@@ -263,8 +260,6 @@ namespace PeePal.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BathroomId");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Bathrooms");
                 });
@@ -320,6 +315,21 @@ namespace PeePal.Migrations
                     b.ToTable("Reviews");
                 });
 
+            modelBuilder.Entity("UserFavoriteBathrooms", b =>
+                {
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BathroomId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ApplicationUserId", "BathroomId");
+
+                    b.HasIndex("BathroomId");
+
+                    b.ToTable("UserFavoriteBathrooms", (string)null);
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -371,13 +381,6 @@ namespace PeePal.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PeePal.Models.Bathroom", b =>
-                {
-                    b.HasOne("PeePal.Models.ApplicationUser", null)
-                        .WithMany("Favorites")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
             modelBuilder.Entity("PeePal.Models.Review", b =>
                 {
                     b.HasOne("PeePal.Models.Bathroom", "Bathroom")
@@ -395,10 +398,23 @@ namespace PeePal.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("UserFavoriteBathrooms", b =>
+                {
+                    b.HasOne("PeePal.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("PeePal.Models.Bathroom", null)
+                        .WithMany()
+                        .HasForeignKey("BathroomId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("PeePal.Models.ApplicationUser", b =>
                 {
-                    b.Navigation("Favorites");
-
                     b.Navigation("Reviews");
                 });
 

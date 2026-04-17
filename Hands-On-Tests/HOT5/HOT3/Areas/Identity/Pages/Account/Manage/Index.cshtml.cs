@@ -6,12 +6,12 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using HOT5.Models;
+using HOT3.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace HOT5.Areas.Identity.Pages.Account.Manage
+namespace HOT3.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : PageModel
     {

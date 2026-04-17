@@ -15,6 +15,8 @@ namespace PeePal.Models
         public double? Longitude { get; set; }
         public List<Review> Reviews { get; set; } = new();
 
+        public List<ApplicationUser> FavoritedBy { get; set; } = new();
+
         [NotMapped]
         public string Slug
         {

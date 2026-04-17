@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HOT5.Models
+namespace HOT3.Models
 {
     [NotMapped]
     public class CartItem

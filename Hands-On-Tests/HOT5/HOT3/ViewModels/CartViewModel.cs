@@ -1,6 +1,6 @@
-﻿using HOT5.Models;
+﻿using HOT3.Models;
 
-namespace HOT5.ViewModels
+namespace HOT3.ViewModels
 {
     public class CartViewModel
     {

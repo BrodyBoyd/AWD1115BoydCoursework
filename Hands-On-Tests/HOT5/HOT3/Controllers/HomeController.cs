@@ -1,9 +1,9 @@
-﻿using HOT5.Models;
+﻿using HOT3.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace HOT5.Controllers
+namespace HOT3.Controllers
 {
     public class HomeController(ApplicationDbContext context) : Controller
     {

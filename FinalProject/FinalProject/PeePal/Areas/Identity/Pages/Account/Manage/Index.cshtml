@@ -4,45 +4,206 @@
     ViewData["Title"] = "Account";
 }
 
-<section class="min-h-screen flex items-center justify-center bg-gray-50 relative">
+<!-- ========================================== -->
+<!-- PROFILE PAGE                               -->
+<!-- ========================================== -->
+<div class="min-h-screen mt-16 py-16 px-6 relative overflow-hidden">
 
-    <!-- PeePal background blobs -->
-    <div class="absolute -top-20 -left-20 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 right-0 w-80 h-80 bg-violet-400/20 rounded-full blur-3xl"></div>
+    <!-- Background blobs matching site style -->
+    <div class="absolute top-10 -left-20 w-96 h-96 rounded-full bg-primary/15 blur-3xl animate-pulse-glow pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute bottom-10 -right-20 w-80 h-80 rounded-full bg-secondary/20 blur-3xl animate-pulse-glow pointer-events-none" style="animation-delay:2s" aria-hidden="true"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-accent/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
 
-    <div class="relative z-10 w-full max-w-3xl mx-auto p-8">
-        <div class="bg-white shadow-xl rounded-2xl p-8 border border-gray-200">
-            <h2 class="text-3xl font-bold text-gray-900 text-center mb-6">Your Account</h2>
+    <!-- Dot grid -->
+    <div class="absolute inset-0 opacity-[0.025] pointer-events-none" style="background-image:radial-gradient(circle,#1e293b 1px,transparent 1px);background-size:32px 32px" aria-hidden="true"></div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <label class="block text-sm text-gray-600">Username</label>
-                    <div class="mt-1 text-lg font-medium text-gray-900">@Model.Username</div>
-                </div>
+    <div class="relative z-10 max-w-5xl mx-auto">
 
-                <div>
-                    <label class="block text-sm text-gray-600">Full name</label>
-                    <div class="mt-1 text-lg font-medium text-gray-900">@Model.FullName</div>
-                </div>
-
-                <div>
-                    <label class="block text-sm text-gray-600">Email</label>
-                    <div class="mt-1 text-lg font-medium text-gray-900">@Model.Email</div>
-                </div>
-
-                <div>
-                    <label class="block text-sm text-gray-600">Email Confirmed</label>
-                    <div class="mt-1 text-lg font-medium text-gray-900">@Model.EmailConfirmed</div>
-                </div>
+        <!-- ── PAGE HEADER ── -->
+        <div class="mb-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-sm font-semibold text-primary mb-3">
+                    <span class="relative flex h-2.5 w-2.5">
+                        <span class="animate-ping-custom absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+                    </span>
+                    My Account
+                </span>
+                <h1 class="font-display text-4xl sm:text-5xl font-bold text-foreground leading-tight">
+                    Welcome back, <span class="text-primary">@Model.Username</span>
+                </h1>
+                <p class="mt-2 text-muted-foreground text-lg">Manage your profile and see your saved spots.</p>
             </div>
 
-            <div class="mt-8 flex flex-col md:flex-row gap-4">
-                <a asp-page="./ChangePassword" class="inline-block w-full md:w-auto py-2 px-4 bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition text-center">Change password</a>
-                <a asp-page="./Index" class="inline-block w-full md:w-auto py-2 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition text-center">Edit profile</a>
+            <!-- Avatar circle -->
+            <div class="flex-shrink-0">
+                <div class="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-display font-bold text-3xl shadow-lg" style="box-shadow:0 10px 25px -5px rgba(13,150,104,0.3)">
+                    @(Model.FullName?.Length > 0 ? Model.FullName.Substring(0, 1).ToUpper() : Model.Username?.Substring(0, 1).ToUpper())
+                </div>
             </div>
         </div>
+
+
+        <!-- ── PROFILE INFO CARD ── -->
+        <div class="rounded-3xl bg-card border border-border shadow-lg p-8 mb-8">
+
+            <div class="flex items-center gap-3 mb-7">
+                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </div>
+                <h2 class="font-display text-xl font-bold text-card-foreground">Profile Details</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+                <!-- Username -->
+                <div class="rounded-2xl bg-muted/50 border border-border px-5 py-4">
+                    <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Username</p>
+                    <div class="flex items-center gap-2">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary flex-shrink-0"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <span class="text-base font-semibold text-card-foreground">@Model.Username</span>
+                    </div>
+                </div>
+
+                <!-- Full Name -->
+                <div class="rounded-2xl bg-muted/50 border border-border px-5 py-4">
+                    <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Full Name</p>
+                    <div class="flex items-center gap-2">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary flex-shrink-0"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        <span class="text-base font-semibold text-card-foreground">@Model.FullName</span>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="rounded-2xl bg-muted/50 border border-border px-5 py-4">
+                    <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Email Address</p>
+                    <div class="flex items-center gap-2">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary flex-shrink-0"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <span class="text-base font-semibold text-card-foreground">@Model.Email</span>
+                    </div>
+                </div>
+
+                <!-- Email Confirmed -->
+                <div class="rounded-2xl bg-muted/50 border border-border px-5 py-4">
+                    <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Email Status</p>
+                    <div class="flex items-center gap-2">
+                        @if (Model.EmailConfirmed.ToString() == "True")
+                        {
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-bold text-primary">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Verified
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/10 border border-secondary/20 text-xs font-bold text-secondary">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                Not Verified
+                            </span>
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Actions -->
+            <div class="mt-8 pt-6 border-t border-border flex flex-col sm:flex-row gap-3">
+                <a asp-page="./ChangePassword"
+                       class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-bold text-sm hover:opacity-90 transition-opacity shadow-md"
+                       style="box-shadow:0 4px 14px rgba(13,150,104,0.2)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    Change Password
+                </a>
+                <a asp-page="./Index"
+                       class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-border text-foreground font-bold text-sm hover:bg-muted transition-all">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                    Edit Profile
+                </a>
+            </div>
+        </div>
+
+
+        <!-- ── FAVORITE BATHROOMS ── -->
+        <div class="rounded-3xl bg-card border border-border shadow-lg p-8">
+
+            <div class="flex items-center justify-between gap-3 mb-7">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </div>
+                    <h2 class="font-display text-xl font-bold text-card-foreground">Favorite Bathrooms</h2>
+                </div>
+
+                @if (Model.FavoriteBathrooms != null && Model.FavoriteBathrooms.Any())
+                {
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-xs font-bold text-accent">
+                        @Model.FavoriteBathrooms.Count() saved
+                    </span>
+                }
+            </div>
+
+            @if (Model.FavoriteBathrooms == null || !Model.FavoriteBathrooms.Any())
+            {
+                <!-- Empty state -->
+                <div class="flex flex-col items-center justify-center py-16 text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center text-muted-foreground mb-4">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </div>
+                    <p class="font-display text-lg font-bold text-muted-foreground mb-1">No favorites yet</p>
+                    <p class="text-sm text-muted-foreground max-w-xs">When you favorite a bathroom, it will show up here for quick access.</p>
+                    <a href="/#search" class="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground font-bold text-sm hover:opacity-90 transition-opacity shadow-md" style="box-shadow:0 4px 14px rgba(13,150,104,0.2)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        Find Bathrooms
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    @foreach (var bathroom in Model.FavoriteBathrooms)
+                    {
+                        <div class="group relative rounded-2xl border border-border bg-background hover:border-accent/40 hover:shadow-md transition-all duration-200 overflow-hidden">
+
+                            <!-- Top color bar -->
+                            <div class="h-1.5 w-full bg-gradient-to-r from-accent/60 to-primary/60"></div>
+
+                            <div class="p-5">
+                                <!-- Name + remove button -->
+                                <div class="flex items-start justify-between gap-2 mb-3">
+                                    <h3 class="font-display font-bold text-base text-card-foreground leading-snug group-hover:text-primary transition-colors">
+                                        @bathroom.Name
+                                    </h3>
+                                    <!-- Favorite (filled heart) -->
+                                    <button title="Remove from favorites"
+                                            class="flex-shrink-0 w-8 h-8 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent hover:bg-accent hover:text-white transition-all"
+                                            data-bathroom-id="@bathroom.BathroomId">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                    </button>
+                                </div>
+
+                                <!-- Address -->
+                                <div class="flex items-start gap-2 text-sm text-muted-foreground mb-4">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5 text-primary"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                    <span>@bathroom.Street, @bathroom.City, @bathroom.State @bathroom.Zip</span>
+                                </div>
+
+                                <!-- Rating row -->
+                                <div class="flex items-center justify-between">
+                                    <a asp-area="" asp-controller="Home" asp-action="RemoveFavorite" asp-route-BathroomId="@bathroom.BathroomId"
+                                           class="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline">
+                                        Remove From Favorites
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+
     </div>
-</section>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

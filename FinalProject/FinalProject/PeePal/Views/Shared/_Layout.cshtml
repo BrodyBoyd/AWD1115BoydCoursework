@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<PeePal.Models.ApplicationUser> signInManager;
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -113,10 +116,19 @@
                 <div class="hidden md:flex items-center gap-8">
                     <a asp-area="" asp-controller="Home" asp-action="Index"
                        class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors @ActiveClass("Home", "Index")">Home</a>
+                    @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    {
+                    <a asp-area="Admin" asp-controller="Review" asp-action="Index"
+                       class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors @ActiveClass("Review", "Index", "Admin")">Reviews</a>
 
-                    <a asp-area="Reviews" asp-controller="Reviews" asp-action="Index"
-                       class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors @ActiveClass("Reviews", "Index", "Reviews")">Reviews</a>
+                    <a asp-area="Admin" asp-controller="User" asp-action="Index"
+                       class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors @ActiveClass("User", "Index", "Admin")">Users</a>
 
+                    <a asp-area="Admin" asp-controller="User" asp-action="Dashboard"
+                       class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors @ActiveClass("User", "Dashboard", "Admin")">Dashboard</a>
+
+                    }
+                    
                     <a asp-area="" asp-controller="Home" asp-action="About"
                        class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors @ActiveClass("Home", "About")">About</a>
 

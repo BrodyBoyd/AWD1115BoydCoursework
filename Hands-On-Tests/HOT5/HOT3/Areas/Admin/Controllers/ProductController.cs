@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using HOT5.Models;
+using HOT3.Models;
+using Microsoft.AspNetCore.Authorization;
 
-namespace HOT5.Areas.Admin.Controllers
+namespace HOT3.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class ProductController : Controller
@@ -46,6 +47,7 @@ namespace HOT5.Areas.Admin.Controllers
         }
 
         // GET: Product/Create
+
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name");

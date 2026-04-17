@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PeePal.Models
 {
@@ -9,5 +10,8 @@ namespace PeePal.Models
 
         public string? FullName { get; set; }
         public string? ProfileUsername { get; set; }
+
+        [NotMapped]
+        public IList<string> RoleNames { get; set; }
     }
 }

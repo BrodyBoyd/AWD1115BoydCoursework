@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Emit;
 
-namespace HOT5.Models
+namespace HOT3.Models
 {
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<ApplicationUser>(options)
     {
@@ -224,6 +224,8 @@ namespace HOT5.Models
                     ImageUrl = "https://images.unsplash.com/photo-1622126755582-16754165dce8?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c3RhbmRpbmclMjBkZXNrfGVufDB8fDB8fHww"
                 }
             );
+
         }
     }
 }
+

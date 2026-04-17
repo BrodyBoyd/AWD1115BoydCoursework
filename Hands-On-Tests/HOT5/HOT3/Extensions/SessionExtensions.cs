@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using static System.Collections.Specialized.BitVector32;
 
-namespace HOT5.Extensions
+namespace HOT3.Extensions
 {
     public static class SessionExtensions
     {

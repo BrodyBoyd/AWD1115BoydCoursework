@@ -1,0 +1,138 @@
+﻿@using HOT3.Areas.Admin.Models
+@using HOT3.Models
+@model UserViewModel
+
+@{
+    ViewData["Title"] = " | User Management";
+}
+
+<div class="px-6 py-8 space-y-10">
+
+    <!-- USERS HEADER -->
+    <div class="flex items-center justify-between">
+        <h1 class="text-3xl font-bold tracking-tight">User Management</h1>
+
+        
+    </div>
+
+    <!-- USERS TABLE -->
+    <div class="overflow-hidden rounded-lg shadow border border-gray-200">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Username</th>
+                    <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Roles</th>
+                    <th class="px-4 py-3 text-center text-sm font-semibold text-gray-700">Delete</th>
+                    <th class="px-4 py-3 text-center text-sm font-semibold text-gray-700">Add Admin</th>
+                    <th class="px-4 py-3 text-center text-sm font-semibold text-gray-700">Remove Admin</th>
+                </tr>
+            </thead>
+
+            <tbody class="divide-y divide-gray-200 bg-white">
+                @if (!Model.Users.Any())
+                {
+                    <tr>
+                        <td colspan="5" class="px-4 py-6 text-center text-gray-500">
+                            There are no User Accounts.
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (ApplicationUser user in Model.Users)
+                    {
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-4 py-3 font-medium text-gray-800">@user.UserName</td>
+
+                            <td class="px-4 py-3 space-y-1">
+                                @foreach (string roleName in user.RoleNames)
+                                {
+                                    <span class="inline-block px-2 py-1 text-xs font-medium bg-gray-200 text-gray-700 rounded">
+                                        @roleName
+                                    </span>
+                                }
+                            </td>
+
+                            <td class="px-4 py-3 text-center">
+                                <form method="post" asp-action="Delete" asp-route-id="@user.Id">
+                                    <button type="submit"
+                                            class="px-3 py-1 text-sm text-red-700 border border-red-700 rounded hover:bg-red-700 hover:text-white transition">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+
+                            <td class="px-4 py-3 text-center">
+                                @if (!user.RoleNames.Contains("Admin"))
+                                {
+                                    <form method="post" asp-action="AddToAdmin" asp-route-id="@user.Id">
+                                        <button type="submit"
+                                                class="px-3 py-1 text-sm text-blue-700 border border-blue-700 rounded hover:bg-blue-700 hover:text-white transition">
+                                            Add
+                                        </button>
+                                    </form>
+                                }
+                            </td>
+
+                            <td class="px-4 py-3 text-center">
+                                <form method="post" asp-action="RemoveFromAdmin" asp-route-id="@user.Id">
+                                    <button type="submit"
+                                            class="px-3 py-1 text-sm text-blue-700 border border-blue-700 rounded hover:bg-blue-700 hover:text-white transition">
+                                        Remove
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ROLES SECTION -->
+    <div class="pt-6 border-t border-gray-300">
+        <h1 class="text-3xl font-bold tracking-tight mb-4">Role Management</h1>
+
+        @if (!Model.Roles.Any())
+        {
+            <form method="post" asp-action="CreateAdminRole">
+                <button type="submit"
+                        class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+                    Create Admin Role
+                </button>
+            </form>
+        }
+        else
+        {
+            <div class="overflow-hidden rounded-lg shadow border border-gray-200">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Role</th>
+                            <th class="px-4 py-3 text-center text-sm font-semibold text-gray-700">Delete</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="divide-y divide-gray-200 bg-white">
+                        @foreach (var role in Model.Roles)
+                        {
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-4 py-3 font-medium text-gray-800">@role.Name</td>
+
+                                <td class="px-4 py-3 text-center">
+                                    <form method="post" asp-action="DeleteRole" asp-route-id="@role.Id">
+                                        <button type="submit"
+                                                class="px-3 py-1 text-sm text-red-700 border border-red-700 rounded hover:bg-red-700 hover:text-white transition">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+
+</div>

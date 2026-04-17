@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace HOT5.Controllers
+namespace HOT3.Controllers
 {
     public class OrderController : Controller
     {

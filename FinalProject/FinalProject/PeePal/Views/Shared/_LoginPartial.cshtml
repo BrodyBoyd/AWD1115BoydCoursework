@@ -19,7 +19,7 @@
             </button>
 
             <div class="absolute right-0 mt-2 w-44 bg-card rounded-lg border border-border shadow-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden">
-                <a href="#" class="block px-4 py-2 text-sm text-secondary hover:bg-muted transition">Account</a>
+                <a asp-area="Identity" asp-page="/Account/Manage/Index" class="block px-4 py-2 text-sm text-secondary hover:bg-muted transition">Account</a>
 
                 <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                     <button type="submit" class="w-full text-left px-4 py-2 text-sm text-secondary hover:bg-muted transition">Logout</button>

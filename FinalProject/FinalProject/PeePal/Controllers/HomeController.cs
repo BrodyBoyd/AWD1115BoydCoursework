@@ -1,27 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PeePal.Models;
 
 namespace PeePal.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController(UserManager<ApplicationUser> userManager, ApplicationDbContext context) : Controller
     {
-        private readonly ApplicationDbContext _context;
 
-        public HomeController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
         public IActionResult Index()
         {
             ViewBag.Title = "Home Page";
-            var reviews = _context.Reviews
+            var reviews = context.Reviews
                 .Include(r => r.Bathroom)
                 .Include(r => r.User)
                 .ToList();
 
             // Also include bathrooms so the view model is populated
-            var bathrooms = _context.Bathrooms.ToList();
+            var bathrooms = context.Bathrooms.ToList();
 
             var model = new ReviewsViewModel
             {
@@ -68,7 +64,7 @@ namespace PeePal.Controllers
             // Normalize input before counting
             zip = zip.Trim();
 
-            int totalCount = _context.Reviews
+            int totalCount = context.Reviews
                 .Include(r => r.Bathroom)
                 .Where(r => r.Bathroom != null && r.Bathroom.Zip == zip)
                 .Count();
@@ -85,7 +81,7 @@ namespace PeePal.Controllers
             ViewBag.CurrentPage = searchPage;
 
             // Filter reviews by the associated Bathroom's Zip and eager-load related data
-            var results = _context.Reviews
+            var results = context.Reviews
                 .Include(r => r.Bathroom)
                 .Include(r => r.User)
                 .Where(r => r.Bathroom != null && r.Bathroom.Zip == zip)
@@ -113,6 +109,51 @@ namespace PeePal.Controllers
             double lng = json.items[0].position.lng;
 
             return new LatLng { Lat = lat, Lng = lng };
+        }
+
+        public async Task<IActionResult> AddToFavorites(int BathroomId)
+        {
+            var user = await userManager.GetUserAsync(User);
+            var userWithFavs = await context.Users.Where(u => u.Id == user.Id).Include(u => u.Favorites).FirstOrDefaultAsync();
+            Bathroom bathroom = await context.Bathrooms.FindAsync(BathroomId);
+            if (bathroom != null)
+            {
+                foreach (var fav in userWithFavs.Favorites)
+                {
+                    if (fav.BathroomId == bathroom.BathroomId)
+                    {
+                        // Already in favorites, no need to add again
+                        return RedirectToAction("Index");
+                    }   
+                }
+                user.Favorites.Add(bathroom);
+                await context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+
+        }
+        public async Task<IActionResult> RemoveFavorite(int BathroomId)
+        {
+            var user = await userManager.GetUserAsync(User);
+            var userWithFavs = await context.Users.Where(u => u.Id == user.Id).Include(u => u.Favorites).FirstOrDefaultAsync();
+            Bathroom bathroom = await context.Bathrooms.FindAsync(BathroomId);
+            if (bathroom != null)
+            {
+                foreach (var fav in userWithFavs.Favorites)
+                {
+                    if (fav.BathroomId == bathroom.BathroomId)
+                    {
+                        // Already in favorites, no need to add again
+                        user.Favorites.Remove(fav);
+                        await context.SaveChangesAsync();
+                        return RedirectToAction("Index");
+                    }
+                }
+                
+            }
+            return RedirectToAction("Index");
+
         }
     }
 }

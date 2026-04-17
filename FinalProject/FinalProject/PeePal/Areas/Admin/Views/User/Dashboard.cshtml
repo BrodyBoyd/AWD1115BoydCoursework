@@ -1,0 +1,158 @@
+﻿@model PeePal.Areas.Admin.Models.AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<section class="py-20 px-6 bg-muted/50 min-h-screen">
+    <div class="max-w-6xl mx-auto">
+
+        <div class="flex items-center justify-between mb-12">
+            <h1 class="font-display text-4xl font-bold text-foreground">
+                Admin Dashboard
+            </h1>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+            <div class="bg-card border border-border rounded-2xl p-6 shadow-md">
+                <p class="text-sm text-muted-foreground">Total Users</p>
+                <p class="text-3xl font-bold mt-2">@Model.TotalUsers</p>
+            </div>
+
+            <div class="bg-card border border-border rounded-2xl p-6 shadow-md">
+                <p class="text-sm text-muted-foreground">Total Bathrooms</p>
+                <p class="text-3xl font-bold mt-2">@Model.TotalBathrooms</p>
+            </div>
+
+            <div class="bg-card border border-border rounded-2xl p-6 shadow-md">
+                <p class="text-sm text-muted-foreground">Total Reviews</p>
+                <p class="text-3xl font-bold mt-2">@Model.TotalReviews</p>
+            </div>
+
+            <div class="bg-card border border-border rounded-2xl p-6 shadow-md">
+                <p class="text-sm text-muted-foreground">Avg Reviews / Bathroom</p>
+                <p class="text-3xl font-bold mt-2">
+                    @Model.AverageReviewsPerBathroom.ToString("0.0")
+                </p>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="grid lg:grid-cols-2 gap-8 mb-10">
+            <!-- Reviews per Month -->
+            <section class="bg-card border border-border rounded-2xl p-6 shadow-md">
+                <header class="mb-4">
+                    <h2 class="text-2xl font-bold text-card-foreground">Reviews per Month</h2>
+                    <p class="text-sm text-muted-foreground mt-1">
+                        Recent review activity.
+                    </p>
+                </header>
+                <canvas id="reviewsPerMonthChart" class="w-full h-64"></canvas>
+            </section>
+
+            <!-- Popular ZIP Codes -->
+            <section class="bg-card border border-border rounded-2xl p-6 shadow-md">
+                <header class="mb-4">
+                    <h2 class="text-2xl font-bold text-card-foreground">Top ZIP Codes</h2>
+                    <p class="text-sm text-muted-foreground mt-1">
+                        Most reviewed areas.
+                    </p>
+                </header>
+                <canvas id="popularZipChart" class="w-full h-64"></canvas>
+            </section>
+        </div>
+
+        <!-- Most Active Reviewer -->
+        <section class="bg-card border border-border rounded-2xl p-6 shadow-md">
+            <header class="mb-4">
+                <h2 class="text-2xl font-bold text-card-foreground">Most Active Reviewer</h2>
+                <p class="text-sm text-muted-foreground mt-1">
+                    User with the highest number of submitted reviews.
+                </p>
+            </header>
+
+            @if (Model.MostActiveReviewer == null)
+            {
+                <p class="text-muted-foreground text-sm">No review activity yet.</p>
+            }
+            else
+            {
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-lg font-semibold">@Model.MostActiveReviewer.UserName</p>
+                        <p class="text-sm text-muted-foreground">
+                            @Model.MostActiveReviewer.ReviewCount reviews
+                        </p>
+                    </div>
+                </div>
+            }
+        </section>
+
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const reviewMonths = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.ReviewMonths));
+        const reviewCounts = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.ReviewCountsByMonth));
+        const zipLabels = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.PopularZipLabels));
+        const zipCounts = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.PopularZipReviewCounts));
+
+        // Reviews per Month Line Chart
+        const ctxReviews = document.getElementById('reviewsPerMonthChart').getContext('2d');
+        new Chart(ctxReviews, {
+        type: 'line',
+        data: {
+        labels: reviewMonths,
+        datasets: [{
+        label: 'Reviews',
+        data: reviewCounts,
+        borderColor: 'rgb(59,130,246)',
+        backgroundColor: 'rgba(59,130,246,0.15)',
+        tension: 0.35,
+        fill: true,
+        pointRadius: 4,
+        pointHoverRadius: 6
+        }]
+        },
+        options: {
+        responsive: true,
+        plugins: {
+        legend: { display: false }
+        },
+        scales: {
+        x: { ticks: { color: '#6b7280' } },
+        y: { ticks: { color: '#6b7280' }, beginAtZero: true }
+        }
+        }
+        });
+
+        // Popular ZIP Codes Bar Chart
+        const ctxZip = document.getElementById('popularZipChart').getContext('2d');
+        new Chart(ctxZip, {
+        type: 'bar',
+        data: {
+        labels: zipLabels,
+        datasets: [{
+        label: 'Reviews',
+        data: zipCounts,
+        backgroundColor: 'rgba(16,185,129,0.7)',
+        borderColor: 'rgb(16,185,129)',
+        borderWidth: 1,
+        borderRadius: 6
+        }]
+        },
+        options: {
+        responsive: true,
+        plugins: {
+        legend: { display: false }
+        },
+        scales: {
+        x: { ticks: { color: '#6b7280' } },
+        y: { ticks: { color: '#6b7280' }, beginAtZero: true }
+        }
+        }
+        });
+    </script>
+}

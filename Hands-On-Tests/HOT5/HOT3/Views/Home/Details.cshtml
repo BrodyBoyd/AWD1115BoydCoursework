@@ -44,11 +44,13 @@
             </div>
 
             <!-- Add to Cart Button -->
-            <a asp-action="AddToCart"
-               asp-route-id="@Model.ProductId"
-               class="w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-xl transition text-lg">
-                Add to Cart
-            </a>
+            <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                <input type="hidden" name="productId" value="@Model.ProductId" />
+                <button type="submit"
+                        class="w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-xl transition text-lg">
+                    Add to Cart
+                </button>
+            </form>
 
         </div>
 

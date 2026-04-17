@@ -12,12 +12,12 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using PeePal.Validation;
 
-namespace PeePal.Areas.Reviews.Controllers
+namespace PeePal.Areas.Admin.Controllers
 {
     [Authorize]
-    [Area("Reviews")]
+    [Area("Admin")]
     [Route("[controller]/[action]/{id?}/{slug?}")]
-    public class ReviewsController(ApplicationDbContext context, IValidator<Bathroom> _BathroomValidator, IValidator<Review> _ReviewValidator) : Controller
+    public class ReviewController(ApplicationDbContext context, IValidator<Bathroom> _BathroomValidator, IValidator<Review> _ReviewValidator) : Controller
     {
         private readonly ApplicationDbContext _context = context;
 
@@ -185,6 +185,7 @@ namespace PeePal.Areas.Reviews.Controllers
         }
 
         // GET: Reviews/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -209,6 +210,7 @@ namespace PeePal.Areas.Reviews.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ReviewId,BathroomId,Smell,Cleanliness,Privacy,Comfort,Availability,Likes,Dislikes,Notes,DateSubmitted,UserId")] Review review)
         {
@@ -259,6 +261,7 @@ namespace PeePal.Areas.Reviews.Controllers
         }
 
         // GET: Reviews/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -278,6 +281,7 @@ namespace PeePal.Areas.Reviews.Controllers
         }
 
         // POST: Reviews/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

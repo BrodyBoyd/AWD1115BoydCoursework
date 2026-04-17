@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using HOT5.Models;
+using HOT3.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace HOT5.Areas.Identity.Pages.Account
+namespace HOT3.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
@@ -66,7 +66,7 @@ namespace HOT5.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [EmailAddress]
+            //[EmailAddress]
             public string Email { get; set; }
 
             /// <summary>

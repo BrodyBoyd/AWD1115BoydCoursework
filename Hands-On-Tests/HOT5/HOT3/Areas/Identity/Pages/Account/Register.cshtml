@@ -21,13 +21,32 @@
               method="post"
               class="space-y-6">
 
+            <div>
+                <label asp-for="Input.FirstName" class="block text-gray-300 font-medium mb-1"></label>
+                <input asp-for="Input.FirstName"
+                       autocomplete="FirstName"
+                       class="w-full bg-gray-800 border border-gray-700 text-gray-200 rounded-lg px-4 py-2
+                focus:outline-none focus:ring-2 focus:ring-blue-600"
+                       placeholder="name@example.com" />
+                <span asp-validation-for="Input.FirstName" class="text-red-400 text-sm"></span>
+            </div>
+
+            <div>
+                <label asp-for="Input.LastName" class="block text-gray-300 font-medium mb-1"></label>
+                <input asp-for="Input.LastName"
+                       autocomplete="LastName"
+                       class="w-full bg-gray-800 border border-gray-700 text-gray-200 rounded-lg px-4 py-2
+                focus:outline-none focus:ring-2 focus:ring-blue-600"
+                       placeholder="name@example.com" />
+                <span asp-validation-for="Input.LastName" class="text-red-400 text-sm"></span>
+            </div>
             <!-- Email -->
             <div>
                 <label asp-for="Input.Email" class="block text-gray-300 font-medium mb-1"></label>
                 <input asp-for="Input.Email"
                        autocomplete="username"
                        class="w-full bg-gray-800 border border-gray-700 text-gray-200 rounded-lg px-4 py-2
-                              focus:outline-none focus:ring-2 focus:ring-blue-600"
+                focus:outline-none focus:ring-2 focus:ring-blue-600"
                        placeholder="name@example.com" />
                 <span asp-validation-for="Input.Email" class="text-red-400 text-sm"></span>
             </div>
@@ -38,7 +57,7 @@
                 <input asp-for="Input.Password"
                        autocomplete="new-password"
                        class="w-full bg-gray-800 border border-gray-700 text-gray-200 rounded-lg px-4 py-2
-                              focus:outline-none focus:ring-2 focus:ring-blue-600"
+                focus:outline-none focus:ring-2 focus:ring-blue-600"
                        placeholder="••••••••" />
                 <span asp-validation-for="Input.Password" class="text-red-400 text-sm"></span>
             </div>
@@ -49,7 +68,7 @@
                 <input asp-for="Input.ConfirmPassword"
                        autocomplete="new-password"
                        class="w-full bg-gray-800 border border-gray-700 text-gray-200 rounded-lg px-4 py-2
-                              focus:outline-none focus:ring-2 focus:ring-blue-600"
+                focus:outline-none focus:ring-2 focus:ring-blue-600"
                        placeholder="••••••••" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-red-400 text-sm"></span>
             </div>
@@ -67,12 +86,12 @@
         <div class="mt-6 space-y-2 text-center">
 
             <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl"
-               class="text-gray-400 hover:text-white text-sm transition">
+                   class="text-gray-400 hover:text-white text-sm transition">
                 Already have an account? Log in
             </a>
 
             <a asp-page="./ResendEmailConfirmation"
-               class="text-gray-400 hover:text-white text-sm transition">
+                   class="text-gray-400 hover:text-white text-sm transition">
                 Resend email confirmation
             </a>
 

@@ -1,4 +1,7 @@
 ﻿@model PeePal.Models.Review
+@using Microsoft.AspNetCore.Identity;
+
+@inject SignInManager<ApplicationUser> signInManager;
 
 @{
     ViewData["Title"] = "Review Details";
@@ -94,23 +97,62 @@
         </div>
 
         <!-- Actions -->
-        <div class="mt-10 flex justify-center gap-4">
-            <a asp-action="Edit"
-               asp-route-id="@Model?.ReviewId"
-               class="px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold hover:opacity-90 transition">
-                Edit Review
-            </a>
-            <a asp-action="Delete"
-               asp-route-id="@Model?.ReviewId"
-               class="px-8 py-3 rounded-full border border-border text-foreground hover:bg-muted transition">
-                Delete Review
-            </a>
+        @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+        {
+            <div class="mt-10 flex flex-wrap justify-center gap-3">
 
-            <a asp-action="Index"
-               class="px-8 py-3 rounded-full border border-border text-foreground hover:bg-muted transition">
-                Back to List
-            </a>
-        </div>
+                <!-- Primary Action -->
+                <a asp-action="Edit"
+                       asp-route-id="@Model?.ReviewId"
+                       class="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold shadow-sm hover:shadow-md hover:opacity-90 transition">
+                    Edit Review
+                </a>
 
+                <!-- Destructive Action -->
+                <a asp-action="Delete"
+                       asp-route-id="@Model?.ReviewId"
+                       class="px-6 py-2.5 rounded-lg border border-red-400 text-red-500 hover:bg-red-500/10 transition font-medium">
+                    Delete Review
+                </a>
+
+                <!-- Secondary Action -->
+                <a asp-action="Index"
+                       asp-controller="Bathroom"
+                       asp-area=""
+                       asp-route-BathroomId="@Model?.BathroomId"
+                       class="px-6 py-2.5 rounded-lg bg-muted text-foreground hover:bg-muted/70 transition font-medium">
+                    View Bathroom Details
+                </a>
+
+                <!-- Neutral Action -->
+                <a asp-action="Index"
+                       class="px-6 py-2.5 rounded-lg border border-border text-foreground hover:bg-muted transition font-medium">
+                    List Of Reviews
+                </a>
+
+                <!-- Subtle Action -->
+                <a href="javascript:history.back()"
+                       class="px-6 py-2.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition font-medium">
+                    Back to Last Page
+                </a>
+
+            </div>
+        } else
+        {
+            <div class="mt-10 flex justify-center gap-4">
+                <a asp-action="AddToFavorites"
+                       asp-controller="Home"
+                       asp-area=""
+                       asp-route-BathroomId="@Model?.BathroomId"
+                       class="px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold hover:opacity-90 transition">
+                    Add to Favorites
+                </a>
+
+                <a href="javascript:history.back()"
+                       class="px-8 py-3 rounded-full border border-border text-foreground hover:bg-muted transition">
+                    Back to Home
+                </a>
+            </div>
+        }        
     </div>
 </section>

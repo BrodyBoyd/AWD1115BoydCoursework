@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace HOT5.Models
+namespace HOT3.Models
 {
     public class Category
     {

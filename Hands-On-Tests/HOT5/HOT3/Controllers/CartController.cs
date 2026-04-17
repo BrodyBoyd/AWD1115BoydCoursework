@@ -1,13 +1,13 @@
-﻿using HOT5.Extensions;
-using HOT5.Models;
-using HOT5.ViewModels;
+﻿using HOT3.Extensions;
+using HOT3.Models;
+using HOT3.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Security.Claims;
 
-namespace HOT5.Controllers
+namespace HOT3.Controllers
 {
     public class CartController(ApplicationDbContext context) : Controller
     {
@@ -36,6 +36,7 @@ namespace HOT5.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> AddToCart(int productId, int quantity = 1)
         {
             var product = await _context.Products.FindAsync(productId);

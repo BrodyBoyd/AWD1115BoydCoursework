@@ -780,7 +780,7 @@ section {
 }
 
 .about-label-col {
-    position: sticky;
+/*    position: sticky;*/
     top: 6rem;
     align-self: start;
 }

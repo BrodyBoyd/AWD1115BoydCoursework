@@ -8,7 +8,7 @@ namespace FinancialDashboard.Controllers
     public class HomeController(ApplicationDbContext context) : Controller
     {
         Random random = new Random();
-        public decimal CalculateEarnings(Investment investment)
+        public decimal CalculateEarnings(Investment investment, int luck)
         {
             var volatility = investment.EarningMethod.Volatility;
             int randomNumber = random.Next(101);
@@ -120,6 +120,10 @@ namespace FinancialDashboard.Controllers
                 {
                     percentBeforeChange *= -5m;
                 }
+                if (luck == 1)
+                {
+                    percentEarned = -(percentBeforeChange / 12);
+                }
                 percentEarned = (percentBeforeChange / 12);
 
             }
@@ -159,6 +163,8 @@ namespace FinancialDashboard.Controllers
 
         public async Task<IActionResult> ProgressMonth(string? UserId, int months = 1, int? years = 0)
         {
+            int luck = random.Next(5);
+
             if (years > 0)
             {
                 months = Convert.ToInt32(years * 12);
@@ -166,18 +172,20 @@ namespace FinancialDashboard.Controllers
 
             var user = context.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
 
+            //for (int i = 0; i < months; i++)
+            //{
+                
+            //}
+            
+
             for (int i = 0; i < months; i++)
             {
                 if (user.YearlyIncome > 0)
                 {
                     user.Balance += ((user.YearlyIncome / 12) * 0.15m);
                 }
-            }
-            context.Users.Update(user);
-            await context.SaveChangesAsync();
-
-            for (int i = 0; i < months; i++)
-            {
+                context.Users.Update(user);
+                await context.SaveChangesAsync();
                 foreach (var investment in context.Investments.Where(l => l.UserId == UserId).Where(l => l.InvestmentValue > 0).Include(i => i.EarningMethod).ToList())
                 {
                     if ((user.Balance - investment.MonthlyContribution) > 0)
@@ -187,7 +195,7 @@ namespace FinancialDashboard.Controllers
                         user.Balance -= Convert.ToDecimal(investment.MonthlyContribution);
                     }
 
-                    investment.InvestmentValue += CalculateEarnings(investment);
+                    investment.InvestmentValue += CalculateEarnings(investment, luck);
                     investment.InvestmentLengthInMonths += 1;
 
                     double totalMonths = (double)investment.InvestmentLengthInMonths;
@@ -199,9 +207,10 @@ namespace FinancialDashboard.Controllers
                     context.Users.Update(user);
                     context.SaveChanges();
                 }
-                decimal portfolioValue = context.Investments
-                    .Where(l => l.UserId == UserId)
-                    .Sum(l => l.InvestmentValue) + user.Balance;
+
+                decimal investmentValue = await context.Investments.Where(l => l.UserId == UserId).SumAsync(l => l.InvestmentValue);
+                decimal balanceForSnapshot = await context.Users.Where(u => u.UserName == User.Identity.Name).Select(u => u.Balance).FirstOrDefaultAsync();
+                decimal portfolioValue =  investmentValue + balanceForSnapshot;
 
 
                 context.InvestmentSnapshots.Add(new InvestmentSnapshot

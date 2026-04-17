@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace HOT5.Migrations
+namespace HOT3.Migrations
 {
     /// <inheritdoc />
     public partial class changedDataType : Migration
