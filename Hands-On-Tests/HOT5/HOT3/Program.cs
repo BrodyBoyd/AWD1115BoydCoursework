@@ -30,6 +30,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
     options.ExpireTimeSpan = TimeSpan.FromDays(14); // how long Remember Me lasts
     options.SlidingExpiration = true;
+    options.LoginPath = "/Identity/Account/Login";
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
 });
 
 
@@ -50,7 +52,6 @@ app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapRazorPages();
 
 
 app.MapAreaControllerRoute(
@@ -62,6 +63,8 @@ app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Inde
 
 // Ensure seed runs before the app starts
 await SeedDataAsync(app);
+
+app.MapRazorPages();
 
 app.Run();
 

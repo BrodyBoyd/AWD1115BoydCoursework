@@ -1,17 +1,17 @@
 ﻿@page
 @model IndexModel
 
-@{
+@* @{
     ViewData["Title"] = "Profile";
-    ViewData["ActivePage"] = ManageNavPages.Index;
-}
+    // ViewData["ActivePage"] = ManageNavPages.Index;
+} *@
 
 <div class="max-w-3xl mx-auto px-6 py-12">
 
-    <h1 class="text-4xl font-bold text-white mb-6">Your Profile</h1>
+    <h1 class="text-4xl font-bold text-slate-900 mb-6">Your Profile</h1>
 
     <!-- Status Message -->
-    <partial name="_StatusMessage" for="StatusMessage" />
+    @* <partial name="_StatusMessage" for="StatusMessage" /> *@
 
     <div class="bg-gray-900 border border-gray-800 rounded-2xl shadow-xl p-8 mt-6">
 
@@ -36,6 +36,11 @@
                        placeholder="Enter your phone number" />
                 <span asp-validation-for="Input.PhoneNumber" class="text-red-400 text-sm"></span>
             </div>
+
+            <ul class="flex-column">
+                <li class="block text-slate-100 font-medium mb-1"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Change Password</a></li>
+            </ul>
+
             
 
             <!-- Save Button -->
