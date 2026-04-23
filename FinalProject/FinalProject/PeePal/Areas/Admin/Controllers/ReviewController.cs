@@ -5,12 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PeePal.Models;
+using PeePal.Validation;
+using PeePal.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using PeePal.Validation;
 
 namespace PeePal.Areas.Admin.Controllers
 {
@@ -19,14 +20,17 @@ namespace PeePal.Areas.Admin.Controllers
     [Route("[controller]/[action]/{id?}/{slug?}")]
     public class ReviewController(ApplicationDbContext context, IValidator<Bathroom> _BathroomValidator, IValidator<Review> _ReviewValidator) : Controller
     {
+        private const string BathroomSessionKey = "RecentBathrooms";
+
         private readonly ApplicationDbContext _context = context;
 
         // GET: Reviews
 
         public async Task<IActionResult> Index()
         {
-            // Load bathrooms with their reviews and the users who wrote those reviews
-            var bathrooms = await _context.Bathrooms
+       
+        // Load bathrooms with their reviews and the users who wrote those reviews
+        var bathrooms = await _context.Bathrooms
                 .Include(b => b.Reviews)
                     .ThenInclude(r => r.User)
                 .ToListAsync();
@@ -37,6 +41,9 @@ namespace PeePal.Areas.Admin.Controllers
         // GET: Reviews/Details/5/{slug}
         public async Task<IActionResult> Details(int? id, string slug)
         {
+
+            //RecentlyViewedViewModel recentBathrooms = HttpContext.Session.GetObject<RecentlyViewedViewModel>(BathroomSessionKey) ?? new RecentlyViewedViewModel();
+
             if (id == null)
             {
                 return NotFound();
@@ -50,8 +57,15 @@ namespace PeePal.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+
+            Bathroom currentBathroom = review.Bathroom;
             // Note: bathrooms are stored in the Bathrooms table; reviews reference those records.
             // Slug handling removed because Review does not expose a Slug property.
+
+            //recentBathrooms.RecentlySeenBathrooms.Add(currentBathroom);
+            //HttpContext.Session.SetObject(BathroomSessionKey, recentBathrooms);
+
+
             return View(review);
         }
 
@@ -291,7 +305,7 @@ namespace PeePal.Areas.Admin.Controllers
             {
                 _context.Reviews.Remove(review);
             }
-
+            TempData["DeleteMessage"] = "Review Deleted.";
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

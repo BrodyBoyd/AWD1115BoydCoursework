@@ -2,14 +2,19 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PeePal.Models;
+using PeePal.Extensions;
 
 namespace PeePal.Controllers
 {
     public class HomeController(UserManager<ApplicationUser> userManager, ApplicationDbContext context) : Controller
     {
+        private const string BathroomSessionKey = "RecentBathrooms";
+
 
         public IActionResult Index()
         {
+            //ViewBag.RecentlyVisited = HttpContext.Session.GetObject<RecentlyViewedViewModel>(BathroomSessionKey) ?? new RecentlyViewedViewModel();
+
             ViewBag.Title = "Home Page";
             var reviews = context.Reviews
                 .Include(r => r.Bathroom)

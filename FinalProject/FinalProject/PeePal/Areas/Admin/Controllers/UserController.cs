@@ -9,7 +9,7 @@ namespace PeePal.Areas.Admin.Controllers
     [Authorize]
     [Area("Admin")]
     [Route("[controller]/[action]/{id?}/{slug?}")]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
 
     public class UserController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager) : Controller
     {

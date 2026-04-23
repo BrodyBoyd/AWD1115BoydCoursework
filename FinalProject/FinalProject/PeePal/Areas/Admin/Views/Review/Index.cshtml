@@ -13,6 +13,13 @@
                 <p class="font-medium">@TempData["Message"]</p>
             </div>
         }
+        @if (TempData["DeleteMessage"] != null)
+        {
+            <div class="bg-red-200 border border-red-400 text-red-800
+                px-5 py-3 rounded-lg mb-6 shadow-sm">
+                <p class="font-medium">@TempData["DeleteMessage"]</p>
+            </div>
+        }
         <div class="flex items-center justify-between mb-12">
             <h1 class="font-display text-4xl font-bold text-foreground">Restroom Reviews</h1>
 
