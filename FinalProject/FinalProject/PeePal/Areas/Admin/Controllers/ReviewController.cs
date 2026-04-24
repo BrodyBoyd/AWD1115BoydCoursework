@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using PeePal.Models.ViewModels;
 
 namespace PeePal.Areas.Admin.Controllers
 {
@@ -41,8 +42,7 @@ namespace PeePal.Areas.Admin.Controllers
         // GET: Reviews/Details/5/{slug}
         public async Task<IActionResult> Details(int? id, string slug)
         {
-
-            //RecentlyViewedViewModel recentBathrooms = HttpContext.Session.GetObject<RecentlyViewedViewModel>(BathroomSessionKey) ?? new RecentlyViewedViewModel();
+            RecentlyViewedViewModel recentBathrooms = HttpContext.Session.GetObject<RecentlyViewedViewModel>(BathroomSessionKey) ?? new RecentlyViewedViewModel();
 
             if (id == null)
             {
@@ -53,17 +53,15 @@ namespace PeePal.Areas.Admin.Controllers
                 .Include(r => r.User)
                 .Include(r => r.Bathroom)
                 .FirstOrDefaultAsync(m => m.ReviewId == id);
+
             if (review == null)
             {
                 return NotFound();
             }
 
-            Bathroom currentBathroom = review.Bathroom;
-            // Note: bathrooms are stored in the Bathrooms table; reviews reference those records.
-            // Slug handling removed because Review does not expose a Slug property.
-
-            //recentBathrooms.RecentlySeenBathrooms.Add(currentBathroom);
-            //HttpContext.Session.SetObject(BathroomSessionKey, recentBathrooms);
+            recentBathrooms.RecentlySeenBathrooms.Insert(0, review.Bathroom.ToSessionDto());
+            recentBathrooms.RecentlySeenBathrooms = recentBathrooms.RecentlySeenBathrooms.Take(3).ToList();
+            HttpContext.Session.SetObject(BathroomSessionKey, recentBathrooms);
 
 
             return View(review);

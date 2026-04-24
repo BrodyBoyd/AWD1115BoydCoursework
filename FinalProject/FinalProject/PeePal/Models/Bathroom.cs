@@ -1,8 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using PeePal.Models.DTOs;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
 
 namespace PeePal.Models
 {
+
+    
     public class Bathroom
     {
         public int BathroomId { get; set; }
@@ -40,6 +43,17 @@ namespace PeePal.Models
                 return slug;
             }
         }
+
+        public RecentBathroomDTO ToSessionDto() => new()
+        {
+            BathroomId = this.BathroomId,
+            Name = this.Name,
+            Street = this.Street,
+            City = this.City,
+            State = this.State,
+            ZipCode = this.Zip,
+            Slug = this.Slug
+        };
 
     }
 }

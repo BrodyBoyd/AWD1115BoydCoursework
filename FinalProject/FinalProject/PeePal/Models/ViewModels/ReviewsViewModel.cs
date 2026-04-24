@@ -1,4 +1,4 @@
-﻿namespace PeePal.Models
+﻿namespace PeePal.Models.ViewModels
 {
     public class ReviewsViewModel
     {

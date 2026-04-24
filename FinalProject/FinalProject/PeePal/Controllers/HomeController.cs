@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PeePal.Models;
 using PeePal.Extensions;
+using PeePal.Models.ViewModels;
 
 namespace PeePal.Controllers
 {
@@ -13,7 +14,8 @@ namespace PeePal.Controllers
 
         public IActionResult Index()
         {
-            //ViewBag.RecentlyVisited = HttpContext.Session.GetObject<RecentlyViewedViewModel>(BathroomSessionKey) ?? new RecentlyViewedViewModel();
+            var recentBathrooms = HttpContext.Session.GetObject<RecentlyViewedViewModel>(BathroomSessionKey) ?? new RecentlyViewedViewModel();
+            ViewBag.RecentlyVisited = recentBathrooms.RecentlySeenBathrooms;
 
             ViewBag.Title = "Home Page";
             var reviews = context.Reviews

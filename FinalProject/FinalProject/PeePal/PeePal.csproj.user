@@ -16,5 +16,6 @@
     <WebStackScaffolding_DbContextTypeFullName>PeePal.Models.ApplicationDbContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
+    <NameOfLastUsedPublishProfile>C:\Users\bjb62\OneDrive\Documents\GitHub\Spring2026\AWD1115BoydCoursework\FinalProject\FinalProject\PeePal\Properties\PublishProfiles\PeePal - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
